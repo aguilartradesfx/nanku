@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Panel = 'food' | 'drinks'
 type FoodCat = 'appetizers' | 'seafood' | 'pasta' | 'white-meat' | 'steaks' | 'vegetarian' | 'costa-rica' | 'desserts'
@@ -23,6 +24,7 @@ interface ModalState {
   desc?: string
   photo: string
   suggestions: FoodItem[]
+  allSectionItems: FoodItem[]
 }
 
 // ─── EN DATA ────────────────────────────────────────────────────────────────
@@ -302,7 +304,8 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
       price: item.price,
       desc: item.desc,
       photo: item.photo!,
-      suggestions: sectionItems.filter(s => s.name !== item.name).slice(0, 4),
+      suggestions: sectionItems.filter(s => s.name !== item.name && s.photo).slice(0, 4),
+      allSectionItems: sectionItems,
     })
 
   const suggestLabel = lang === 'es' ? 'Platillos que te podrían gustar' : 'You might also like'
@@ -352,44 +355,55 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
                 <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'cover' }} />
               </div>
 
-              {/* Right — Info */}
+              {/* Right — Info + Suggestions + Reserve */}
               <div className="nm-modal-info">
                 <h3 className="nm-modal-name">{modal.name}</h3>
                 <span className="nm-modal-price">{modal.price}</span>
                 {modal.desc && <p className="nm-modal-desc">{modal.desc}</p>}
-              </div>
-            </div>
 
-            {/* Suggestions */}
-            {modal.suggestions.length > 0 && (
-              <div className="nm-modal-sugg">
-                <p className="nm-modal-sugg-title">{suggestLabel}</p>
-                <div className="nm-modal-sugg-row">
-                  {modal.suggestions.map((s) => (
-                    <button
-                      key={s.name}
-                      className="nm-modal-sugg-card"
-                      onClick={() => setModal(prev => prev ? {
-                        ...prev,
-                        name: s.name, price: s.price, desc: s.desc,
-                        photo: s.photo ?? prev.photo,
-                        suggestions: modal.suggestions.filter(x => x.name !== s.name),
-                      } : null)}
-                    >
-                      {s.photo && (
-                        <div className="nm-modal-sugg-img">
-                          <Image src={s.photo} alt={s.name} fill style={{ objectFit: 'cover' }} />
-                        </div>
-                      )}
-                      <div className="nm-modal-sugg-text">
-                        <span className="nm-modal-sugg-name">{s.name}</span>
-                        <span className="nm-modal-sugg-price">{s.price}</span>
-                      </div>
-                    </button>
-                  ))}
+                {modal.suggestions.length > 0 && (
+                  <div className="nm-modal-sugg">
+                    <p className="nm-modal-sugg-title">{suggestLabel}</p>
+                    <div className="nm-modal-sugg-row">
+                      {modal.suggestions.map((s) => (
+                        <button
+                          key={s.name}
+                          className="nm-modal-sugg-card"
+                          onClick={() => setModal({
+                            name: s.name,
+                            price: s.price,
+                            desc: s.desc,
+                            photo: s.photo ?? modal.photo,
+                            suggestions: modal.allSectionItems.filter(x => x.name !== s.name && x.photo).slice(0, 4),
+                            allSectionItems: modal.allSectionItems,
+                          })}
+                        >
+                          {s.photo && (
+                            <div className="nm-modal-sugg-img">
+                              <Image src={s.photo} alt={s.name} fill style={{ objectFit: 'cover' }} />
+                            </div>
+                          )}
+                          <div className="nm-modal-sugg-text">
+                            <span className="nm-modal-sugg-name">{s.name}</span>
+                            <span className="nm-modal-sugg-price">{s.price}</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="nm-modal-reserve">
+                  <Link
+                    href={lang === 'es' ? '/es#reservations' : '/#reservations'}
+                    className="nm-modal-reserve-btn"
+                    onClick={() => setModal(null)}
+                  >
+                    {lang === 'es' ? 'Reservar una Mesa' : 'Reserve a Table'}
+                  </Link>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       )}
