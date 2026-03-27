@@ -174,7 +174,7 @@ export default function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b915995b89c79b4fe824e3.jpg" alt="Tropical Atmosphere" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b91750c625853190e4be4b.jpg" alt="Tropical Atmosphere" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                     <div className="exp-img-number" style={{ WebkitTextStroke: '1px rgba(45,90,39,0.4)', left: '1.5rem', right: 'auto' }}>04</div>
                   </div>

@@ -178,7 +178,7 @@ export default function HomePageES() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b915995b89c79b4fe824e3.jpg" alt="Ambiente Tropical" loading="lazy" />
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b91750c625853190e4be4b.jpg" alt="Ambiente Tropical" loading="lazy" />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                     <div className="exp-img-number" style={{ WebkitTextStroke: '1px rgba(45,90,39,0.4)', left: '1.5rem', right: 'auto' }}>04</div>
                   </div>

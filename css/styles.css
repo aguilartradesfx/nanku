@@ -3683,6 +3683,445 @@ ul { list-style: none; }
 @media (min-width: 640px) { .lm-cta-buttons { flex-direction: row; } }
 
 /* ============================================================
+   MENU PAGE — nm-* classes
+   ============================================================ */
+
+/* --- Sticky sub-nav --- */
+.nm-sticky-nav {
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  background: rgba(26,26,26,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+@media (min-width: 768px) { .nm-sticky-nav { top: 80px; } }
+
+.nm-main-row {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 0.75rem 1rem 0;
+}
+
+.nm-main-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nm-main-btn:hover { color: #fff; }
+.nm-main-btn.active { color: #E8751A; border-bottom-color: #E8751A; }
+
+.nm-cats-row {
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0.5rem 1rem 0.6rem;
+}
+.nm-cats-row::-webkit-scrollbar { display: none; }
+
+.nm-cats-inner {
+  display: flex;
+  gap: 0.4rem;
+  min-width: max-content;
+  justify-content: center;
+}
+
+.nm-cat-btn {
+  padding: 0.28rem 0.85rem;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nm-cat-btn:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+.nm-cat-btn.active { background: #E8751A; border-color: #E8751A; color: #fff; }
+
+/* --- Top info notes --- */
+.nm-notes {
+  background: rgba(232,117,26,0.07);
+  border-bottom: 1px solid rgba(232,117,26,0.12);
+}
+.nm-notes-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.55rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #E8751A;
+}
+
+/* --- Food sections wrapper --- */
+.nm-food-sections {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem 5rem;
+}
+.nm-food-section { margin-bottom: 3rem; }
+
+/* --- Section banner --- */
+.nm-banner {
+  position: relative;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) { .nm-banner { height: 260px; } }
+
+.nm-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.15) 55%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem 1.75rem;
+}
+.nm-banner-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+}
+@media (min-width: 768px) { .nm-banner-title { font-size: 2.4rem; } }
+
+/* --- Card grid --- */
+.nm-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+@media (min-width: 560px) { .nm-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .nm-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* --- Menu card --- */
+.nm-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.nm-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(232,117,26,0.2);
+}
+.nm-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+.nm-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 1.3;
+}
+.nm-card-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #E8751A;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nm-card-desc {
+  font-size: 0.81rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+}
+
+/* --- Badges --- */
+.nm-badge {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.12rem 0.45rem;
+  border-radius: 20px;
+}
+.nm-badge-vegan {
+  background: rgba(52,168,83,0.15);
+  color: #4ade80;
+  border: 1px solid rgba(52,168,83,0.25);
+}
+.nm-badge-vegan-opt {
+  background: rgba(250,176,5,0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(250,176,5,0.22);
+}
+
+/* --- Steaks price list --- */
+.nm-steak-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+@media (min-width: 560px) { .nm-steak-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .nm-steak-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.nm-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 7px;
+}
+.nm-price-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: #fff;
+}
+.nm-price-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(255,255,255,0.18);
+  margin-bottom: 3px;
+  min-width: 0.5rem;
+}
+.nm-price-val {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #E8751A;
+  white-space: nowrap;
+}
+.nm-steak-note {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.81rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.4);
+}
+
+/* --- Desserts --- */
+.nm-dessert-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.nm-dessert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.25rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+}
+.nm-dessert-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: #fff;
+}
+.nm-dessert-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #E8751A;
+  white-space: nowrap;
+}
+
+/* --- Bottom food notes --- */
+.nm-food-notes {
+  margin-top: 2rem;
+  padding: 1.4rem 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.nm-food-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.81rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+}
+.nm-fn-icon {
+  color: #E8751A;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  margin-top: 0.15rem;
+}
+
+/* ============================================================
+   DRINKS PANEL — nm-drinks-* & nm-d* classes
+   ============================================================ */
+
+.nm-drinks-sections {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1rem 5rem;
+}
+.nm-drinks-section { margin-bottom: 2.5rem; }
+
+/* --- Drinks section header --- */
+.nm-drinks-header {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+}
+.nm-drinks-ornament {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: #E8751A;
+  opacity: 0.7;
+}
+.nm-drinks-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0.5rem 0 0.6rem;
+}
+.nm-drinks-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 180px;
+  margin: 0 auto;
+}
+.nm-ddiv-line { flex: 1; height: 1px; background: rgba(255,255,255,0.12); }
+.nm-ddiv-gem { color: #E8751A; font-size: 0.55rem; }
+
+/* --- Drink sub-section --- */
+.nm-dsub { margin-bottom: 1.75rem; }
+.nm-dsub-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.38);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+.nm-dprice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 560px) {
+  .nm-dprice-grid { grid-template-columns: repeat(2, 1fr); column-gap: 1.5rem; }
+}
+
+.nm-dprice-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.28rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.nm-dprice-name {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.75);
+}
+.nm-dprice-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(255,255,255,0.12);
+  margin-bottom: 3px;
+}
+.nm-dprice-val {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #E8751A;
+  white-space: nowrap;
+}
+.nm-batidos-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Cocktail cards --- */
+.nm-cktl-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 560px) { .nm-cktl-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .nm-cktl-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.nm-cktl-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.nm-cktl-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(232,117,26,0.2);
+}
+.nm-cktl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.nm-cktl-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+.nm-cktl-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #E8751A;
+  white-space: nowrap;
+}
+.nm-cktl-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.45;
+}
+
+/* ============================================================
    UTILITY CLASSES
    ============================================================ */
 .text-orange { color: #E8751A; }

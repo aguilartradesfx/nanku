@@ -33,8 +33,15 @@ export default function Navbar({ lang = 'en', activePage }: NavbarProps) {
   }, [drawerOpen])
 
   const base = lang === 'es' ? '/es' : ''
-  const altLang = lang === 'es' ? '/' : '/es'
   const altLangLabel = lang === 'es' ? 'EN' : 'ES'
+
+  const subPageMap: Record<string, string> = {
+    'Menu': '/menu', 'Menú': '/menu',
+    'About': '/about', 'Nosotros': '/about',
+    'Live Music': '/live-music', 'Música en Vivo': '/live-music',
+  }
+  const subPath = activePage ? (subPageMap[activePage] ?? '') : ''
+  const altLang = lang === 'es' ? subPath || '/' : `/es${subPath}`
 
   const links =
     lang === 'es'
