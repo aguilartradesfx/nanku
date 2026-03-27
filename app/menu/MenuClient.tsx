@@ -7,7 +7,7 @@ type Panel = 'food' | 'drinks'
 type FoodCat = 'appetizers' | 'seafood' | 'pasta' | 'white-meat' | 'steaks' | 'vegetarian' | 'costa-rica' | 'desserts'
 type DrinksCat = 'licores' | 'bebidas' | 'cervezas' | 'tiki' | 'cocteles'
 
-const CDN = 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/'
+const CDN = 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/'
 
 interface FoodItem {
   name: string
@@ -35,27 +35,27 @@ const enFood = {
     { name: 'Stuffed Avocado', price: '₡8,350', desc: 'Stuffed avocado with shrimp in pomodoro sauce on a bed of lettuce.' },
     { name: 'Octopus Ceviche', price: '₡10,500', desc: 'Octopus marinated with citrus soy sauce served with smashed plantains.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Fish Ceviche', price: '₡6,900', desc: 'Traditional Costa Rican ceviche served with mixed chips.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
-    { name: 'Passion Fruit Tuna Ceviche', price: '₡8,500', desc: 'Tuna marinated with passion fruit, soy and pepper oil served with mixed chips.' },
+    { name: 'Passion Fruit Tuna Ceviche', price: '₡8,500', desc: 'Tuna marinated with passion fruit, soy and pepper oil served with mixed chips.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg' },
   ] as FoodItem[],
   seafood: [
     { name: 'Teriyaki Tuna', price: '₡14,200', desc: 'Encrusted yellow-fin tuna with sesame seeds, served with vegetables, mashed potatoes, and teriyaki sauce.' },
-    { name: 'Grilled Octopus', price: '₡19,000', desc: 'Grilled octopus with sweet potato, salad, tomato chimichurri, and citrus concasse soy sauce.' },
+    { name: 'Grilled Octopus', price: '₡19,000', desc: 'Grilled octopus with sweet potato, salad, tomato chimichurri, and citrus concasse soy sauce.', photo: CDN + '69b9175087f0f2768356c731.jpg' },
     { name: 'Caribbean Soup', price: '₡8,000', desc: 'Mixed seafood in tomato sauce with coconut milk, thyme, and chili pepper.', photo: CDN + '69c5f6dc7794bf5d9b4fe34b.jpg' },
     { name: 'Whole Tilapia', price: '₡10,500', desc: 'Fried local tilapia with green salad, smashed plantains, refried beans and pico de gallo.', photo: CDN + '69c5f762146bc5af4febf1b7.jpg' },
     { name: 'Trout With Creamy', price: '₡12,400', desc: 'Costa Rican trout in creamy sauce and shrimp served with artichoke rice and cherry tomato.', photo: CDN + '69c5f8665ebd49a0c4779e7f.jpg' },
-    { name: 'Mahi Mahi With Apple & Mango Chutney', price: '₡12,400', desc: 'Grilled mahi mahi served with rosemary potatoes, apple, mango, soy sauce, and Dijon mustard.' },
+    { name: 'Mahi Mahi With Apple & Mango Chutney', price: '₡12,400', desc: 'Grilled mahi mahi served with rosemary potatoes, apple, mango, soy sauce, and Dijon mustard.', photo: CDN + '69b917505b89c7a116e859db.jpg' },
   ] as FoodItem[],
   pasta: [
-    { name: 'Salmon Ravioli', price: '₡10,200', desc: 'Salmon ravioli served with grana padana, Gorgonzola sauce, cherry tomatoes, mushrooms, basil and crostini.' },
-    { name: 'Spaghetti Pura Vida', price: '₡9,500', desc: 'Sautéed shrimp spaghetti with onion, basil, tomato sauce, served with avocado and crostini.' },
+    { name: 'Salmon Ravioli', price: '₡10,200', desc: 'Salmon ravioli served with grana padana, Gorgonzola sauce, cherry tomatoes, mushrooms, basil and crostini.', photo: CDN + '69c194d56f10179ea435b639.jpg' },
+    { name: 'Spaghetti Pura Vida', price: '₡9,500', desc: 'Sautéed shrimp spaghetti with onion, basil, tomato sauce, served with avocado and crostini.', photo: CDN + '69c194d5c1e996220ba4333f.jpg' },
     { name: 'Fettuccine Aglio E Olio', price: '₡9,350', desc: 'Fettuccine with olive oil, cherry tomatoes, basil, mushrooms, and chicken.' },
-    { name: 'Rigatoni In Aurora Sauce', price: '₡9,500', desc: 'Rigatoni pasta in aurora sauce (tomato and white sauce), with shrimps, parsley, onion, Parmesan cheese, crostinis.' },
+    { name: 'Rigatoni In Aurora Sauce', price: '₡9,500', desc: 'Rigatoni pasta in aurora sauce (tomato and white sauce), with shrimps, parsley, onion, Parmesan cheese, crostinis.', photo: CDN + '69c194d5b0fe813a7003ff83.jpg' },
   ] as FoodItem[],
   whiteMeat: [
     { name: 'Cahuita Chicken', price: '₡9,100', desc: 'Grilled chicken with cahuita sauce (coconut milk, thyme, and chili pepper) served with vegetables and mashed potatoes.', photo: CDN + '69c5f8667794bfe0805014c0.jpg' },
     { name: 'Nanku Chicken', price: '₡9,100', desc: 'Grilled chicken filet, served with mashed sweet potatoes, mini zucchini, mushroom, tomato cherry with hibiscus sauce.' },
-    { name: 'Pork Chop With Tamarindo', price: '₡14,100', desc: 'Pork chop served with stuffed cassava, grilled vegetables and tamarindo sauce.' },
-    { name: 'BBQ Pork Ribs', price: '₡12,000', desc: 'Pork ribs with BBQ sauce with pineapple, served with house salad, smashed plantains, refried beans and pico de gallo.' },
+    { name: 'Pork Chop With Tamarindo', price: '₡14,100', desc: 'Pork chop served with stuffed cassava, grilled vegetables and tamarindo sauce.', photo: CDN + '69c194d5427f6e70175279b8.jpg' },
+    { name: 'BBQ Pork Ribs', price: '₡12,000', desc: 'Pork ribs with BBQ sauce with pineapple, served with house salad, smashed plantains, refried beans and pico de gallo.', photo: CDN + '69b91750269d6516ffc77360.jpg' },
   ] as FoodItem[],
   steaks: [
     { name: 'Steak Strips', price: '₡14,000', photo: CDN + '69c194d5fa8b211e8d5a9298.jpg' },
@@ -76,10 +76,10 @@ const enFood = {
   costaRica: [
     { name: 'Typical Casado', price: '₡7,800', desc: 'Typical casado served with rice, beans, picadillo, fried eggs, tortilla, cheese, salad and sweet plantain. Choice of beef, chicken or tilapia.', badge: { text: 'Vegan opt.', type: 'vegan-opt' } },
     { name: 'Rice With Chicken', price: '₡7,300', desc: 'Sautéed chicken rice and vegetables, served with salad and french fries.', photo: CDN + '69c5f94c7794bf5a7b5031c0.jpg' },
-    { name: 'Chicharrones', price: '₡9,100', desc: 'Fried pork pieces served with salad, smashed plantains, pico de gallo, refried beans and fried cassava.' },
+    { name: 'Chicharrones', price: '₡9,100', desc: 'Fried pork pieces served with salad, smashed plantains, pico de gallo, refried beans and fried cassava.', photo: CDN + '69c194d5c1e996eb22a43340.jpg' },
     { name: 'Rice And Beans With Chicken', price: '₡9,100', desc: 'Caribbean style chicken cooked with coconut milk, chili pepper and thyme, accompanied by sweet plantain and salad.', photo: CDN + '69c5f94c5ebd497c7c77bc60.jpg' },
     { name: 'Arenal Hamburger', price: '₡8,500', desc: '180g Angus beef, bacon, caramelized onions, mozzarella cheese, lettuce, pickles, tomato, served with french fries.', photo: CDN + '69c5f94d9619ac299c9a439d.png' },
-    { name: 'Nanku Nachos', price: '₡6,500', desc: 'Choice of beef, chicken or vegetarian. Tortilla chips, refried beans, pico de gallo, sour cream, mozzarella cheese and sliced avocado.', badge: { text: 'Vegan opt.', type: 'vegan-opt' } },
+    { name: 'Nanku Nachos', price: '₡6,500', desc: 'Choice of beef, chicken or vegetarian. Tortilla chips, refried beans, pico de gallo, sour cream, mozzarella cheese and sliced avocado.', badge: { text: 'Vegan opt.', type: 'vegan-opt' }, photo: CDN + '69b91750269d65241dc77361.jpg' },
     { name: 'Nanku Sandwich', price: '₡6,500', desc: 'Chicken, beef, or vegetarian with fresh lettuce, tomato, bacon, pickles, mozzarella cheese, served with french fries.' },
   ] as FoodItem[],
   desserts: [
@@ -118,27 +118,27 @@ const esFood = {
     { name: 'Aguacate Relleno', price: '₡8,350', desc: 'Aguacate relleno con camarones en salsa pomodoro sobre cama de lechuga.' },
     { name: 'Ceviche de Pulpo', price: '₡10,500', desc: 'Pulpo marinado con salsa cítrica de soya, servido con patacones.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Ceviche de Pescado', price: '₡6,900', desc: 'Ceviche tradicional costarricense servido con chips mixtos.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
-    { name: 'Ceviche de Atún con Maracuyá', price: '₡8,500', desc: 'Atún marinado con maracuyá, soya y aceite de pimienta, servido con chips mixtos.' },
+    { name: 'Ceviche de Atún con Maracuyá', price: '₡8,500', desc: 'Atún marinado con maracuyá, soya y aceite de pimienta, servido con chips mixtos.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg' },
   ] as FoodItem[],
   seafood: [
     { name: 'Atún Teriyaki', price: '₡14,200', desc: 'Atún aleta amarilla encostrado en ajonjolí, servido con vegetales, puré de papas y salsa teriyaki.' },
-    { name: 'Pulpo a la Parrilla', price: '₡19,000', desc: 'Pulpo a la parrilla con camote, ensalada, chimichurri de tomate y salsa cítrica de soya.' },
+    { name: 'Pulpo a la Parrilla', price: '₡19,000', desc: 'Pulpo a la parrilla con camote, ensalada, chimichurri de tomate y salsa cítrica de soya.', photo: CDN + '69b9175087f0f2768356c731.jpg' },
     { name: 'Sopa Caribeña', price: '₡8,000', desc: 'Mariscos mixtos en salsa de tomate con leche de coco, tomillo y chile.', photo: CDN + '69c5f6dc7794bf5d9b4fe34b.jpg' },
     { name: 'Tilapia Entera', price: '₡10,500', desc: 'Tilapia local frita con ensalada verde, patacones, frijoles molidos y pico de gallo.', photo: CDN + '69c5f762146bc5af4febf1b7.jpg' },
     { name: 'Trucha en Salsa Cremosa', price: '₡12,400', desc: 'Trucha costarricense en salsa cremosa con camarones, servida con arroz de alcachofas y tomates cherry.', photo: CDN + '69c5f8665ebd49a0c4779e7f.jpg' },
-    { name: 'Mahi Mahi con Chutney de Manzana y Mango', price: '₡12,400', desc: 'Mahi mahi a la parrilla con papas al romero, manzana, mango, salsa de soya y mostaza Dijon.' },
+    { name: 'Mahi Mahi con Chutney de Manzana y Mango', price: '₡12,400', desc: 'Mahi mahi a la parrilla con papas al romero, manzana, mango, salsa de soya y mostaza Dijon.', photo: CDN + '69b917505b89c7a116e859db.jpg' },
   ] as FoodItem[],
   pasta: [
-    { name: 'Ravioles de Salmón', price: '₡10,200', desc: 'Ravioles de salmón con grana padana, salsa Gorgonzola, tomates cherry, champiñones, albahaca y crostini.' },
-    { name: 'Spaghetti Pura Vida', price: '₡9,500', desc: 'Spaghetti salteado con camarones, cebolla, albahaca y salsa de tomate, servido con aguacate y crostini.' },
+    { name: 'Ravioles de Salmón', price: '₡10,200', desc: 'Ravioles de salmón con grana padana, salsa Gorgonzola, tomates cherry, champiñones, albahaca y crostini.', photo: CDN + '69c194d56f10179ea435b639.jpg' },
+    { name: 'Spaghetti Pura Vida', price: '₡9,500', desc: 'Spaghetti salteado con camarones, cebolla, albahaca y salsa de tomate, servido con aguacate y crostini.', photo: CDN + '69c194d5c1e996220ba4333f.jpg' },
     { name: 'Fettuccine Aglio e Olio', price: '₡9,350', desc: 'Fettuccine con aceite de oliva, tomates cherry, albahaca, champiñones y pollo.' },
-    { name: 'Rigatoni en Salsa Aurora', price: '₡9,500', desc: 'Rigatoni en salsa aurora (tomate y salsa blanca) con camarones, perejil, cebolla, queso Parmesano y crostini.' },
+    { name: 'Rigatoni en Salsa Aurora', price: '₡9,500', desc: 'Rigatoni en salsa aurora (tomate y salsa blanca) con camarones, perejil, cebolla, queso Parmesano y crostini.', photo: CDN + '69c194d5b0fe813a7003ff83.jpg' },
   ] as FoodItem[],
   whiteMeat: [
     { name: 'Pollo Cahuita', price: '₡9,100', desc: 'Pollo a la parrilla con salsa cahuita (leche de coco, tomillo y chile), servido con vegetales y puré de papas.', photo: CDN + '69c5f8667794bfe0805014c0.jpg' },
     { name: 'Pollo Nanku', price: '₡9,100', desc: 'Filete de pollo a la parrilla con puré de camote, mini zucchini, champiñones y tomates cherry con salsa de hibisco.' },
-    { name: 'Chuleta de Cerdo con Tamarindo', price: '₡14,100', desc: 'Chuleta de cerdo con yuca rellena, vegetales a la parrilla y salsa de tamarindo.' },
-    { name: 'Costillas BBQ', price: '₡12,000', desc: 'Costillas de cerdo con salsa BBQ de piña, servidas con ensalada de la casa, patacones, frijoles molidos y pico de gallo.' },
+    { name: 'Chuleta de Cerdo con Tamarindo', price: '₡14,100', desc: 'Chuleta de cerdo con yuca rellena, vegetales a la parrilla y salsa de tamarindo.', photo: CDN + '69c194d5427f6e70175279b8.jpg' },
+    { name: 'Costillas BBQ', price: '₡12,000', desc: 'Costillas de cerdo con salsa BBQ de piña, servidas con ensalada de la casa, patacones, frijoles molidos y pico de gallo.', photo: CDN + '69b91750269d6516ffc77360.jpg' },
   ] as FoodItem[],
   steaks: [
     { name: 'Tiras de Lomo', price: '₡14,000', photo: CDN + '69c194d5fa8b211e8d5a9298.jpg' },
@@ -159,10 +159,10 @@ const esFood = {
   costaRica: [
     { name: 'Casado Típico', price: '₡7,800', desc: 'Casado típico con arroz, frijoles, picadillo, huevo frito, tortilla, queso, ensalada y plátano maduro. A elección: carne, pollo o tilapia.', badge: { text: 'Vegano opt.', type: 'vegan-opt' } },
     { name: 'Arroz con Pollo', price: '₡7,300', desc: 'Arroz salteado con pollo y vegetales, servido con ensalada y papas fritas.', photo: CDN + '69c5f94c7794bf5a7b5031c0.jpg' },
-    { name: 'Chicharrones', price: '₡9,100', desc: 'Trozos de cerdo fritos con ensalada, patacones, pico de gallo, frijoles molidos y yuca frita.' },
+    { name: 'Chicharrones', price: '₡9,100', desc: 'Trozos de cerdo fritos con ensalada, patacones, pico de gallo, frijoles molidos y yuca frita.', photo: CDN + '69c194d5c1e996eb22a43340.jpg' },
     { name: 'Rice and Beans con Pollo', price: '₡9,100', desc: 'Pollo estilo caribeño cocinado con leche de coco, chile y tomillo, acompañado de plátano maduro y ensalada.', photo: CDN + '69c5f94c5ebd497c7c77bc60.jpg' },
     { name: 'Hamburguesa Arenal', price: '₡8,500', desc: 'Carne Angus 180g, tocino, cebollas caramelizadas, mozzarella, lechuga, encurtidos y tomate, servida con papas fritas.', photo: CDN + '69c5f94d9619ac299c9a439d.png' },
-    { name: 'Nachos Nanku', price: '₡6,500', desc: 'A elección: carne, pollo o vegetariano. Totopos, frijoles molidos, pico de gallo, crema, mozzarella y aguacate.', badge: { text: 'Vegano opt.', type: 'vegan-opt' } },
+    { name: 'Nachos Nanku', price: '₡6,500', desc: 'A elección: carne, pollo o vegetariano. Totopos, frijoles molidos, pico de gallo, crema, mozzarella y aguacate.', badge: { text: 'Vegano opt.', type: 'vegan-opt' }, photo: CDN + '69b91750269d65241dc77361.jpg' },
     { name: 'Sándwich Nanku', price: '₡6,500', desc: 'Pollo, carne o vegetariano con lechuga fresca, tomate, tocino, encurtidos y mozzarella, servido con papas fritas.' },
   ] as FoodItem[],
   desserts: [
@@ -467,7 +467,10 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
             <section className="nm-food-section" id="pasta">
               <SectionBanner src={banners.pasta} title={catTitles['pasta']} />
               <div className="nm-grid">
-                {d.pasta.map((item) => <MenuCard key={item.name} item={item} />)}
+                {d.pasta.map((item) => (
+                  <MenuCard key={item.name} item={item}
+                    onOpen={item.photo ? (i) => openModal(i, d.pasta) : undefined} />
+                ))}
               </div>
             </section>
 
