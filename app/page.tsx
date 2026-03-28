@@ -351,7 +351,7 @@ export default async function HomePage() {
             </div>
             <h2 className="section-title">Live Music Nights</h2>
             <div className="section-divider"></div>
-            <p className="music-header-desc">Talented local artists bring the jungle alive with rhythm every Monday and Saturday. Arrive early — it fills up fast.</p>
+            <p className="music-header-desc">Local and international artists perform live at Nanku. Check the schedule and reserve early — music nights fill up fast.</p>
           </div>
           <div className="music-schedule fade-up">
             {(schedule.length > 0 ? schedule : [

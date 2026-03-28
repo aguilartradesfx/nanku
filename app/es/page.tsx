@@ -430,7 +430,7 @@ export default async function HomePageES() {
             </div>
             <h2 className="section-title">Noches de Música en Vivo</h2>
             <div className="section-divider"></div>
-            <p className="music-header-desc">Artistas locales llenan la selva de ritmo cada lunes y sábado. Llegá temprano — las mesas se llenan rápido.</p>
+            <p className="music-header-desc">Artistas locales e internacionales se presentan en vivo en Nanku. Revisá el horario y reservá temprano — las noches de música se llenan rápido.</p>
           </div>
 
           <div className="music-schedule fade-up">
