@@ -69,7 +69,7 @@ export default function AboutPage() {
               />
               <div className="about-photo-stack">
                 <Image
-                  src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80"
+                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5edb5146bc5f778eaab9e.jpg"
                   alt="Premium steak"
                   loading="lazy"
                   width={600}
@@ -78,8 +78,8 @@ export default function AboutPage() {
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <Image
-                  src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80"
-                  alt="Cocktails"
+                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e484e24981fcd12193a5.jpg"
+                  alt="Signature cocktails"
                   loading="lazy"
                   width={600}
                   height={400}

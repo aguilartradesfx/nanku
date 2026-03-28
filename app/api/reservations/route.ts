@@ -56,6 +56,29 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to save reservation. Please try again.' }, { status: 500 })
     }
 
+    // Fire webhook notification (non-blocking — errors do not affect the reservation)
+    const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim().toLowerCase(),
+            phone_code: phone_code ?? '+506',
+            phone: phone.trim(),
+            date,
+            time,
+            party_size,
+            notes: notes?.trim() || null,
+          }),
+        })
+      } catch (webhookErr) {
+        console.error('Webhook notification failed:', webhookErr)
+      }
+    }
+
     return NextResponse.json({ success: true }, { status: 201 })
   } catch (err) {
     console.error('Reservation API error:', err)

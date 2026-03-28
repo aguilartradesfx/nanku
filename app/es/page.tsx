@@ -362,9 +362,9 @@ export default async function HomePageES() {
               <div className="cocktail-body">
                 <p>Versiones elevadas del clásico, con mezcal y tequila premium, frutas tropicales locales y jarabes de la casa.</p>
                 <ul className="cocktail-drinks">
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Mango Habanero Margarita</li>
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Maracuyá Mezcalita</li>
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Coconut Lime Classic</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Margarita Clásica</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Wild Passion Margarita</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Margarita de Mango</li>
                 </ul>
               </div>
             </div>
@@ -379,9 +379,9 @@ export default async function HomePageES() {
                 <div className="cocktail-body">
                   <p>Transportate al trópico con creaciones a base de ron, capas de coco, maracuyá y piña fresca.</p>
                   <ul className="cocktail-drinks">
-                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Arenal Volcano Punch</li>
-                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Jungle Bird</li>
-                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Blue Lagoon Tiki</li>
+                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Pura Vida</li>
+                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Julia</li>
+                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>A Cachete</li>
                   </ul>
                 </div>
               </div>
@@ -391,14 +391,15 @@ export default async function HomePageES() {
               <div className="cocktail-img-wrap">
                 <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c734202e89d8e97f5f1526.jpg" alt="Especiales de la Casa" loading="lazy" />
                 <div className="cocktail-img-gradient"></div>
-                <div className="cocktail-img-title"><h3>Especiales de la Casa</h3></div>
+                <div className="cocktail-img-title"><h3>Los Clásicos</h3></div>
               </div>
               <div className="cocktail-body">
-                <p>Creaciones exclusivas de nuestro bartender principal — inspiradas en la flora y fauna de la región del Arenal.</p>
+                <p>Cócteles atemporales preparados con precisión — los compañeros perfectos para una velada relajada bajo el cielo de la selva.</p>
                 <ul className="cocktail-drinks">
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Nanku Sunset</li>
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Volcanic Night</li>
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Jungle Elixir</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Mojito</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Piña Colada</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Old Fashioned</li>
+                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Negroni</li>
                 </ul>
               </div>
             </div>

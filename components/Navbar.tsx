@@ -50,18 +50,16 @@ export default function Navbar({ lang = 'en', activePage }: NavbarProps) {
           { href: `${base}/menu`, label: 'Menú' },
           { href: `${base}#cocktails`, label: 'Cócteles' },
           { href: `${base}/live-music`, label: 'Música en Vivo' },
-          { href: `${base}#gallery`, label: 'Galería' },
           { href: `${base}/about`, label: 'Nosotros' },
-          { href: `${base}#reservations`, label: 'Reservaciones' },
+          { href: `/es#reservations`, label: 'Reservaciones' },
         ]
       : [
           { href: '#experience', label: 'Experience' },
           { href: '/menu', label: 'Menu' },
           { href: '#cocktails', label: 'Cocktails' },
           { href: '/live-music', label: 'Live Music' },
-          { href: '#gallery', label: 'Gallery' },
           { href: '/about', label: 'About' },
-          { href: '#reservations', label: 'Reservations' },
+          { href: '/#reservations', label: 'Reservations' },
         ]
 
   const reserveHref = lang === 'es' ? '/es#reservations' : '#reservations'
