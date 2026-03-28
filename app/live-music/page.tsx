@@ -15,67 +15,39 @@ export const metadata: Metadata = {
     'Live music every Monday and Saturday at Nanku Tropical Bar & Steakhouse in La Fortuna, Costa Rica. Local and international artists from 7:00 PM.',
 }
 
-type ScheduleDay = { id: string; day_of_week: string; is_active: boolean; event_label: string; start_time: string; sort_order: number }
+type ArtistRef = { name: string; label: string }
+type ScheduleDay = { id: string; day_of_week: string; is_active: boolean; event_label: string; start_time: string; sort_order: number; artist_id: string | null; event_detail: string | null; artist?: ArtistRef | null }
 type WeeklyEvent  = { id: string; title: string; subtitle: string | null; image_url: string | null; cta_link: string | null; cta_text: string | null; is_active: boolean; sort_order: number }
+type ArtistRow    = { name: string; label: string; photo: string; bio: string }
 
 const DEFAULT_SCHEDULE: ScheduleDay[] = [
-  { id: '1', day_of_week: 'Monday',    is_active: true,  event_label: 'Live Band',                 start_time: '7:00 PM',    sort_order: 1 },
-  { id: '2', day_of_week: 'Tuesday',   is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 2 },
-  { id: '3', day_of_week: 'Wednesday', is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 3 },
-  { id: '4', day_of_week: 'Thursday',  is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 4 },
-  { id: '5', day_of_week: 'Friday',    is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 5 },
-  { id: '6', day_of_week: 'Saturday',  is_active: true,  event_label: 'Live Band',                 start_time: '7:00 PM',    sort_order: 6 },
-  { id: '7', day_of_week: 'Sunday',    is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 7 },
-]
-
-const ARTISTS = [
-  {
-    name: 'Andrés Rojas',
-    label: 'Rojas Blues',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e2304a4efae1be15c031.jpeg',
-    bio: 'Costa Rican singer and guitarist blending rock, pop, and Latin classics. Lead vocalist of Curandera with over 20 years of experience. Influenced by Pink Floyd, Queen, Santana, and Maná.',
-  },
-  {
-    name: 'Esteban Calero',
-    label: 'Latin Loop Show',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611db69544cbe5cda9286.jpg',
-    bio: 'Versatile musician known for his Latin sound and live loop pedal performances. Delivers full live arrangements in real time, adapting seamlessly to every atmosphere.',
-  },
-  {
-    name: 'Chris Charía',
-    label: 'Rock & Trova',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e2305ebd49077774f391.jpeg',
-    bio: 'Singer-songwriter with 31 years of national and international experience. Covers classic rock in Spanish and English, Latin music, trova, bolero, and reggae.',
-  },
-  {
-    name: 'Bryan Villalobos',
-    label: 'Latin Loop Show',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e23081e6bcccfa756c06.jpeg',
-    bio: 'Costa Rican musician blending Latin rhythms with global hits completely live. Performs at weddings, hotels, and private events across Costa Rica with original music on digital platforms.',
-  },
-  {
-    name: 'Nathan Bolívar',
-    label: 'Live Loop Artist',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e2309619ac8584977e7d.jpeg',
-    bio: 'Artist who builds songs in real time — layer by layer — merging rhythms, melodies, and voice. Influenced by funk, pop, and Latin sounds with a passion for music since age 12.',
-  },
+  { id: '1', day_of_week: 'Monday',    is_active: true,  event_label: 'Live Band',                 start_time: '7:00 PM',    sort_order: 1, artist_id: null, event_detail: null },
+  { id: '2', day_of_week: 'Tuesday',   is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 2, artist_id: null, event_detail: null },
+  { id: '3', day_of_week: 'Wednesday', is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 3, artist_id: null, event_detail: null },
+  { id: '4', day_of_week: 'Thursday',  is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 4, artist_id: null, event_detail: null },
+  { id: '5', day_of_week: 'Friday',    is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 5, artist_id: null, event_detail: null },
+  { id: '6', day_of_week: 'Saturday',  is_active: true,  event_label: 'Live Band',                 start_time: '7:00 PM',    sort_order: 6, artist_id: null, event_detail: null },
+  { id: '7', day_of_week: 'Sunday',    is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 7, artist_id: null, event_detail: null },
 ]
 
 export default async function LiveMusicPage() {
   let schedule: ScheduleDay[] = DEFAULT_SCHEDULE
   let weeklyEvents: WeeklyEvent[] = []
+  let artists: ArtistRow[] = []
 
   try {
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     )
-    const [{ data: schedData }, { data: eventsData }] = await Promise.all([
-      supabase.from('live_music_schedule').select('*').order('sort_order'),
+    const [{ data: schedData }, { data: eventsData }, { data: artistsData }] = await Promise.all([
+      supabase.from('live_music_schedule').select('*, artist:artists(name, label)').order('sort_order'),
       supabase.from('weekly_events').select('*').eq('is_active', true).order('sort_order'),
+      supabase.from('artists').select('name, label, photo, bio').eq('is_active', true).order('sort_order'),
     ])
     if (schedData && schedData.length > 0) schedule = schedData
     weeklyEvents = eventsData ?? []
+    artists = artistsData ?? []
   } catch {
     // use defaults
   }
@@ -147,7 +119,14 @@ export default async function LiveMusicPage() {
                   )}
                 </div>
                 <div className="schedule-info">
-                  <p className={`schedule-event${d.is_active ? ' live' : ''}`}>{d.event_label}</p>
+                  <p className={`schedule-event${d.is_active ? ' live' : ''}`}>
+                    {d.is_active && d.artist
+                      ? `${d.artist.name} | ${d.artist.label}`
+                      : d.event_label}
+                  </p>
+                  {d.is_active && d.event_detail && (
+                    <p className="schedule-event-detail">{d.event_detail}</p>
+                  )}
                   <div className={`schedule-time${d.is_active ? ' live' : ''}`}>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                     {d.start_time}
@@ -230,7 +209,7 @@ export default async function LiveMusicPage() {
             <div className="divider-line" style={{ margin: '0 auto 1.25rem' }}></div>
             <p className="lm-artists-sub">Local and international talent on our stage</p>
           </div>
-          <ArtistsGrid artists={ARTISTS} />
+          <ArtistsGrid artists={artists} />
         </div>
       </section>
 

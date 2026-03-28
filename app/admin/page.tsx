@@ -11,11 +11,13 @@ export default async function AdminPage() {
     { data: { user } },
     { data: schedule },
     { data: events },
+    { data: artists },
   ] = await Promise.all([
     supabase.from('reservations').select('*').order('created_at', { ascending: false }),
     supabase.auth.getUser(),
     supabase.from('live_music_schedule').select('*').order('sort_order'),
     supabase.from('weekly_events').select('*').order('sort_order'),
+    supabase.from('artists').select('*').order('sort_order'),
   ])
 
   return (
@@ -25,6 +27,7 @@ export default async function AdminPage() {
       userEmail={user?.email ?? ''}
       schedule={schedule ?? []}
       events={events ?? []}
+      artists={artists ?? []}
     />
   )
 }

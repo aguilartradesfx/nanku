@@ -50,10 +50,10 @@ export const STATUS_LABELS: Record<ReservationStatus, string> = {
 }
 
 export const STATUS_STYLES: Record<ReservationStatus, string> = {
-  pending:   'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  confirmed: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  cancelled: 'bg-red-500/10 text-red-400 border-red-500/20',
-  no_show:   'bg-zinc-500/10 text-zinc-400 border-zinc-500/20',
+  pending:   'bg-amber-100 text-amber-700 border-amber-300',
+  confirmed: 'bg-emerald-100 text-emerald-700 border-emerald-300',
+  cancelled: 'bg-red-100 text-red-600 border-red-300',
+  no_show:   'bg-gray-100 text-gray-500 border-gray-300',
 }
 
 /** Returns today's date in Costa Rica timezone as YYYY-MM-DD */

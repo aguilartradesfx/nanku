@@ -97,9 +97,14 @@ ul { list-style: none; }
 }
 .navbar.transparent { background: transparent; }
 .navbar.solid {
-  background: rgba(26,26,26,0.97);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 40px rgba(0,0,0,0.6);
+  background: linear-gradient(
+    to bottom,
+    rgba(16,16,16,0.96) 0%,
+    rgba(16,16,16,0.75) 55%,
+    rgba(16,16,16,0.0)  100%
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .navbar-inner {
   display: flex;
@@ -825,6 +830,42 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 .cocktails-cta { text-align: center; margin-top: 3rem; }
+
+/* Rotating shiny border for highlighted cocktail card */
+@keyframes shimmer-rotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.cocktail-highlight-wrap {
+  position: relative;
+  border-radius: 1.125rem;
+  overflow: hidden;
+  padding: 2px;
+}
+.cocktail-highlight-wrap::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%, transparent 58%,
+    #E8751A 65%, #F5C842 72%, #fffbe0 77%,
+    #F5C842 82%, #E8751A 89%,
+    transparent 95%, transparent 100%
+  );
+  animation: shimmer-rotate 3s linear infinite;
+  pointer-events: none;
+}
+/* Detail text below artist name on schedule days */
+.schedule-event-detail {
+  font-size: 0.7rem;
+  color: rgba(232,117,26,0.75);
+  margin-top: 0.15rem;
+  font-family: 'Lato', sans-serif;
+}
 
 /* ============================================================
    MUSIC SECTION

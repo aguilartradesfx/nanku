@@ -177,7 +177,7 @@ export default function Footer({ lang = 'en' }: FooterProps) {
                   {lang === 'es' ? 'Lunes' : 'Monday'}
                 </span>
                 <div className="footer-hours-time-wrap">
-                  <span className="footer-hours-time">12 PM – 11 PM</span>
+                  <span className="footer-hours-time">12 PM – 10 PM</span>
                   <span className="footer-live-badge">LIVE</span>
                 </div>
               </li>
@@ -185,32 +185,32 @@ export default function Footer({ lang = 'en' }: FooterProps) {
                 <span className="footer-hours-day">
                   {lang === 'es' ? 'Martes' : 'Tuesday'}
                 </span>
-                <span className="footer-hours-time">12 PM – 11 PM</span>
+                <span className="footer-hours-time">12 PM – 10 PM</span>
               </li>
               <li className="footer-hours-row">
                 <span className="footer-hours-day">
                   {lang === 'es' ? 'Miércoles' : 'Wednesday'}
                 </span>
-                <span className="footer-hours-time">12 PM – 11 PM</span>
+                <span className="footer-hours-time">12 PM – 10 PM</span>
               </li>
               <li className="footer-hours-row">
                 <span className="footer-hours-day">
                   {lang === 'es' ? 'Jueves' : 'Thursday'}
                 </span>
-                <span className="footer-hours-time">12 PM – 11 PM</span>
+                <span className="footer-hours-time">12 PM – 10 PM</span>
               </li>
               <li className="footer-hours-row">
                 <span className="footer-hours-day">
                   {lang === 'es' ? 'Viernes' : 'Friday'}
                 </span>
-                <span className="footer-hours-time">12 PM – 1 AM</span>
+                <span className="footer-hours-time">12 PM – 10 PM</span>
               </li>
               <li className="footer-hours-row">
                 <span className="footer-hours-day">
                   {lang === 'es' ? 'Sábado' : 'Saturday'}
                 </span>
                 <div className="footer-hours-time-wrap">
-                  <span className="footer-hours-time">12 PM – 1 AM</span>
+                  <span className="footer-hours-time">12 PM – 10 PM</span>
                   <span className="footer-live-badge">LIVE</span>
                 </div>
               </li>

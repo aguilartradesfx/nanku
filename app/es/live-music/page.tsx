@@ -15,8 +15,10 @@ export const metadata: Metadata = {
     'Música en vivo cada lunes y sábado en Nanku Tropical Bar & Steakhouse en La Fortuna, Costa Rica. Artistas locales e internacionales desde las 7:00 PM.',
 }
 
-type ScheduleDay = { id: string; day_of_week: string; is_active: boolean; event_label: string; start_time: string; sort_order: number }
+type ArtistRef = { name: string; label: string }
+type ScheduleDay = { id: string; day_of_week: string; is_active: boolean; event_label: string; start_time: string; sort_order: number; artist_id: string | null; event_detail: string | null; artist?: ArtistRef | null }
 type WeeklyEvent  = { id: string; title: string; subtitle: string | null; image_url: string | null; cta_link: string | null; cta_text: string | null; is_active: boolean; sort_order: number }
+type ArtistRow    = { name: string; label: string; photo: string; bio: string; bio_es: string }
 
 const DAY_NAMES: Record<string, string> = {
   Monday: 'Lunes', Tuesday: 'Martes', Wednesday: 'Miércoles',
@@ -24,46 +26,13 @@ const DAY_NAMES: Record<string, string> = {
 }
 
 const DEFAULT_SCHEDULE: ScheduleDay[] = [
-  { id: '1', day_of_week: 'Monday',    is_active: true,  event_label: 'Banda en Vivo',        start_time: '7:00 PM',      sort_order: 1 },
-  { id: '2', day_of_week: 'Tuesday',   is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 2 },
-  { id: '3', day_of_week: 'Wednesday', is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 3 },
-  { id: '4', day_of_week: 'Thursday',  is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 4 },
-  { id: '5', day_of_week: 'Friday',    is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 5 },
-  { id: '6', day_of_week: 'Saturday',  is_active: true,  event_label: 'Banda en Vivo',        start_time: '7:00 PM',      sort_order: 6 },
-  { id: '7', day_of_week: 'Sunday',    is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 7 },
-]
-
-const ARTISTS = [
-  {
-    name: 'Andrés Rojas',
-    label: 'Rojas Blues',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e2304a4efae1be15c031.jpeg',
-    bio: 'Cantante y guitarrista costarricense que mezcla rock, pop y clásicos latinos. Vocalista principal de Curandera con más de 20 años de experiencia. Influenciado por Pink Floyd, Queen, Santana y Maná.',
-  },
-  {
-    name: 'Esteban Calero',
-    label: 'Latin Loop Show',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611db69544cbe5cda9286.jpg',
-    bio: 'Músico versátil conocido por su sonido latino y sus actuaciones en vivo con loop pedal. Entrega arreglos completamente en vivo en tiempo real, adaptándose a cada atmósfera.',
-  },
-  {
-    name: 'Chris Charía',
-    label: 'Rock & Trova',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e2305ebd49077774f391.jpeg',
-    bio: 'Cantautor con 31 años de experiencia nacional e internacional. Interpreta rock clásico en español e inglés, música latina, trova, bolero y reggae.',
-  },
-  {
-    name: 'Bryan Villalobos',
-    label: 'Latin Loop Show',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e23081e6bcccfa756c06.jpeg',
-    bio: 'Músico costarricense que mezcla ritmos latinos con éxitos mundiales completamente en vivo. Actúa en bodas, hoteles y eventos privados en toda Costa Rica con música original en plataformas digitales.',
-  },
-  {
-    name: 'Nathan Bolívar',
-    label: 'Live Loop Artist',
-    photo: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e2309619ac8584977e7d.jpeg',
-    bio: 'Artista que construye canciones en tiempo real, capa a capa, fusionando ritmos, melodías y voz. Influenciado por el funk, pop y sonidos latinos con pasión por la música desde los 12 años.',
-  },
+  { id: '1', day_of_week: 'Monday',    is_active: true,  event_label: 'Banda en Vivo',        start_time: '7:00 PM',      sort_order: 1, artist_id: null, event_detail: null },
+  { id: '2', day_of_week: 'Tuesday',   is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 2, artist_id: null, event_detail: null },
+  { id: '3', day_of_week: 'Wednesday', is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 3, artist_id: null, event_detail: null },
+  { id: '4', day_of_week: 'Thursday',  is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 4, artist_id: null, event_detail: null },
+  { id: '5', day_of_week: 'Friday',    is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 5, artist_id: null, event_detail: null },
+  { id: '6', day_of_week: 'Saturday',  is_active: true,  event_label: 'Banda en Vivo',        start_time: '7:00 PM',      sort_order: 6, artist_id: null, event_detail: null },
+  { id: '7', day_of_week: 'Sunday',    is_active: false, event_label: 'Playlist tropical',    start_time: 'Toda la noche', sort_order: 7, artist_id: null, event_detail: null },
 ]
 
 function translateLabel(label: string): string {
@@ -81,18 +50,21 @@ function translateTime(time: string): string {
 export default async function LiveMusicPageES() {
   let schedule: ScheduleDay[] = DEFAULT_SCHEDULE
   let weeklyEvents: WeeklyEvent[] = []
+  let artists: ArtistRow[] = []
 
   try {
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     )
-    const [{ data: schedData }, { data: eventsData }] = await Promise.all([
-      supabase.from('live_music_schedule').select('*').order('sort_order'),
+    const [{ data: schedData }, { data: eventsData }, { data: artistsData }] = await Promise.all([
+      supabase.from('live_music_schedule').select('*, artist:artists(name, label)').order('sort_order'),
       supabase.from('weekly_events').select('*').eq('is_active', true).order('sort_order'),
+      supabase.from('artists').select('name, label, photo, bio, bio_es').eq('is_active', true).order('sort_order'),
     ])
     if (schedData && schedData.length > 0) schedule = schedData
     weeklyEvents = eventsData ?? []
+    artists = artistsData ?? []
   } catch {
     // usar valores por defecto
   }
@@ -165,7 +137,14 @@ export default async function LiveMusicPageES() {
                   )}
                 </div>
                 <div className="schedule-info">
-                  <p className={`schedule-event${d.is_active ? ' live' : ''}`}>{translateLabel(d.event_label)}</p>
+                  <p className={`schedule-event${d.is_active ? ' live' : ''}`}>
+                    {d.is_active && d.artist
+                      ? `${d.artist.name} | ${d.artist.label}`
+                      : translateLabel(d.event_label)}
+                  </p>
+                  {d.is_active && d.event_detail && (
+                    <p className="schedule-event-detail">{d.event_detail}</p>
+                  )}
                   <div className={`schedule-time${d.is_active ? ' live' : ''}`}>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                     {translateTime(d.start_time)}
@@ -248,7 +227,7 @@ export default async function LiveMusicPageES() {
             <div className="divider-line" style={{ margin: '0 auto 1.25rem' }}></div>
             <p className="lm-artists-sub">Talento local e internacional en nuestro escenario</p>
           </div>
-          <ArtistsGrid artists={ARTISTS} />
+          <ArtistsGrid artists={artists.map(a => ({ ...a, bio: a.bio_es || a.bio }))} />
         </div>
       </section>
 

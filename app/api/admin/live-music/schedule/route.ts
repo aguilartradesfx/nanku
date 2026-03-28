@@ -17,13 +17,15 @@ export async function PATCH(request: NextRequest) {
     if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
     const body = await request.json()
-    const { id, is_active, event_label, start_time } = body
+    const { id, is_active, event_label, start_time, artist_id, event_detail } = body
     if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 })
 
     const updates: Record<string, unknown> = { updated_at: new Date().toISOString() }
     if (typeof is_active === 'boolean') updates.is_active = is_active
     if (event_label !== undefined) updates.event_label = event_label
     if (start_time !== undefined) updates.start_time = start_time
+    if (artist_id !== undefined) updates.artist_id = artist_id   // null = unassign
+    if (event_detail !== undefined) updates.event_detail = event_detail
 
     const { error } = await serviceClient()
       .from('live_music_schedule')

@@ -4,7 +4,7 @@ import { useState, useTransition, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import LiveMusicManager, { type ScheduleDay, type WeeklyEvent } from './LiveMusicManager'
+import LiveMusicManager, { type Artist, type ScheduleDay, type WeeklyEvent } from './LiveMusicManager'
 import AdminNav from './components/AdminNav'
 import {
   type Reservation,
@@ -25,12 +25,14 @@ export default function AdminDashboard({
   userEmail,
   schedule,
   events,
+  artists,
 }: {
   reservations: Reservation[]
   error: string | null
   userEmail: string
   schedule: ScheduleDay[]
   events: WeeklyEvent[]
+  artists: Artist[]
 }) {
   const router = useRouter()
   const [tab, setTab] = useState<Tab>('reservations')
@@ -161,7 +163,7 @@ export default function AdminDashboard({
                   {t.icon}
                   {t.label}
                   {t.id === 'reservations' && counts.pending > 0 && (
-                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-400">
+                    <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700">
                       {counts.pending}
                     </span>
                   )}
@@ -213,8 +215,8 @@ export default function AdminDashboard({
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-6">
               {[
                 { label: 'Total',         value: counts.total,     color: 'text-gray-900' },
-                { label: 'Pendientes',    value: counts.pending,   color: 'text-amber-400' },
-                { label: 'Confirmadas',   value: counts.confirmed, color: 'text-emerald-400' },
+                { label: 'Pendientes',    value: counts.pending,   color: 'text-amber-600' },
+                { label: 'Confirmadas',   value: counts.confirmed, color: 'text-emerald-600' },
                 { label: 'Canceladas',    value: counts.cancelled, color: 'text-red-400' },
                 { label: 'No llegaron',   value: counts.no_show,   color: 'text-gray-500' },
                 { label: 'Pax del día',   value: counts.pax,       color: 'text-orange-400' },
@@ -388,7 +390,7 @@ export default function AdminDashboard({
 
         {/* ── Live Music Tab ──────────────────────────────── */}
         {tab === 'live-music' && (
-          <LiveMusicManager initialSchedule={schedule} initialEvents={events} />
+          <LiveMusicManager initialSchedule={schedule} initialEvents={events} initialArtists={artists} />
         )}
       </main>
     </div>

@@ -333,23 +333,7 @@ export default function HomePageES() {
           <div className="cocktails-grid">
             <div className="cocktail-card fade-up">
               <div className="cocktail-img-wrap">
-                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80" alt="Paraíso Tiki" loading="lazy" />
-                <div className="cocktail-img-gradient"></div>
-                <div className="cocktail-img-title"><h3>Paraíso Tiki</h3></div>
-              </div>
-              <div className="cocktail-body">
-                <p>Transportate al trópico con creaciones a base de ron, capas de coco, maracuyá y piña fresca.</p>
-                <ul className="cocktail-drinks">
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Arenal Volcano Punch</li>
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Jungle Bird</li>
-                  <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Blue Lagoon Tiki</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="cocktail-card fade-up">
-              <div className="cocktail-img-wrap">
-                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80" alt="Margaritas Artesanales" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b85b269d65a9c8c29dca.jpeg" alt="Margaritas Artesanales" loading="lazy" />
                 <div className="cocktail-img-gradient"></div>
                 <div className="cocktail-img-title"><h3>Margaritas Artesanales</h3></div>
               </div>
@@ -363,9 +347,27 @@ export default function HomePageES() {
               </div>
             </div>
 
+            <div className="cocktail-highlight-wrap fade-up">
+              <div className="cocktail-card">
+                <div className="cocktail-img-wrap">
+                  <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b87e269d65a9c8c29dce.jpeg" alt="Paraíso Tiki" loading="lazy" />
+                  <div className="cocktail-img-gradient"></div>
+                  <div className="cocktail-img-title"><h3>Paraíso Tiki</h3></div>
+                </div>
+                <div className="cocktail-body">
+                  <p>Transportate al trópico con creaciones a base de ron, capas de coco, maracuyá y piña fresca.</p>
+                  <ul className="cocktail-drinks">
+                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Arenal Volcano Punch</li>
+                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Jungle Bird</li>
+                    <li className="cocktail-drink"><span className="cocktail-drink-dot"></span>Blue Lagoon Tiki</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             <div className="cocktail-card fade-up">
               <div className="cocktail-img-wrap">
-                <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80" alt="Especiales de la Casa" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b893db6cd63ce6c15b6f.jpeg" alt="Especiales de la Casa" loading="lazy" />
                 <div className="cocktail-img-gradient"></div>
                 <div className="cocktail-img-title"><h3>Especiales de la Casa</h3></div>
               </div>

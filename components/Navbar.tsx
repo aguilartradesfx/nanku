@@ -70,7 +70,7 @@ export default function Navbar({ lang = 'en', activePage }: NavbarProps) {
 
   return (
     <>
-      <nav id="navbar" className={`navbar ${scrolled ? '' : 'transparent'}`}>
+      <nav id="navbar" className={`navbar ${scrolled ? 'solid' : 'transparent'}`}>
         <div className="container">
           <div className="navbar-inner">
             <Link href={lang === 'es' ? '/es' : '/'} className="navbar-logo">

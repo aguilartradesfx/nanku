@@ -22,37 +22,37 @@ DELETE FROM public.reservations WHERE source = 'mock';
 -- TODAY 2026-03-27 · LUNCH
 -- ──────────────────────────────────────────────────────────
 INSERT INTO public.reservations
-  (name, email, phone_code, phone, date, time, party_size, status, notes,
+  (name, email, phone, date, time, party_size, status, notes,
    zone, table_ids, source, confirmed_at, created_at)
 VALUES
 
   -- 12:00 Salón
-  ('Familia Mora', 'mora.familia@gmail.com', '+506', '88001234',
+  ('Familia Mora', 'mora.familia@gmail.com', '88001234',
    '2026-03-27', '12:00', '4', 'confirmed', 'Celebración familiar, ventana si es posible',
    'salon', ARRAY['01SA'], 'mock', NOW() - INTERVAL '3 hours', NOW() - INTERVAL '6 hours'),
 
   -- 12:00 Terraza
-  ('Café Digital S.A.', 'reservas@cafeDigital.cr', '+506', '22334455',
+  ('Café Digital S.A.', 'reservas@cafeDigital.cr', '22334455',
    '2026-03-27', '12:00', '6', 'confirmed', 'Almuerzo de equipo, factura a nombre de empresa',
    'terraza', ARRAY['03TE','04TE'], 'mock', NOW() - INTERVAL '2 hours', NOW() - INTERVAL '5 hours'),
 
   -- 12:30 Salón
-  ('Andrea Vindas', NULL, '+506', '70002345',
+  ('Andrea Vindas', 'avindas@gmail.com', '70002345',
    '2026-03-27', '12:30', '2', 'pending', NULL,
    'salon', ARRAY['02SA'], 'mock', NULL, NOW() - INTERVAL '1 hour'),
 
   -- 13:00 Salón
-  ('Grupo Hernández', 'hern.grupo@outlook.com', '+506', '83456789',
+  ('Grupo Hernández', 'hern.grupo@outlook.com', '83456789',
    '2026-03-27', '13:00', '7', 'confirmed', 'Reunión de negocios',
    'salon', ARRAY['04SA'], 'mock', NOW() - INTERVAL '4 hours', NOW() - INTERVAL '8 hours'),
 
   -- 13:00 Terraza
-  ('Carlos Quesada', NULL, '+506', '69871234',
+  ('Carlos Quesada', 'cquesada@hotmail.com', '69871234',
    '2026-03-27', '13:00', '3', 'pending', 'Nos vemos en 10 min, venimos tarde',
    'terraza', ARRAY['07TE'], 'mock', NULL, NOW() - INTERVAL '30 minutes'),
 
   -- 13:30 Salón (combined tables)
-  ('Cumpleaños Vargas', 'vargas.cumple@gmail.com', '+506', '88889999',
+  ('Cumpleaños Vargas', 'vargas.cumple@gmail.com', '88889999',
    '2026-03-27', '13:30', '12', 'confirmed', 'Festejo de cumpleaños, traen pastel propio',
    'salon', ARRAY['08SA','09SA','10SA'], 'mock', NOW() - INTERVAL '24 hours', NOW() - INTERVAL '30 hours'),
 
@@ -61,57 +61,57 @@ VALUES
 -- ──────────────────────────────────────────────────────────
 
   -- 18:00 Terraza
-  ('Aniversario Solano', 'jsolano@gmail.com', '+506', '77665544',
+  ('Aniversario Solano', 'jsolano@gmail.com', '77665544',
    '2026-03-27', '18:00', '4', 'confirmed', 'Aniversario de bodas, decoración romántica si es posible',
    'terraza', ARRAY['01TE','02TE'], 'mock', NOW() - INTERVAL '48 hours', NOW() - INTERVAL '72 hours'),
 
   -- 18:00 Salón
-  ('Diego Arce', 'darce@proton.me', '+506', '62223333',
+  ('Diego Arce', 'd.arce@proton.me', '62223333',
    '2026-03-27', '18:00', '4', 'pending', NULL,
    'salon', ARRAY['03SA'], 'mock', NULL, NOW() - INTERVAL '2 hours'),
 
   -- 18:30 Terraza
-  ('María Castro', NULL, '+506', '84445566',
+  ('María Castro', 'mcastro@gmail.com', '84445566',
    '2026-03-27', '18:30', '2', 'confirmed', 'Mesa con vista al jardín',
    'terraza', ARRAY['05TE'], 'mock', NOW() - INTERVAL '5 hours', NOW() - INTERVAL '7 hours'),
 
   -- 19:00 Salón (06SA+07SA are one unit)
-  ('Grupo López', 'gruplopez@empresa.cr', '+506', '22001100',
+  ('Grupo López', 'gruplopez@empresa.cr', '22001100',
    '2026-03-27', '19:00', '8', 'confirmed', 'Cena corporativa, menú ejecutivo x8',
    'salon', ARRAY['06SA','07SA'], 'mock', NOW() - INTERVAL '12 hours', NOW() - INTERVAL '18 hours'),
 
   -- 19:00 Terraza
-  ('Roberto Jiménez', NULL, '+506', '71112222',
+  ('Roberto Jiménez', 'rjimenez@outlook.com', '71112222',
    '2026-03-27', '19:00', '4', 'pending', 'Viene con niños',
    'terraza', ARRAY['08TE'], 'mock', NULL, NOW() - INTERVAL '45 minutes'),
 
   -- 19:30 Salón
-  ('Despedida Chaves', 'despedida.chaves@gmail.com', '+506', '85556677',
+  ('Despedida Chaves', 'despedida.chaves@gmail.com', '85556677',
    '2026-03-27', '19:30', '6', 'confirmed', 'Despedida de soltero, sorpresa',
    'salon', ARRAY['05SA'], 'mock', NOW() - INTERVAL '36 hours', NOW() - INTERVAL '42 hours'),
 
   -- 19:30 Terraza (combined)
-  ('Consultores CR', 'eventos@consultores.cr', '+506', '22998877',
+  ('Consultores CR', 'eventos@consultores.cr', '22998877',
    '2026-03-27', '19:30', '7', 'confirmed', 'Factura a empresa, menú sin gluten para 2 personas',
    'terraza', ARRAY['10TE','11TE'], 'mock', NOW() - INTERVAL '20 hours', NOW() - INTERVAL '25 hours'),
 
   -- 20:00 Salón
-  ('Pareja González', NULL, '+506', '68882222',
+  ('Pareja González', 'gonzalez.pareja@gmail.com', '68882222',
    '2026-03-27', '20:00', '2', 'confirmed', NULL,
    'salon', ARRAY['10SA'], 'mock', NOW() - INTERVAL '6 hours', NOW() - INTERVAL '10 hours'),
 
   -- 20:00 Terraza
-  ('Sofía Aguilar', 'sofi.aguilar@yahoo.com', '+506', '73331111',
+  ('Sofía Aguilar', 'sofi.aguilar@yahoo.com', '73331111',
    '2026-03-27', '20:00', '3', 'pending', 'Llega en taxi, avísenle si hay donde parquear',
    'terraza', ARRAY['12TE'], 'mock', NULL, NOW() - INTERVAL '15 minutes'),
 
   -- 20:30 Salón
-  ('Jorge Rodríguez', 'jrodriguez@gmail.com', '+506', '86667788',
+  ('Jorge Rodríguez', 'jrodriguez@gmail.com', '86667788',
    '2026-03-27', '20:30', '5', 'confirmed', NULL,
    'salon', ARRAY['01SA'], 'mock', NOW() - INTERVAL '10 hours', NOW() - INTERVAL '14 hours'),
 
   -- 21:00 Terraza
-  ('Noche Ramírez', NULL, '+506', '79990000',
+  ('Noche Ramírez', 'ramirez.n@gmail.com', '79990000',
    '2026-03-27', '21:00', '4', 'confirmed', 'Última mesa disponible',
    'terraza', ARRAY['06TE'], 'mock', NOW() - INTERVAL '3 hours', NOW() - INTERVAL '5 hours'),
 
@@ -119,23 +119,23 @@ VALUES
 -- YESTERDAY 2026-03-26
 -- ──────────────────────────────────────────────────────────
 
-  ('Familia Brenes', 'brenes@gmail.com', '+506', '88771122',
+  ('Familia Brenes', 'brenes@gmail.com', '88771122',
    '2026-03-26', '19:00', '4', 'cancelled', 'Cancelaron por enfermedad',
    'terraza', ARRAY['09TE','10TE'], 'mock', NULL, NOW() - INTERVAL '2 days'),
 
-  ('Pedro Ulate', NULL, '+506', '71234000',
+  ('Pedro Ulate', 'p.ulate@gmail.com', '71234000',
    '2026-03-26', '20:00', '2', 'no_show', NULL,
    'salon', ARRAY['09SA'], 'mock', NOW() - INTERVAL '28 hours', NOW() - INTERVAL '32 hours'),
 
-  ('Grupo Torres', 'gtorres@hotmail.com', '+506', '83210001',
+  ('Grupo Torres', 'gtorres@hotmail.com', '83210001',
    '2026-03-26', '19:30', '6', 'confirmed', NULL,
    'terraza', ARRAY['01TE','02TE','03TE'], 'mock', NOW() - INTERVAL '50 hours', NOW() - INTERVAL '54 hours'),
 
-  ('Valentina Mora', 'vmora@gmail.com', '+506', '60001234',
+  ('Valentina Mora', 'vmora@gmail.com', '60001234',
    '2026-03-26', '12:30', '3', 'confirmed', NULL,
    'salon', ARRAY['03SA'], 'mock', NOW() - INTERVAL '27 hours', NOW() - INTERVAL '28 hours'),
 
-  ('Luis Salas', NULL, '+506', '84567890',
+  ('Luis Salas', 'lsalas@yahoo.com', '84567890',
    '2026-03-26', '13:00', '2', 'no_show', 'No contestó el teléfono',
    'terraza', ARRAY['05TE'], 'mock', NULL, NOW() - INTERVAL '26 hours'),
 
@@ -143,19 +143,19 @@ VALUES
 -- TOMORROW 2026-03-28
 -- ──────────────────────────────────────────────────────────
 
-  ('Cumpleaños Jiménez', 'jimfam@gmail.com', '+506', '88990011',
+  ('Cumpleaños Jiménez', 'jimfam@gmail.com', '88990011',
    '2026-03-28', '20:00', '8', 'confirmed', 'Cumpleaños 15 años, decoración incluida',
    'salon', ARRAY['04SA','05SA'], 'mock', NOW() - INTERVAL '1 hour', NOW() - INTERVAL '4 hours'),
 
-  ('Empresa ABC', 'eventos@abc.cr', '+506', '22114455',
+  ('Empresa ABC', 'eventos@abc.cr', '22114455',
    '2026-03-28', '19:00', '6', 'pending', 'Esperando confirmar asistentes',
    'terraza', ARRAY['07TE','08TE'], 'mock', NULL, NOW() - INTERVAL '2 hours'),
 
-  ('Pareja Salazar', NULL, '+506', '75551234',
+  ('Pareja Salazar', 'salazar.pareja@gmail.com', '75551234',
    '2026-03-28', '19:30', '2', 'confirmed', 'Cena romántica',
    'terraza', ARRAY['13TE'], 'mock', NOW() - INTERVAL '30 minutes', NOW() - INTERVAL '3 hours'),
 
-  ('Almuerzos Rojas', 'rojas.co@gmail.com', '+506', '61234567',
+  ('Almuerzos Rojas', 'rojas.co@gmail.com', '61234567',
    '2026-03-28', '12:00', '4', 'pending', NULL,
    'salon', ARRAY['02SA'], 'mock', NULL, NOW() - INTERVAL '1 hour'),
 
@@ -163,11 +163,11 @@ VALUES
 -- WALK-INS & WHATSAPP (no table assigned, varied sources)
 -- ──────────────────────────────────────────────────────────
 
-  ('Walk-in Fernández', NULL, '+506', '00000000',
+  ('Walk-in Fernández', 'walk.in@nanku.com', '00000000',
    '2026-03-27', '19:00', '3', 'confirmed', 'Entraron sin reserva, se les ubicó',
    'terraza', NULL, 'mock', NOW() - INTERVAL '1 hour', NOW() - INTERVAL '1 hour'),
 
-  ('Reserva WhatsApp', NULL, '+506', '87654321',
+  ('Reserva WhatsApp', 'whatsapp@nanku.com', '87654321',
    '2026-03-27', '20:00', '2', 'pending', 'Reservó por WhatsApp, sin confirmación de mesa',
    NULL, NULL, 'mock', NULL, NOW() - INTERVAL '20 minutes');
 

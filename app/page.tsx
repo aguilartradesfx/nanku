@@ -263,42 +263,50 @@ export default function HomePage() {
           <div className="cocktails-grid">
             {[
               {
-                img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80',
-                title: 'Tiki Paradise',
-                desc: 'Transport yourself to the tropics with rum-forward concoctions layered with coconut, passion fruit, and fresh pineapple.',
-                drinks: ['Arenal Volcano Punch', 'Jungle Bird', 'Blue Lagoon Tiki'],
-              },
-              {
-                img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80',
+                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b85b269d65a9c8c29dca.jpeg',
                 title: 'Craft Margaritas',
                 desc: 'Elevated twists on the classic, using premium mezcal and tequila with locally sourced tropical fruits and house-made syrups.',
                 drinks: ['Mango Habanero Margarita', 'Maracuyá Mezcalita', 'Coconut Lime Classic'],
+                highlight: false,
               },
               {
-                img: 'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80',
+                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b87e269d65a9c8c29dce.jpeg',
+                title: 'Tiki Paradise',
+                desc: 'Transport yourself to the tropics with rum-forward concoctions layered with coconut, passion fruit, and fresh pineapple.',
+                drinks: ['Arenal Volcano Punch', 'Jungle Bird', 'Blue Lagoon Tiki'],
+                highlight: true,
+              },
+              {
+                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b893db6cd63ce6c15b6f.jpeg',
                 title: 'House Specials',
                 desc: 'Signature creations by our head bartender — exclusive to Nanku and inspired by the flora and fauna of the Arenal region.',
                 drinks: ['Nanku Sunset', 'Volcanic Night', 'Jungle Elixir'],
+                highlight: false,
               },
-            ].map((c) => (
-              <div key={c.title} className="cocktail-card fade-up">
-                <div className="cocktail-img-wrap">
-                  <Image src={c.img} alt={c.title} width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div className="cocktail-img-gradient"></div>
-                  <div className="cocktail-img-title"><h3>{c.title}</h3></div>
+            ].map((c) => {
+              const card = (
+                <div key={c.title} className="cocktail-card fade-up">
+                  <div className="cocktail-img-wrap">
+                    <Image src={c.img} alt={c.title} width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div className="cocktail-img-gradient"></div>
+                    <div className="cocktail-img-title"><h3>{c.title}</h3></div>
+                  </div>
+                  <div className="cocktail-body">
+                    <p>{c.desc}</p>
+                    <ul className="cocktail-drinks">
+                      {c.drinks.map((d) => (
+                        <li key={d} className="cocktail-drink">
+                          <span className="cocktail-drink-dot"></span>{d}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="cocktail-body">
-                  <p>{c.desc}</p>
-                  <ul className="cocktail-drinks">
-                    {c.drinks.map((d) => (
-                      <li key={d} className="cocktail-drink">
-                        <span className="cocktail-drink-dot"></span>{d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+              )
+              return c.highlight
+                ? <div key={c.title} className="cocktail-highlight-wrap fade-up">{card}</div>
+                : card
+            })}
           </div>
           <div className="cocktails-cta fade-up">
             <Link href="/menu" className="btn-outline-orange">See Drinks Menu →</Link>
