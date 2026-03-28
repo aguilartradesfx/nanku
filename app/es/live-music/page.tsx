@@ -4,10 +4,11 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@/lib/supabase/server'
 import ArtistsGrid from '@/components/ArtistsGrid'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export const metadata: Metadata = {
   title: 'Música en Vivo',
@@ -53,10 +54,7 @@ export default async function LiveMusicPageES() {
   let artists: ArtistRow[] = []
 
   try {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
+    const supabase = createClient()
     const [{ data: schedData }, { data: eventsData }, { data: artistsData }] = await Promise.all([
       supabase.from('live_music_schedule').select('*, artist:artists(name, label)').order('sort_order'),
       supabase.from('weekly_events').select('*').eq('is_active', true).order('sort_order'),

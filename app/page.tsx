@@ -8,9 +8,10 @@ import ReservationForm from '@/components/ReservationForm'
 import ReviewsScroll from '@/components/ReviewsScroll'
 import CookieConsent from '@/components/CookieConsent'
 import WhatsAppButton from '@/components/WhatsAppButton'
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export const metadata: Metadata = {
   title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
@@ -31,10 +32,7 @@ type SchedDay = {
 export default async function HomePage() {
   let schedule: SchedDay[] = []
   try {
-    const sb = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
+    const sb = createClient()
     const { data } = await sb
       .from('live_music_schedule')
       .select('*, artist:artists(name, label)')
