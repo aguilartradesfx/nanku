@@ -390,9 +390,7 @@ export default function AdminDashboard({
 
         {/* ── Live Music Tab ──────────────────────────────── */}
         {tab === 'live-music' && (
-          <div className="bg-zinc-950 rounded-xl p-4 -mx-1">
-            <LiveMusicManager initialSchedule={schedule} initialEvents={events} initialArtists={artists} />
-          </div>
+          <LiveMusicManager initialSchedule={schedule} initialEvents={events} initialArtists={artists} />
         )}
       </main>
     </div>
