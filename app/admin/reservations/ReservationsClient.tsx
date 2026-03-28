@@ -144,7 +144,7 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Page header */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
@@ -216,7 +216,8 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
           <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-12 text-center text-gray-400 dark:text-zinc-500 text-sm">No hay reservas con estos filtros.</div>
         ) : (
           <div className="rounded-xl border border-gray-200 dark:border-zinc-800 overflow-hidden">
-            <div className="overflow-x-auto">
+            {/* Desktop table - hidden on mobile */}
+            <div className="hidden sm:block overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900">
@@ -280,6 +281,49 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
                   ))}
                 </tbody>
               </table>
+            </div>
+            {/* Mobile cards - hidden on sm+ */}
+            <div className="sm:hidden divide-y divide-gray-200 dark:divide-zinc-800">
+              {pageRows.map(r => (
+                <div key={r.id} className="p-4 bg-white dark:bg-zinc-900">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <div className="font-medium text-gray-900 dark:text-white">{r.name}</div>
+                      <div className="text-xs text-gray-400 dark:text-zinc-500 font-mono">{r.phone || '—'}</div>
+                    </div>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${STATUS_STYLES[r.status]}`}>
+                      {STATUS_LABELS[r.status]}
+                    </span>
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-zinc-400 mb-3 space-y-0.5">
+                    <div>{formatDateCR(r.date)} · {formatTimeCR(r.time)} · {r.party_size} pax</div>
+                    <div>{r.zone ?? '—'} · Mesa: {(r.table_ids ?? []).join(', ') || '—'}</div>
+                    {r.notes && <div className="italic text-gray-400 dark:text-zinc-500 truncate">{r.notes}</div>}
+                  </div>
+                  <div className="flex gap-2 flex-wrap">
+                    {r.status === 'pending' && (
+                      <button onClick={() => changeStatus(r.id, 'confirmed')} disabled={!!actionLoading}
+                        className="flex-1 text-xs py-2 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 disabled:opacity-50 transition">
+                        ✔ Confirmar
+                      </button>
+                    )}
+                    {(r.status === 'pending' || r.status === 'confirmed') && (
+                      <button onClick={() => changeStatus(r.id, 'cancelled')} disabled={!!actionLoading}
+                        className="flex-1 text-xs py-2 rounded-md bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 disabled:opacity-50 transition">
+                        ✕ Cancelar
+                      </button>
+                    )}
+                    <Link href={`/admin/new-reservation?id=${r.id}`}
+                      className="text-xs px-3 py-2 rounded-md border border-gray-300 dark:border-zinc-600 text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition">
+                      ✏ Editar
+                    </Link>
+                    <button onClick={() => deleteRow(r.id)} disabled={!!actionLoading}
+                      className="text-xs px-3 py-2 rounded-md border border-red-900/40 text-red-500 hover:text-red-400 disabled:opacity-50 transition">
+                      🗑
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

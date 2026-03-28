@@ -25,7 +25,7 @@ export default function AdminNav() {
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition ${
+            className={`flex items-center gap-1.5 px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium border-b-2 whitespace-nowrap transition ${
               isActive
                 ? 'border-orange-500 text-orange-500'
                 : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-200'
@@ -40,7 +40,7 @@ export default function AdminNav() {
       <button
         onClick={toggle}
         title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-        className="ml-2 p-2 rounded-lg text-gray-400 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-200 hover:bg-gray-100 dark:hover:bg-zinc-800 transition border-b-2 border-transparent"
+        className="ml-1 px-2 py-2 rounded-lg text-gray-400 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-200 hover:bg-gray-100 dark:hover:bg-zinc-800 transition border-b-2 border-transparent"
       >
         {theme === 'dark' ? (
           // Sun icon

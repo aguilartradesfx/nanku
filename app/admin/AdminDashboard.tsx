@@ -139,10 +139,10 @@ export default function AdminDashboard({
         </div>
 
         {/* Nav */}
-        <div className="border-t border-gray-200 dark:border-zinc-800 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-0 justify-between">
+        <div className="border-t border-gray-200 dark:border-zinc-800 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+          <div className="flex gap-0 min-w-max sm:min-w-0 sm:justify-between">
             <AdminNav />
-            <div className="flex gap-0">
+            <div className="flex gap-0 border-l border-gray-100 dark:border-zinc-800 sm:border-0">
               {([
                 { id: 'reservations' as Tab, label: 'Dashboard', icon: (
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -154,7 +154,7 @@ export default function AdminDashboard({
                 <button
                   key={t.id}
                   onClick={() => setTab(t.id)}
-                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition ${
+                  className={`flex items-center gap-1.5 px-2 sm:px-4 py-3 text-xs sm:text-sm font-medium border-b-2 whitespace-nowrap transition ${
                     tab === t.id
                       ? 'border-orange-500 text-orange-400'
                       : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-200'
@@ -174,45 +174,47 @@ export default function AdminDashboard({
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
 
         {/* ── Reservations Tab ───────────────────────────── */}
         {tab === 'reservations' && (
           <>
             {/* Date nav */}
-            <div className="flex items-center gap-3 mb-6">
-              <button
-                onClick={() => goDate(-1)}
-                className="px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-gray-50 dark:hover:bg-zinc-800 transition text-gray-600 dark:text-zinc-400 text-sm"
-              >
-                ◀
-              </button>
-              <div className="flex-1 text-center">
-                <div className="text-gray-900 dark:text-white font-semibold">{formatDateCR(currentDate)}</div>
-                <div className="text-gray-400 dark:text-zinc-500 text-xs">{currentDate === todayCR() ? 'Hoy' : ''}</div>
+            <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center">
+              <div className="flex items-center gap-3 flex-1">
+                <button
+                  onClick={() => goDate(-1)}
+                  className="px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-gray-50 dark:hover:bg-zinc-800 transition text-gray-600 dark:text-zinc-400 text-sm"
+                >
+                  ◀
+                </button>
+                <div className="flex-1 text-center">
+                  <div className="text-gray-900 dark:text-white font-semibold">{formatDateCR(currentDate)}</div>
+                  <div className="text-gray-400 dark:text-zinc-500 text-xs">{currentDate === todayCR() ? 'Hoy' : ''}</div>
+                </div>
+                <button
+                  onClick={() => setCurrentDate(todayCR())}
+                  className="px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-gray-50 dark:hover:bg-zinc-800 transition text-gray-500 dark:text-zinc-400 text-xs"
+                >
+                  Hoy
+                </button>
+                <button
+                  onClick={() => goDate(1)}
+                  className="px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-gray-50 dark:hover:bg-zinc-800 transition text-gray-600 dark:text-zinc-400 text-sm"
+                >
+                  ▶
+                </button>
               </div>
-              <button
-                onClick={() => setCurrentDate(todayCR())}
-                className="px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-gray-50 dark:hover:bg-zinc-800 transition text-gray-500 dark:text-zinc-400 text-xs"
-              >
-                Hoy
-              </button>
-              <button
-                onClick={() => goDate(1)}
-                className="px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-gray-50 dark:hover:bg-zinc-800 transition text-gray-600 dark:text-zinc-400 text-sm"
-              >
-                ▶
-              </button>
               <Link
                 href="/admin/new-reservation"
-                className="ml-2 px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium transition"
+                className="w-full sm:w-auto text-center px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium transition"
               >
                 + Nueva Reserva
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
               {[
                 { label: 'Total',         value: counts.total,     color: 'text-gray-900 dark:text-white' },
                 { label: 'Pendientes',    value: counts.pending,   color: 'text-amber-600' },

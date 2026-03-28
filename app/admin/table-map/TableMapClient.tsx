@@ -292,7 +292,7 @@ export default function TableMapClient({ userEmail }: { userEmail: string }) {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
 
         {/* ── Title + date nav ──────────────────────────────────────────────── */}
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
@@ -360,7 +360,7 @@ export default function TableMapClient({ userEmail }: { userEmail: string }) {
           <>
             <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 mb-4 shadow-sm">
               <h2 className="text-orange-500 text-sm font-semibold uppercase tracking-wide mb-4">🌿 Salón</h2>
-              <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
                 {SALON_TABLES.filter(t => !t.hidden).map(t => (
                   <TableCell key={t.id} t={t} wide={t.id === '06SA'}
                     status={getStatus(t.id)}
@@ -373,7 +373,7 @@ export default function TableMapClient({ userEmail }: { userEmail: string }) {
 
             <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 shadow-sm">
               <h2 className="text-orange-500 text-sm font-semibold uppercase tracking-wide mb-4">🌤 Terraza</h2>
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-7 gap-3">
                 {TERRAZA_TABLES.map(t => (
                   <TableCell key={t.id} t={t}
                     status={getStatus(t.id)}

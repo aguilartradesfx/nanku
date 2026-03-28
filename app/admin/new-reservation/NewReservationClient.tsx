@@ -183,9 +183,9 @@ export default function NewReservationClient({
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{isEdit ? 'Editar Reserva' : 'Nueva Reserva'}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{isEdit ? 'Editar Reserva' : 'Nueva Reserva'}</h1>
           <Link href="/admin" className="text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white text-sm transition">← Volver</Link>
         </div>
 
