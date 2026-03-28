@@ -6,6 +6,9 @@ import WhatsAppButton from '@/components/WhatsAppButton'
 import Gallery from '@/components/Gallery'
 import ReservationForm from '@/components/ReservationForm'
 import ReviewsScroll from '@/components/ReviewsScroll'
+import { createClient } from '@supabase/supabase-js'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
@@ -19,7 +22,37 @@ export const metadata: Metadata = {
   },
 }
 
-export default function HomePageES() {
+const DAY_LABEL_ES: Record<string, string> = {
+  Monday: 'LUN', Tuesday: 'MAR', Wednesday: 'MIÉ',
+  Thursday: 'JUE', Friday: 'VIE', Saturday: 'SÁB', Sunday: 'DOM',
+}
+const DAY_NAME_ES: Record<string, string> = {
+  Monday: 'Lunes', Tuesday: 'Martes', Wednesday: 'Miércoles',
+  Thursday: 'Jueves', Friday: 'Viernes', Saturday: 'Sábado', Sunday: 'Domingo',
+}
+
+type SchedDay = {
+  id: string; day_of_week: string; is_active: boolean
+  event_label: string; start_time: string; sort_order: number
+  artist?: { name: string; label: string } | null
+}
+
+export default async function HomePageES() {
+  let schedule: SchedDay[] = []
+  try {
+    const sb = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
+    const { data } = await sb
+      .from('live_music_schedule')
+      .select('*, artist:artists(name, label)')
+      .order('sort_order')
+    schedule = data ?? []
+  } catch { /* show static fallback below */ }
+
+  const liveDays = schedule.filter(d => d.is_active)
+
   return (
     <>
       <Navbar lang="es" activePage="Home" />
@@ -333,7 +366,7 @@ export default function HomePageES() {
           <div className="cocktails-grid">
             <div className="cocktail-card fade-up">
               <div className="cocktail-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b85b269d65a9c8c29dca.jpeg" alt="Margaritas Artesanales" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c734203204cc754642fc04.jpg" alt="Margaritas Artesanales" loading="lazy" />
                 <div className="cocktail-img-gradient"></div>
                 <div className="cocktail-img-title"><h3>Margaritas Artesanales</h3></div>
               </div>
@@ -350,7 +383,7 @@ export default function HomePageES() {
             <div className="cocktail-highlight-wrap fade-up">
               <div className="cocktail-card">
                 <div className="cocktail-img-wrap">
-                  <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b87e269d65a9c8c29dce.jpeg" alt="Paraíso Tiki" loading="lazy" />
+                  <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c7341f899abb6360f61a32.jpg" alt="Paraíso Tiki" loading="lazy" />
                   <div className="cocktail-img-gradient"></div>
                   <div className="cocktail-img-title"><h3>Paraíso Tiki</h3></div>
                 </div>
@@ -367,7 +400,7 @@ export default function HomePageES() {
 
             <div className="cocktail-card fade-up">
               <div className="cocktail-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b893db6cd63ce6c15b6f.jpeg" alt="Especiales de la Casa" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c734202e89d8e97f5f1526.jpg" alt="Especiales de la Casa" loading="lazy" />
                 <div className="cocktail-img-gradient"></div>
                 <div className="cocktail-img-title"><h3>Especiales de la Casa</h3></div>
               </div>
@@ -403,66 +436,48 @@ export default function HomePageES() {
           </div>
 
           <div className="music-schedule fade-up">
-            <div className="music-day active">
-              <span className="music-day-label">LUN</span>
-              <div className="music-day-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+            {(schedule.length > 0 ? schedule : [
+              { id:'1', day_of_week:'Monday',    is_active:true,  event_label:'Banda en Vivo', start_time:'7:00 PM', sort_order:1, artist:null },
+              { id:'2', day_of_week:'Tuesday',   is_active:false, event_label:'Música Ambiental', start_time:'Toda la noche', sort_order:2, artist:null },
+              { id:'3', day_of_week:'Wednesday', is_active:false, event_label:'Sesiones Acústicas', start_time:'Toda la noche', sort_order:3, artist:null },
+              { id:'4', day_of_week:'Thursday',  is_active:false, event_label:'Música Ambiental', start_time:'Toda la noche', sort_order:4, artist:null },
+              { id:'5', day_of_week:'Friday',    is_active:false, event_label:'Noche de DJ', start_time:'Toda la noche', sort_order:5, artist:null },
+              { id:'6', day_of_week:'Saturday',  is_active:true,  event_label:'Banda en Vivo', start_time:'7:00 PM', sort_order:6, artist:null },
+              { id:'7', day_of_week:'Sunday',    is_active:false, event_label:'Ambiente Relajado', start_time:'Toda la noche', sort_order:7, artist:null },
+            ] as SchedDay[]).map((day) => (
+              <div key={day.id} className={`music-day ${day.is_active ? 'active' : 'inactive'}`}>
+                <span className="music-day-label">{DAY_LABEL_ES[day.day_of_week] ?? day.day_of_week.slice(0,3).toUpperCase()}</span>
+                <div className="music-day-icon">
+                  {day.is_active ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+                  ) : (
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div>
+                  )}
+                </div>
+                <span className="music-day-note">
+                  {day.is_active && day.artist ? day.artist.name : day.event_label}
+                </span>
               </div>
-              <span className="music-day-note">Latino y Tropical en Vivo</span>
-            </div>
-            <div className="music-day inactive">
-              <span className="music-day-label">MAR</span>
-              <div className="music-day-icon"><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div></div>
-              <span className="music-day-note">Música Ambiental</span>
-            </div>
-            <div className="music-day inactive">
-              <span className="music-day-label">MIÉ</span>
-              <div className="music-day-icon"><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div></div>
-              <span className="music-day-note">Sesiones Acústicas</span>
-            </div>
-            <div className="music-day inactive">
-              <span className="music-day-label">JUE</span>
-              <div className="music-day-icon"><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div></div>
-              <span className="music-day-note">Música Ambiental</span>
-            </div>
-            <div className="music-day inactive">
-              <span className="music-day-label">VIE</span>
-              <div className="music-day-icon"><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div></div>
-              <span className="music-day-note">Noche de DJ</span>
-            </div>
-            <div className="music-day active">
-              <span className="music-day-label">SÁB</span>
-              <div className="music-day-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
-              </div>
-              <span className="music-day-note">Banda en Vivo</span>
-            </div>
-            <div className="music-day inactive">
-              <span className="music-day-label">DOM</span>
-              <div className="music-day-icon"><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div></div>
-              <span className="music-day-note">Ambiente Relajado</span>
-            </div>
+            ))}
           </div>
 
           <div className="music-live-cards fade-up">
-            <div className="music-live-card">
-              <div className="music-live-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+            {(liveDays.length > 0 ? liveDays : [
+              { id:'1', day_of_week:'Monday',   is_active:true, event_label:'Banda en Vivo', start_time:'7:00 PM', sort_order:1, artist:null },
+              { id:'6', day_of_week:'Saturday', is_active:true, event_label:'Banda en Vivo', start_time:'7:00 PM', sort_order:6, artist:null },
+            ] as SchedDay[]).map((day) => (
+              <div key={day.id} className="music-live-card">
+                <div className="music-live-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+                </div>
+                <div>
+                  <div className="music-live-title">Noche de {DAY_NAME_ES[day.day_of_week] ?? day.day_of_week}</div>
+                  <div className="music-live-subtitle">
+                    {day.artist ? day.artist.name : day.event_label} · Desde las {day.start_time}
+                  </div>
+                </div>
               </div>
-              <div>
-                <div className="music-live-title">Noche de Lunes</div>
-                <div className="music-live-subtitle">Latino y Tropical en Vivo · Desde las 8:00 PM</div>
-              </div>
-            </div>
-            <div className="music-live-card">
-              <div className="music-live-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
-              </div>
-              <div>
-                <div className="music-live-title">Noche de Sábado</div>
-                <div className="music-live-subtitle">Banda en Vivo · Desde las 8:00 PM</div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="music-cta fade-up">

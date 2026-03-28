@@ -8,13 +8,41 @@ import ReservationForm from '@/components/ReservationForm'
 import ReviewsScroll from '@/components/ReviewsScroll'
 import CookieConsent from '@/components/CookieConsent'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import { createClient } from '@supabase/supabase-js'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
   alternates: { canonical: 'https://restaurantenanku.com' },
 }
 
-export default function HomePage() {
+const DAY_LABEL: Record<string, string> = {
+  Monday: 'MON', Tuesday: 'TUE', Wednesday: 'WED',
+  Thursday: 'THU', Friday: 'FRI', Saturday: 'SAT', Sunday: 'SUN',
+}
+
+type SchedDay = {
+  id: string; day_of_week: string; is_active: boolean
+  event_label: string; start_time: string; sort_order: number
+  artist?: { name: string; label: string } | null
+}
+
+export default async function HomePage() {
+  let schedule: SchedDay[] = []
+  try {
+    const sb = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
+    const { data } = await sb
+      .from('live_music_schedule')
+      .select('*, artist:artists(name, label)')
+      .order('sort_order')
+    schedule = data ?? []
+  } catch { /* show static fallback below */ }
+
+  const liveDays = schedule.filter(d => d.is_active)
   return (
     <>
       <Navbar lang="en" />
@@ -263,21 +291,21 @@ export default function HomePage() {
           <div className="cocktails-grid">
             {[
               {
-                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b85b269d65a9c8c29dca.jpeg',
+                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c734203204cc754642fc04.jpg',
                 title: 'Craft Margaritas',
                 desc: 'Elevated twists on the classic, using premium mezcal and tequila with locally sourced tropical fruits and house-made syrups.',
                 drinks: ['Mango Habanero Margarita', 'Maracuyá Mezcalita', 'Coconut Lime Classic'],
                 highlight: false,
               },
               {
-                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b87e269d65a9c8c29dce.jpeg',
+                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c7341f899abb6360f61a32.jpg',
                 title: 'Tiki Paradise',
                 desc: 'Transport yourself to the tropics with rum-forward concoctions layered with coconut, passion fruit, and fresh pineapple.',
                 drinks: ['Arenal Volcano Punch', 'Jungle Bird', 'Blue Lagoon Tiki'],
                 highlight: true,
               },
               {
-                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6840b893db6cd63ce6c15b6f.jpeg',
+                img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c734202e89d8e97f5f1526.jpg',
                 title: 'House Specials',
                 desc: 'Signature creations by our head bartender — exclusive to Nanku and inspired by the flora and fauna of the Arenal region.',
                 drinks: ['Nanku Sunset', 'Volcanic Night', 'Jungle Elixir'],
@@ -328,40 +356,44 @@ export default function HomePage() {
             <p className="music-header-desc">Talented local artists bring the jungle alive with rhythm every Monday and Saturday. Arrive early — it fills up fast.</p>
           </div>
           <div className="music-schedule fade-up">
-            {[
-              { label: 'MON', active: true, note: 'Live Latin & Tropical' },
-              { label: 'TUE', active: false, note: 'Ambient Music' },
-              { label: 'WED', active: false, note: 'Acoustic Sessions' },
-              { label: 'THU', active: false, note: 'Ambient Music' },
-              { label: 'FRI', active: false, note: 'DJ Night' },
-              { label: 'SAT', active: true, note: 'Live Band Night' },
-              { label: 'SUN', active: false, note: 'Relaxed Vibes' },
-            ].map((day) => (
-              <div key={day.label} className={`music-day ${day.active ? 'active' : 'inactive'}`}>
-                <span className="music-day-label">{day.label}</span>
+            {(schedule.length > 0 ? schedule : [
+              { id:'1', day_of_week:'Monday',    is_active:true,  event_label:'Live Band', start_time:'7:00 PM', sort_order:1, artist:null },
+              { id:'2', day_of_week:'Tuesday',   is_active:false, event_label:'Ambient Music', start_time:'All evening', sort_order:2, artist:null },
+              { id:'3', day_of_week:'Wednesday', is_active:false, event_label:'Acoustic Sessions', start_time:'All evening', sort_order:3, artist:null },
+              { id:'4', day_of_week:'Thursday',  is_active:false, event_label:'Ambient Music', start_time:'All evening', sort_order:4, artist:null },
+              { id:'5', day_of_week:'Friday',    is_active:false, event_label:'DJ Night', start_time:'All evening', sort_order:5, artist:null },
+              { id:'6', day_of_week:'Saturday',  is_active:true,  event_label:'Live Band Night', start_time:'7:00 PM', sort_order:6, artist:null },
+              { id:'7', day_of_week:'Sunday',    is_active:false, event_label:'Relaxed Vibes', start_time:'All evening', sort_order:7, artist:null },
+            ] as SchedDay[]).map((day) => (
+              <div key={day.id} className={`music-day ${day.is_active ? 'active' : 'inactive'}`}>
+                <span className="music-day-label">{DAY_LABEL[day.day_of_week] ?? day.day_of_week.slice(0,3).toUpperCase()}</span>
                 <div className="music-day-icon">
-                  {day.active ? (
+                  {day.is_active ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
                   ) : (
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }}></div>
                   )}
                 </div>
-                <span className="music-day-note">{day.note}</span>
+                <span className="music-day-note">
+                  {day.is_active && day.artist ? day.artist.name : day.event_label}
+                </span>
               </div>
             ))}
           </div>
           <div className="music-live-cards fade-up">
-            {[
-              { title: 'Monday Night', subtitle: 'Live Latin & Tropical · Starts 8:00 PM' },
-              { title: 'Saturday Night', subtitle: 'Live Band Night · Starts 8:00 PM' },
-            ].map((card) => (
-              <div key={card.title} className="music-live-card">
+            {(liveDays.length > 0 ? liveDays : [
+              { id:'1', day_of_week:'Monday', is_active:true, event_label:'Live Band', start_time:'7:00 PM', sort_order:1, artist:null },
+              { id:'6', day_of_week:'Saturday', is_active:true, event_label:'Live Band Night', start_time:'7:00 PM', sort_order:6, artist:null },
+            ] as SchedDay[]).map((day) => (
+              <div key={day.id} className="music-live-card">
                 <div className="music-live-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
                 </div>
                 <div>
-                  <div className="music-live-title">{card.title}</div>
-                  <div className="music-live-subtitle">{card.subtitle}</div>
+                  <div className="music-live-title">{day.day_of_week} Night</div>
+                  <div className="music-live-subtitle">
+                    {day.artist ? day.artist.name : day.event_label} · Starts {day.start_time}
+                  </div>
                 </div>
               </div>
             ))}
