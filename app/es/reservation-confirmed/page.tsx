@@ -6,14 +6,6 @@ export const metadata: Metadata = {
   robots: { index: false },
 }
 
-const texts = {
-  brand: 'NANKU',
-  heading: (name: string | null) => name ? `¡Gracias, ${name}!` : '¡Gracias!',
-  body: 'Tu solicitud de reserva fue recibida.\nTe confirmaremos en menos de 2 horas por WhatsApp.',
-  timerLabel: (n: number) => `Redirigiendo al inicio en ${n}s`,
-  cta: 'Ir al inicio',
-}
-
 export default function ReservationConfirmedPageES() {
-  return <ReservationConfirmed homeUrl="/es" texts={texts} />
+  return <ReservationConfirmed lang="es" homeUrl="/es" />
 }
