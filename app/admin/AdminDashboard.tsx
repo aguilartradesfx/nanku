@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import LiveMusicManager, { type Artist, type ScheduleDay, type WeeklyEvent } from './LiveMusicManager'
 import AdminNav from './components/AdminNav'
+import ConfirmTableModal from './reservations/ConfirmTableModal'
 import {
   type Reservation,
   type ReservationStatus,
@@ -16,6 +17,35 @@ import {
   formatTimeCR,
   addDays,
 } from '@/lib/reservations'
+
+function ElapsedTimer({ createdAt }: { createdAt: string }) {
+  const [elapsed, setElapsed] = useState(() =>
+    Math.floor((Date.now() - new Date(createdAt).getTime()) / 1000)
+  )
+  useEffect(() => {
+    const id = setInterval(() =>
+      setElapsed(Math.floor((Date.now() - new Date(createdAt).getTime()) / 1000))
+    , 1000)
+    return () => clearInterval(id)
+  }, [createdAt])
+
+  const min = Math.floor(elapsed / 60)
+  const sec = elapsed % 60
+  const label = `${min}:${String(sec).padStart(2, '0')}`
+
+  if (min < 5) return (
+    <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400">{label}</span>
+  )
+  if (min < 10) return (
+    <span className="text-xs font-mono text-amber-600 dark:text-amber-400">{label}</span>
+  )
+  return (
+    <span className="text-xs font-mono text-red-500 flex items-center gap-1">
+      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse inline-block" />
+      {label}
+    </span>
+  )
+}
 
 type Tab = 'reservations' | 'live-music'
 
@@ -46,9 +76,6 @@ export default function AdminDashboard({
   const [loadingDay, setLoadingDay] = useState(false)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
 
-  // ── Zone filter ──────────────────────────────────────────
-  const [zoneFilter, setZoneFilter] = useState<'' | 'salon' | 'terraza'>('')
-
   const fetchDay = useCallback(async (date: string) => {
     setLoadingDay(true)
     try {
@@ -68,6 +95,37 @@ export default function AdminDashboard({
     fetchDay(currentDate)
   }, [currentDate, fetchDay])
 
+  // ── Pending queue (all dates) ────────────────────────────
+  const [pendingRows, setPendingRows] = useState<Reservation[]>([])
+  const [pendingLoading, setPendingLoading] = useState(true)
+  const [confirmingRes, setConfirmingRes] = useState<Reservation | null>(null)
+
+  const fetchPending = useCallback(async () => {
+    setPendingLoading(true)
+    try {
+      const res = await fetch('/api/admin/reservations?status=pending')
+      const json = await res.json()
+      const sorted = (json.reservations ?? []).slice().sort(
+        (a: Reservation, b: Reservation) =>
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      )
+      setPendingRows(sorted)
+    } finally {
+      setPendingLoading(false)
+    }
+  }, [])
+
+  useEffect(() => { fetchPending() }, [fetchPending])
+
+  async function handleConfirmed() {
+    setConfirmingRes(null)
+    await Promise.all([fetchPending(), fetchDay(currentDate)])
+    startTransition(() => router.refresh())
+  }
+
+  // ── Zone filter ──────────────────────────────────────────
+  const [zoneFilter, setZoneFilter] = useState<'' | 'salon' | 'terraza'>('')
+
   function goDate(n: number) {
     setCurrentDate(prev => addDays(prev, n))
   }
@@ -83,9 +141,6 @@ export default function AdminDashboard({
       .filter(r => r.status !== 'cancelled' && r.status !== 'no_show')
       .reduce((s, r) => s + (parseInt(r.party_size) || 0), 0),
   }
-
-  // For Live Music tab badge (all pending)
-  const pendingTotal = initialReservations.filter(r => r.status === 'pending').length
 
   // ── Filtered rows ────────────────────────────────────────
   const filteredRows = dayReservations.filter(r =>
@@ -162,9 +217,9 @@ export default function AdminDashboard({
                 >
                   {t.icon}
                   {t.label}
-                  {t.id === 'reservations' && counts.pending > 0 && (
+                  {t.id === 'reservations' && pendingRows.length > 0 && (
                     <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700">
-                      {counts.pending}
+                      {pendingRows.length}
                     </span>
                   )}
                 </button>
@@ -179,6 +234,67 @@ export default function AdminDashboard({
         {/* ── Reservations Tab ───────────────────────────── */}
         {tab === 'reservations' && (
           <>
+            {/* Pending queue */}
+            <div className="mb-6 rounded-xl border border-amber-200 dark:border-amber-500/20 bg-amber-50 dark:bg-amber-500/5 overflow-hidden">
+              <div className="px-4 py-3 border-b border-amber-200 dark:border-amber-500/20 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                  <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+                    Pendientes por confirmar
+                  </span>
+                  {!pendingLoading && (
+                    <span className="text-xs font-mono text-amber-600 dark:text-amber-500">
+                      ({pendingRows.length})
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={fetchPending}
+                  className="text-xs text-amber-600 dark:text-amber-500 hover:text-amber-800 dark:hover:text-amber-300 transition"
+                >
+                  ↻ Actualizar
+                </button>
+              </div>
+
+              {pendingLoading ? (
+                <div className="px-4 py-6 text-center text-sm text-amber-600 dark:text-amber-500">
+                  Cargando…
+                </div>
+              ) : pendingRows.length === 0 ? (
+                <div className="px-4 py-6 text-center text-sm text-amber-600 dark:text-amber-500">
+                  No hay reservas pendientes.
+                </div>
+              ) : (
+                <div className="divide-y divide-amber-100 dark:divide-amber-500/10">
+                  {pendingRows.map(r => (
+                    <div key={r.id} className="px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 min-w-0">
+                        <span className="font-medium text-gray-900 dark:text-white text-sm truncate">{r.name}</span>
+                        <span className="text-xs text-gray-500 dark:text-zinc-400 font-mono">{r.phone || '—'}</span>
+                        <span className="text-xs text-gray-500 dark:text-zinc-400">
+                          {formatDateCR(r.date)} · {formatTimeCR(r.time)} · {r.party_size} pax
+                        </span>
+                        {r.notes && (
+                          <span className="text-xs text-amber-600 dark:text-amber-400 italic truncate max-w-[200px]">
+                            "{r.notes}"
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 shrink-0">
+                        <ElapsedTimer createdAt={r.created_at} />
+                        <button
+                          onClick={() => setConfirmingRes(r)}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition whitespace-nowrap"
+                        >
+                          Confirmar y asignar mesa →
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* Date nav */}
             <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center">
               <div className="flex items-center gap-3 flex-1">
@@ -395,6 +511,14 @@ export default function AdminDashboard({
           <LiveMusicManager initialSchedule={schedule} initialEvents={events} initialArtists={artists} />
         )}
       </main>
+
+      {confirmingRes && (
+        <ConfirmTableModal
+          reservation={confirmingRes}
+          onCancel={() => setConfirmingRes(null)}
+          onConfirmed={handleConfirmed}
+        />
+      )}
     </div>
   )
 }
