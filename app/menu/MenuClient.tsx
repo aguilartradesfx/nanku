@@ -16,6 +16,7 @@ interface FoodItem {
   desc?: string
   badge?: { text: string; type: string }
   photo?: string
+  variants?: { label: string; price: string }[]
 }
 
 interface ModalState {
@@ -25,6 +26,7 @@ interface ModalState {
   photo: string
   suggestions: FoodItem[]
   allSectionItems: FoodItem[]
+  variants?: { label: string; price: string }[]
 }
 
 // ─── EN DATA ────────────────────────────────────────────────────────────────
@@ -65,7 +67,7 @@ const enFood = {
     { name: 'Rib Eye', price: '₡17,500', photo: CDN + '69c5fbd8146bc51f9eec8ca7.jpg' },
     { name: 'New York', price: '₡17,500', photo: CDN + '69c194d5fa8b2122095a9294.jpg' },
     { name: 'Sirloin Steak', price: '₡19,500', photo: CDN + '69c5fbd8146bc52decec8ca6.jpg' },
-    { name: 'Surf And Turf Tenderloin Fajitas', price: '₡24,000', photo: CDN + '69c194d50d1082cd084c8590.jpg' },
+    { name: 'Surf And Turf Tenderloin Fajitas', price: '₡24,000 – ₡31,900', photo: CDN + '69c194d50d1082cd084c8590.jpg', variants: [{ label: 'Fajitas', price: '₡24,000' }, { label: 'With Lobster', price: '₡31,900' }] },
   ],
   steakNote: 'All of our meat cuts are served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.',
   vegetarian: [
@@ -148,7 +150,7 @@ const esFood = {
     { name: 'Rib Eye', price: '₡17,500', photo: CDN + '69c5fbd8146bc51f9eec8ca7.jpg' },
     { name: 'New York', price: '₡17,500', photo: CDN + '69c194d5fa8b2122095a9294.jpg' },
     { name: 'Sirloin', price: '₡19,500', photo: CDN + '69c5fbd8146bc52decec8ca6.jpg' },
-    { name: 'Fajitas Surf and Turf', price: '₡24,000', photo: CDN + '69c194d50d1082cd084c8590.jpg' },
+    { name: 'Fajitas Surf and Turf', price: '₡24,000 – ₡31,900', photo: CDN + '69c194d50d1082cd084c8590.jpg', variants: [{ label: 'Fajitas', price: '₡24,000' }, { label: 'Con Langosta', price: '₡31,900' }] },
   ],
   steakNote: 'Todos nuestros cortes se sirven con papas al romero, plátano maduro, jalapeño y chimichurri.',
   vegetarian: [
@@ -306,6 +308,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
       photo: item.photo!,
       suggestions: sectionItems.filter(s => s.name !== item.name && s.photo).slice(0, 4),
       allSectionItems: sectionItems,
+      variants: item.variants,
     })
 
   const suggestLabel = lang === 'es' ? 'Platillos que te podrían gustar' : 'You might also like'
@@ -358,7 +361,18 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
               {/* Right — Info + Suggestions + Reserve */}
               <div className="nm-modal-info">
                 <h3 className="nm-modal-name">{modal.name}</h3>
-                <span className="nm-modal-price">{modal.price}</span>
+                {modal.variants ? (
+                  <div className="nm-modal-variants">
+                    {modal.variants.map(v => (
+                      <div key={v.label} className="nm-modal-variant-row">
+                        <span className="nm-modal-variant-label">{v.label}</span>
+                        <span className="nm-modal-variant-price">{v.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <span className="nm-modal-price">{modal.price}</span>
+                )}
                 {modal.desc && <p className="nm-modal-desc">{modal.desc}</p>}
 
                 {modal.suggestions.length > 0 && (

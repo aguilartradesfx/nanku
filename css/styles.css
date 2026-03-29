@@ -4517,6 +4517,32 @@ ul { list-style: none; }
   font-weight: 700;
   color: #E8751A;
 }
+.nm-modal-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.15rem;
+}
+.nm-modal-variant-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+}
+.nm-modal-variant-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+.nm-modal-variant-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #E8751A;
+}
 .nm-modal-desc {
   font-size: 1rem;
   color: rgba(255,255,255,0.6);
