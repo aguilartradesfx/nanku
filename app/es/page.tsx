@@ -460,7 +460,7 @@ export default async function HomePageES() {
             <h2>Reservá tu Mesa</h2>
             <p>Reservá tu experiencia en Nanku. Te confirmamos en menos de 2 horas.</p>
           </div>
-          <ReservationForm />
+          <ReservationForm lang="es" />
         </div>
       </section>
 

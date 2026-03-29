@@ -120,16 +120,39 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ success: true })
   }
 
-  // Status-only update
-  const { status } = body
+  // Status-only update (also accepts zone + table_ids for the confirmation flow)
+  const { status, zone, table_ids } = body
   if (!status || !VALID_STATUSES.includes(status)) {
     return NextResponse.json({ error: 'Status inválido' }, { status: 400 })
   }
   const patch: Record<string, unknown> = { status, updated_at: new Date().toISOString() }
   if (status === 'confirmed') patch.confirmed_at = new Date().toISOString()
+  if (zone      !== undefined) patch.zone      = zone
+  if (table_ids !== undefined) patch.table_ids = expandTableIds(table_ids)
 
   const { error } = await svcClient().from('reservations').update(patch).eq('id', id)
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  // Fire webhook when a reservation is confirmed
+  if (status === 'confirmed') {
+    const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL
+    if (webhookUrl) {
+      try {
+        const { data: resData } = await svcClient()
+          .from('reservations').select('*').eq('id', id).single()
+        if (resData) {
+          await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ event: 'reservation_confirmed', ...resData }),
+          })
+        }
+      } catch (e) {
+        console.error('[webhook] Confirmation notification failed:', e)
+      }
+    }
+  }
+
   return NextResponse.json({ success: true })
 }
 

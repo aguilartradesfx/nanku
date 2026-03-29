@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import AdminNav from '../components/AdminNav'
+import ConfirmTableModal from './ConfirmTableModal'
 import {
   type Reservation,
   type ReservationStatus,
@@ -17,6 +18,45 @@ import {
 
 const PAGE_SIZE = 20
 
+function ElapsedTimer({ createdAt }: { createdAt: string }) {
+  const [elapsed, setElapsed] = useState(() =>
+    Math.floor((Date.now() - new Date(createdAt).getTime()) / 1000)
+  )
+  useEffect(() => {
+    const id = setInterval(() =>
+      setElapsed(Math.floor((Date.now() - new Date(createdAt).getTime()) / 1000))
+    , 1000)
+    return () => clearInterval(id)
+  }, [createdAt])
+
+  const min = Math.floor(elapsed / 60)
+  const sec = elapsed % 60
+  const display = `${min}:${String(sec).padStart(2, '0')}`
+
+  const isGreen  = min < 5
+  const isYellow = min >= 5 && min < 10
+  // red = 10+ min
+
+  const containerCls = isGreen
+    ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800/40 text-emerald-700 dark:text-emerald-400'
+    : isYellow
+    ? 'bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800/40 text-amber-700 dark:text-amber-400'
+    : 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800/40 text-red-700 dark:text-red-400'
+
+  const dotCls = isGreen
+    ? 'bg-emerald-500'
+    : isYellow
+    ? 'bg-amber-500'
+    : 'bg-red-500 animate-pulse'
+
+  return (
+    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-mono border ${containerCls}`}>
+      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dotCls}`} />
+      {display}
+    </span>
+  )
+}
+
 export default function ReservationsClient({ userEmail }: { userEmail: string }) {
   const router = useRouter()
   const [rows, setRows]           = useState<Reservation[]>([])
@@ -24,6 +64,11 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
   const [loading, setLoading]     = useState(true)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [page, setPage]           = useState(1)
+
+  // Pending-confirmation state — fetched independently of main filters
+  const [pendingRows, setPendingRows]   = useState<Reservation[]>([])
+  const [pendingLoading, setPendingLoading] = useState(true)
+  const [confirmingRes, setConfirmingRes]   = useState<Reservation | null>(null)
 
   // Filters
   const [dateFrom, setDateFrom]   = useState('')
@@ -51,6 +96,29 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
   }, [dateFrom, dateTo, status, zone])
 
   useEffect(() => { fetchData() }, [fetchData])
+
+  const fetchPending = useCallback(async () => {
+    setPendingLoading(true)
+    try {
+      const res  = await fetch('/api/admin/reservations?status=pending')
+      const json = await res.json()
+      // Sort by arrival order: who submitted first appears first
+      const sorted = (json.reservations ?? []).sort((a: Reservation, b: Reservation) =>
+        new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      )
+      setPendingRows(sorted)
+    } finally {
+      setPendingLoading(false)
+    }
+  }, [])
+
+  useEffect(() => { fetchPending() }, [fetchPending])
+
+  const handleConfirmed = useCallback(() => {
+    setConfirmingRes(null)
+    fetchPending()
+    fetchData()
+  }, [fetchPending, fetchData])
 
   // Client-side search filter
   useEffect(() => {
@@ -161,6 +229,70 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
           </div>
         </div>
 
+        {/* ── Pending-confirmation section ───────────────── */}
+        <div className="rounded-xl border border-amber-200 dark:border-amber-900/40 bg-amber-50 dark:bg-amber-950/20 mb-6">
+          <div className="px-4 py-3 border-b border-amber-200 dark:border-amber-900/40 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white text-[10px] font-bold">
+                {pendingRows.length}
+              </span>
+              <h2 className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+                Pendientes por confirmar
+              </h2>
+            </div>
+            <button
+              onClick={fetchPending}
+              className="text-xs text-amber-600 dark:text-amber-400 hover:underline"
+            >
+              Actualizar
+            </button>
+          </div>
+
+          {pendingLoading ? (
+            <div className="px-4 py-6 text-center text-sm text-amber-600 dark:text-amber-500">
+              Cargando…
+            </div>
+          ) : pendingRows.length === 0 ? (
+            <div className="px-4 py-6 text-center text-sm text-amber-600/60 dark:text-amber-500/60">
+              No hay reservas pendientes
+            </div>
+          ) : (
+            <div className="divide-y divide-amber-100 dark:divide-amber-900/30">
+              {pendingRows.map(r => (
+                <div key={r.id} className="px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+                  <div className="min-w-0">
+                    <div className="font-medium text-gray-900 dark:text-white text-sm truncate">
+                      {r.name}
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-zinc-400 mt-0.5 space-x-1.5">
+                      <span>{formatDateCR(r.date)}</span>
+                      <span>·</span>
+                      <span>{r.time}</span>
+                      <span>·</span>
+                      <span>{r.party_size} pax</span>
+                      {r.phone && <><span>·</span><span className="font-mono">{r.phone}</span></>}
+                    </div>
+                    {r.notes && (
+                      <div className="text-xs text-amber-700 dark:text-amber-400 italic mt-0.5 truncate">
+                        {r.notes}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-shrink-0 flex flex-col items-end gap-1.5">
+                    <ElapsedTimer createdAt={r.created_at} />
+                    <button
+                      onClick={() => setConfirmingRes(r)}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 hover:bg-emerald-600 text-white transition"
+                    >
+                      Confirmar y asignar mesa →
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Filters */}
         <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 mb-5">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
@@ -256,9 +388,9 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
                       <td className="px-4 py-3">
                         <div className="flex items-center justify-end gap-1.5 flex-wrap">
                           {r.status === 'pending' && (
-                            <button onClick={() => changeStatus(r.id, 'confirmed')} disabled={!!actionLoading}
-                              className="text-xs px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 disabled:opacity-50 transition">
-                              {actionLoading === r.id + 'confirmed' ? '…' : '✔'}
+                            <button onClick={() => setConfirmingRes(r)}
+                              className="text-xs px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 transition">
+                              ✔
                             </button>
                           )}
                           {(r.status === 'pending' || r.status === 'confirmed') && (
@@ -302,8 +434,8 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     {r.status === 'pending' && (
-                      <button onClick={() => changeStatus(r.id, 'confirmed')} disabled={!!actionLoading}
-                        className="flex-1 text-xs py-2 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 disabled:opacity-50 transition">
+                      <button onClick={() => setConfirmingRes(r)}
+                        className="flex-1 text-xs py-2 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 transition">
                         ✔ Confirmar
                       </button>
                     )}
@@ -349,6 +481,15 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
           </div>
         )}
       </main>
+
+      {/* Table-assignment confirmation modal */}
+      {confirmingRes && (
+        <ConfirmTableModal
+          reservation={confirmingRes}
+          onCancel={() => setConfirmingRes(null)}
+          onConfirmed={handleConfirmed}
+        />
+      )}
     </div>
   )
 }

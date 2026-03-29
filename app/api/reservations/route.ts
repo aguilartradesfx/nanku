@@ -28,6 +28,25 @@ export async function POST(request: NextRequest) {
     if (!time || typeof time !== 'string') {
       return NextResponse.json({ error: 'Reservation time is required.' }, { status: 400 })
     }
+
+    // 1-hour advance notice rule — evaluated in Costa Rica time (UTC-6, no DST)
+    const crNow = new Date(Date.now() - 6 * 60 * 60 * 1000)
+    const crTodayStr = crNow.toISOString().split('T')[0]
+    if (date === crTodayStr) {
+      const [timePart, ampm] = (time as string).split(' ')
+      let slotHour = parseInt(timePart.split(':')[0])
+      if (ampm === 'PM' && slotHour !== 12) slotHour += 12
+      if (ampm === 'AM' && slotHour === 12) slotHour = 0
+      const crTotalMin  = crNow.getUTCHours() * 60 + crNow.getUTCMinutes()
+      const slotTotalMin = slotHour * 60
+      if (slotTotalMin < crTotalMin + 60) {
+        return NextResponse.json(
+          { error: 'Reservations require at least 1 hour advance notice.' },
+          { status: 400 }
+        )
+      }
+    }
+
     if (!party_size || typeof party_size !== 'string') {
       return NextResponse.json({ error: 'Party size is required.' }, { status: 400 })
     }
@@ -56,33 +75,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to save reservation. Please try again.' }, { status: 500 })
     }
 
-    // Fire webhook notification (non-blocking — errors do not affect the reservation)
-    const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL
-    console.log('[webhook] URL present:', !!webhookUrl)
-    if (webhookUrl) {
-      try {
-        const webhookRes = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: name.trim(),
-            email: email.trim().toLowerCase(),
-            phone_code: phone_code ?? '+506',
-            phone: phone.trim(),
-            date,
-            time,
-            party_size,
-            notes: notes?.trim() || null,
-          }),
-        })
-        console.log('[webhook] Response status:', webhookRes.status)
-      } catch (webhookErr) {
-        console.error('[webhook] Fetch failed:', webhookErr)
-      }
-    } else {
-      console.warn('[webhook] NEXT_PUBLIC_N8N_WEBHOOK_URL is not set')
-    }
-
+    // Webhook is fired later by the admin when the reservation is confirmed + table assigned
     return NextResponse.json({ success: true }, { status: 201 })
   } catch (err) {
     console.error('Reservation API error:', err)

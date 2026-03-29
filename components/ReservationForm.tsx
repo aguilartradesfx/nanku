@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import DatePickerModal from './DatePickerModal'
 
 const countryCodes = [
   { value: '+506', label: '🇨🇷 +506' },
@@ -65,23 +67,80 @@ interface FormErrors {
   party?: string
 }
 
-export default function ReservationForm() {
-  const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
-    phoneCode: '+506',
-    phone: '',
-    date: '',
-    time: '',
-    partySize: '',
-    partyCustom: '',
-    notes: '',
-  })
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [submitting, setSubmitting] = useState(false)
-  const [success, setSuccess] = useState(false)
+interface SlotInfo {
+  available: boolean
+  tablesLeft: number
+}
 
-  const today = new Date().toISOString().split('T')[0]
+/**
+ * Returns true if the slot is within 1 hour of now in Costa Rica time (UTC-6, no DST).
+ * Only applies when selectedDate is today in CR time.
+ */
+function isSlotTooSoon(slot: string, selectedDate: string): boolean {
+  // Get current Costa Rica date + time (UTC-6, no DST)
+  const crNow = new Date(Date.now() - 6 * 60 * 60 * 1000) // shift to CR wall clock
+  const crTodayStr = crNow.toISOString().split('T')[0]     // YYYY-MM-DD in CR
+
+  if (selectedDate !== crTodayStr) return false
+
+  const crHour = crNow.getUTCHours()
+  const crMin  = crNow.getUTCMinutes()
+
+  // Parse "5:00 PM" → 24h hour
+  const [timePart, ampm] = slot.split(' ')
+  let h = parseInt(timePart.split(':')[0])
+  if (ampm === 'PM' && h !== 12) h += 12
+  if (ampm === 'AM' && h === 12) h = 0
+
+  // Slot must start at least 60 minutes from now
+  const crTotalMin  = crHour * 60 + crMin
+  const slotTotalMin = h * 60
+  return slotTotalMin < crTotalMin + 60
+}
+
+export default function ReservationForm({ lang = 'en' }: { lang?: 'en' | 'es' }) {
+  const router = useRouter()
+
+  const [form, setForm] = useState<FormState>({
+    name: '', email: '', phoneCode: '+506', phone: '',
+    date: '', time: '', partySize: '', partyCustom: '', notes: '',
+  })
+  const [errors, setErrors]         = useState<FormErrors>({})
+  const [submitting, setSubmitting]  = useState(false)
+  const [availability, setAvailability] = useState<Record<string, SlotInfo> | null>(null)
+  const [loadingSlots, setLoadingSlots] = useState(false)
+
+  // Min date = today in Costa Rica time (UTC-6)
+  const crToday = new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString().split('T')[0]
+
+  /* Fetch slot availability whenever date changes */
+  const handleDateChange = async (date: string) => {
+    setForm(f => ({ ...f, date, time: '' })) // reset time on date change
+    setAvailability(null)
+    if (!date) return
+    setLoadingSlots(true)
+    try {
+      const res = await fetch(`/api/availability?date=${date}`)
+      if (res.ok) {
+        const data = await res.json()
+        setAvailability(data.availability)
+      }
+    } catch {
+      // fail silently — all slots remain enabled as a fallback
+    } finally {
+      setLoadingSlots(false)
+    }
+  }
+
+  /* If loaded availability invalidates the current time selection, clear it */
+  useEffect(() => {
+    if (!form.time || !availability) return
+    const info = availability[form.time]
+    const tooSoon = isSlotTooSoon(form.time, form.date)
+    if (tooSoon || (info && !info.available)) {
+      setForm(f => ({ ...f, time: '' }))
+    }
+  }, [availability]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const validate = (): boolean => {
     const errs: FormErrors = {}
@@ -118,7 +177,8 @@ export default function ReservationForm() {
         }),
       })
       if (res.ok) {
-        setSuccess(true)
+        const base = lang === 'es' ? '/es/reservation-confirmed' : '/reservation-confirmed'
+        router.push(`${base}?name=${encodeURIComponent(form.name)}`)
       } else {
         const data = await res.json()
         alert(data.error || 'Something went wrong. Please try again.')
@@ -130,183 +190,158 @@ export default function ReservationForm() {
     }
   }
 
-  const reset = () => {
-    setSuccess(false)
-    setForm({
-      name: '', email: '', phoneCode: '+506', phone: '',
-      date: '', time: '', partySize: '', partyCustom: '', notes: '',
-    })
-    setErrors({})
-  }
-
   return (
     <div id="resFormWrap">
-      {success ? (
-        <div id="resSuccess" className="res-success">
-          <svg
-            className="res-success-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="56"
-            height="56"
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-            <polyline points="22 4 12 14.01 9 11.01" />
-          </svg>
-          <h3>Thank You!</h3>
-          <p>We&apos;ll confirm your reservation shortly.</p>
-          <small>Check WhatsApp for confirmation details.</small>
-          <button id="resReset" className="res-reset" onClick={reset}>
-            Make Another Reservation
-          </button>
-        </div>
-      ) : (
-        <form id="reservationForm" className="res-form" onSubmit={handleSubmit} noValidate>
-          <div className="res-grid">
-            {/* Full Name */}
-            <div className="res-col-2">
-              <label className="res-label" htmlFor="resName">Full Name *</label>
-              <input
-                id="resName"
-                className="res-input"
-                type="text"
-                placeholder="Your full name"
-                autoComplete="name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                required
-              />
-              {errors.name && <p className="res-error">{errors.name}</p>}
-            </div>
+      <form id="reservationForm" className="res-form" onSubmit={handleSubmit} noValidate>
+        <div className="res-grid">
 
-            {/* Email */}
-            <div>
-              <label className="res-label" htmlFor="resEmail">Email *</label>
-              <input
-                id="resEmail"
-                className="res-input"
-                type="email"
-                placeholder="your@email.com"
-                autoComplete="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                required
-              />
-              {errors.email && <p className="res-error">{errors.email}</p>}
-            </div>
+          {/* Full Name */}
+          <div className="res-col-2">
+            <label className="res-label" htmlFor="resName">Full Name *</label>
+            <input
+              id="resName"
+              className="res-input"
+              type="text"
+              placeholder="Your full name"
+              autoComplete="name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              required
+            />
+            {errors.name && <p className="res-error">{errors.name}</p>}
+          </div>
 
-            {/* Phone */}
-            <div>
-              <label className="res-label" htmlFor="resPhone">Phone *</label>
-              <div className="res-phone-wrap">
-                <select
-                  id="resPhoneCode"
-                  className="res-phone-code"
-                  aria-label="Country code"
-                  value={form.phoneCode}
-                  onChange={(e) => setForm({ ...form, phoneCode: e.target.value })}
-                >
-                  {countryCodes.map((cc) => (
-                    <option key={cc.value} value={cc.value}>
-                      {cc.label}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  id="resPhone"
-                  className="res-input res-phone-input"
-                  type="tel"
-                  placeholder="8888-8888"
-                  autoComplete="tel"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  required
-                />
-              </div>
-              {errors.phone && <p className="res-error">{errors.phone}</p>}
-            </div>
+          {/* Email */}
+          <div>
+            <label className="res-label" htmlFor="resEmail">Email *</label>
+            <input
+              id="resEmail"
+              className="res-input"
+              type="email"
+              placeholder="your@email.com"
+              autoComplete="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              required
+            />
+            {errors.email && <p className="res-error">{errors.email}</p>}
+          </div>
 
-            {/* Date */}
-            <div>
-              <label className="res-label" htmlFor="resDate">Date *</label>
-              <input
-                id="resDate"
-                className="res-input"
-                type="date"
-                min={today}
-                value={form.date}
-                onChange={(e) => setForm({ ...form, date: e.target.value })}
-                required
-              />
-              {errors.date && <p className="res-error">{errors.date}</p>}
-            </div>
-
-            {/* Time */}
-            <div>
-              <label className="res-label" htmlFor="resTime">Time *</label>
+          {/* Phone */}
+          <div>
+            <label className="res-label" htmlFor="resPhone">Phone *</label>
+            <div className="res-phone-wrap">
               <select
-                id="resTime"
-                className="res-select"
-                value={form.time}
-                onChange={(e) => setForm({ ...form, time: e.target.value })}
-                required
+                id="resPhoneCode"
+                className="res-phone-code"
+                aria-label="Country code"
+                value={form.phoneCode}
+                onChange={(e) => setForm({ ...form, phoneCode: e.target.value })}
               >
-                <option value="">Select time</option>
-                {timeOptions.map((t) => (
-                  <option key={t} value={t}>{t}</option>
+                {countryCodes.map((cc) => (
+                  <option key={cc.value} value={cc.value}>{cc.label}</option>
                 ))}
               </select>
-              {errors.time && <p className="res-error">{errors.time}</p>}
+              <input
+                id="resPhone"
+                className="res-input res-phone-input"
+                type="tel"
+                placeholder="8888-8888"
+                autoComplete="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                required
+              />
             </div>
-
-            {/* Party Size */}
-            <div className="res-col-2">
-              <label className="res-label">Party Size *</label>
-              <div className="res-party-btns">
-                {partySizes.map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    className={`res-party-btn${form.partySize === size ? ' selected' : ''}`}
-                    onClick={() => setForm({ ...form, partySize: size, partyCustom: '' })}
-                  >
-                    {size} guests
-                  </button>
-                ))}
-              </div>
-              {form.partySize === '9+' && (
-                <div style={{ marginTop: '10px' }}>
-                  <input
-                    id="resPartyCustom"
-                    className="res-input"
-                    type="number"
-                    min={9}
-                    max={99}
-                    step={1}
-                    placeholder="Enter exact number (9–99)"
-                    inputMode="numeric"
-                    value={form.partyCustom}
-                    onChange={(e) => setForm({ ...form, partyCustom: e.target.value })}
-                  />
-                </div>
-              )}
-              {errors.party && <p className="res-error">{errors.party}</p>}
-            </div>
-
-            {/* Submit */}
-            <div className="res-col-2">
-              <button type="submit" className="res-submit" disabled={submitting}>
-                {submitting ? 'Confirming...' : 'Confirm Reservation'}
-              </button>
-            </div>
+            {errors.phone && <p className="res-error">{errors.phone}</p>}
           </div>
-        </form>
-      )}
+
+          {/* Date — custom glassmorphism picker */}
+          <div>
+            <label className="res-label">Date *</label>
+            <DatePickerModal
+              value={form.date}
+              onChange={handleDateChange}
+              min={crToday}
+              placeholder="Select a date"
+            />
+            {errors.date && <p className="res-error">{errors.date}</p>}
+          </div>
+
+          {/* Time */}
+          <div>
+            <label className="res-label" htmlFor="resTime">
+              Time *
+              {loadingSlots && (
+                <span className="res-slot-checking"> · Checking availability…</span>
+              )}
+            </label>
+            <select
+              id="resTime"
+              className="res-select"
+              value={form.time}
+              onChange={(e) => setForm({ ...form, time: e.target.value })}
+              disabled={!form.date}
+              required
+            >
+              <option value="">{form.date ? 'Select time' : 'Select a date first'}</option>
+              {timeOptions.map((t) => {
+                const tooSoon = form.date ? isSlotTooSoon(t, form.date) : false
+                const full    = availability ? !availability[t]?.available : false
+                const off     = tooSoon || full
+                return (
+                  <option key={t} value={t} disabled={off}>
+                    {t}{full ? ' — Full' : tooSoon ? ' — Passed' : ''}
+                  </option>
+                )
+              })}
+            </select>
+            {errors.time && <p className="res-error">{errors.time}</p>}
+          </div>
+
+          {/* Party Size */}
+          <div className="res-col-2">
+            <label className="res-label">Party Size *</label>
+            <div className="res-party-btns">
+              {partySizes.map((size) => (
+                <button
+                  key={size}
+                  type="button"
+                  className={`res-party-btn${form.partySize === size ? ' selected' : ''}`}
+                  onClick={() => setForm({ ...form, partySize: size, partyCustom: '' })}
+                >
+                  {size} guests
+                </button>
+              ))}
+            </div>
+            {form.partySize === '9+' && (
+              <div style={{ marginTop: '10px' }}>
+                <input
+                  id="resPartyCustom"
+                  className="res-input"
+                  type="number"
+                  min={9}
+                  max={99}
+                  step={1}
+                  placeholder="Enter exact number (9–99)"
+                  inputMode="numeric"
+                  value={form.partyCustom}
+                  onChange={(e) => setForm({ ...form, partyCustom: e.target.value })}
+                />
+              </div>
+            )}
+            {errors.party && <p className="res-error">{errors.party}</p>}
+          </div>
+
+          {/* Submit */}
+          <div className="res-col-2">
+            <button type="submit" className="res-submit" disabled={submitting}>
+              {submitting ? 'Confirming...' : 'Confirm Reservation'}
+            </button>
+          </div>
+
+        </div>
+      </form>
 
       <div className="res-alt fade-up">
         <a
