@@ -120,6 +120,27 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ success: true })
   }
 
+  // Reschedule-request action — fires webhook without changing status
+  if (body.action === 'reschedule_requested') {
+    const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL
+    if (webhookUrl) {
+      try {
+        const { data: resData } = await svcClient()
+          .from('reservations').select('*').eq('id', id).single()
+        if (resData) {
+          await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ event: 'reschedule_requested', ...resData }),
+          })
+        }
+      } catch (e) {
+        console.error('[webhook] Reschedule notification failed:', e)
+      }
+    }
+    return NextResponse.json({ success: true })
+  }
+
   // Status-only update (also accepts zone + table_ids for the confirmation flow)
   const { status, zone, table_ids } = body
   if (!status || !VALID_STATUSES.includes(status)) {

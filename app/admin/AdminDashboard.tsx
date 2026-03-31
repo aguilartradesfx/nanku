@@ -123,6 +123,34 @@ export default function AdminDashboard({
     startTransition(() => router.refresh())
   }
 
+  async function cancelPending(id: string) {
+    if (!confirm('¿Cancelar esta reserva?')) return
+    setActionLoading(id + 'cancelled')
+    try {
+      await fetch('/api/admin/reservations', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: 'cancelled' }),
+      })
+      await Promise.all([fetchPending(), fetchDay(currentDate)])
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
+  async function requestReschedule(id: string) {
+    setActionLoading(id + 'reschedule')
+    try {
+      await fetch('/api/admin/reservations', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action: 'reschedule_requested' }),
+      })
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
   // ── Zone filter ──────────────────────────────────────────
   const [zoneFilter, setZoneFilter] = useState<'' | 'salon' | 'terraza'>('')
 
@@ -280,14 +308,31 @@ export default function AdminDashboard({
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-3 shrink-0">
+                      <div className="flex flex-col items-end gap-1.5 shrink-0">
                         <ElapsedTimer createdAt={r.created_at} />
                         <button
                           onClick={() => setConfirmingRes(r)}
-                          className="text-xs px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition whitespace-nowrap"
+                          disabled={!!actionLoading}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-medium transition whitespace-nowrap disabled:opacity-50"
                         >
                           Confirmar y asignar mesa →
                         </button>
+                        <div className="flex gap-1.5">
+                          <button
+                            onClick={() => requestReschedule(r.id)}
+                            disabled={!!actionLoading}
+                            className="text-xs px-3 py-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50 transition disabled:opacity-50"
+                          >
+                            {actionLoading === r.id + 'reschedule' ? '…' : 'Cambio de horario'}
+                          </button>
+                          <button
+                            onClick={() => cancelPending(r.id)}
+                            disabled={!!actionLoading}
+                            className="text-xs px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-500 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition disabled:opacity-50"
+                          >
+                            {actionLoading === r.id + 'cancelled' ? '…' : 'Cancelar'}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}

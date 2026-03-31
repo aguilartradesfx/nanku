@@ -120,6 +120,34 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
     fetchData()
   }, [fetchPending, fetchData])
 
+  async function cancelPending(id: string) {
+    if (!confirm('¿Cancelar esta reserva?')) return
+    setActionLoading(id + 'cancelled')
+    try {
+      await fetch('/api/admin/reservations', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: 'cancelled' }),
+      })
+      await fetchPending()
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
+  async function requestReschedule(id: string) {
+    setActionLoading(id + 'reschedule')
+    try {
+      await fetch('/api/admin/reservations', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, action: 'reschedule_requested' }),
+      })
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
   // Client-side search filter
   useEffect(() => {
     const q = search.trim().toLowerCase()
@@ -282,10 +310,27 @@ export default function ReservationsClient({ userEmail }: { userEmail: string })
                     <ElapsedTimer createdAt={r.created_at} />
                     <button
                       onClick={() => setConfirmingRes(r)}
-                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 hover:bg-emerald-600 text-white transition"
+                      disabled={!!actionLoading}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500 hover:bg-emerald-600 text-white transition disabled:opacity-50"
                     >
                       Confirmar y asignar mesa →
                     </button>
+                    <div className="flex gap-1.5">
+                      <button
+                        onClick={() => requestReschedule(r.id)}
+                        disabled={!!actionLoading}
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50 transition disabled:opacity-50"
+                      >
+                        {actionLoading === r.id + 'reschedule' ? '…' : 'Cambio de horario'}
+                      </button>
+                      <button
+                        onClick={() => cancelPending(r.id)}
+                        disabled={!!actionLoading}
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-500 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition disabled:opacity-50"
+                      >
+                        {actionLoading === r.id + 'cancelled' ? '…' : 'Cancelar'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
