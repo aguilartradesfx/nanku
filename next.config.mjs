@@ -13,7 +13,9 @@ const nextConfig = {
       { source: '/en/live-music', destination: '/live-music', permanent: true },
       { source: '/en/about', destination: '/about', permanent: true },
       { source: '/en/reservation-confirmed', destination: '/reservation-confirmed', permanent: true },
+      { source: '/en/contacts', destination: '/', permanent: true },
       { source: '/en/:path*', destination: '/:path*', permanent: true },
+      { source: '/es/contacto', destination: '/es', permanent: true },
     ]
   },
 };
