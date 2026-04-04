@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-const SECONDS = 12
+const SECONDS = 8
 const RADIUS = 36
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
@@ -37,16 +37,6 @@ function ConfirmationContent({ lang, homeUrl }: Props) {
   const rawName = searchParams.get('name')
   const firstName = rawName ? rawName.split(' ')[0] : null
   const [countdown, setCountdown] = useState(SECONDS)
-
-  // Fire GTM conversion event as soon as the page mounts
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ;(window as any).dataLayer = (window as any).dataLayer || []
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ;(window as any).dataLayer.push({ event: 'reservation_confirmed' })
-    }
-  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
