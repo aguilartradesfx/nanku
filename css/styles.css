@@ -110,12 +110,12 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 96px;
 }
-@media (min-width: 768px) { .navbar-inner { height: 80px; } }
+@media (min-width: 768px) { .navbar-inner { height: 120px; } }
 
-.navbar-logo img { height: 62px; width: auto; object-fit: contain; }
-@media (min-width: 768px) { .navbar-logo img { height: 76px; } }
+.navbar-logo img { height: 93px; width: auto; object-fit: contain; }
+@media (min-width: 768px) { .navbar-logo img { height: 114px; } }
 
 .navbar-links {
   display: none;
