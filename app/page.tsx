@@ -111,7 +111,6 @@ export default async function HomePage() {
                   <div className="exp-img-wrap">
                     <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611db69544cbe5cda9286.jpg" alt="Live Music" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
-                    <div className="exp-img-number" style={{ WebkitTextStroke: '1px rgba(232,117,26,0.25)' }}>01</div>
                   </div>
                 </div>
                 <div className="exp-text-side">
@@ -140,7 +139,6 @@ export default async function HomePage() {
                   <div className="exp-img-wrap">
                     <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e484e24981fcd12193a5.jpg" alt="Signature Cocktails" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
-                    <div className="exp-img-number" style={{ WebkitTextStroke: '1px rgba(245,166,35,0.25)', left: '1.5rem', right: 'auto' }}>02</div>
                   </div>
                 </div>
                 <div className="exp-text-side">
@@ -169,7 +167,6 @@ export default async function HomePage() {
                   <div className="exp-img-wrap">
                     <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5edb5146bc5f778eaab9e.jpg" alt="Premium Steaks" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
-                    <div className="exp-img-number" style={{ WebkitTextStroke: '1px rgba(232,117,26,0.25)' }}>03</div>
                   </div>
                 </div>
                 <div className="exp-text-side">
@@ -198,7 +195,6 @@ export default async function HomePage() {
                   <div className="exp-img-wrap">
                     <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611dbc1840fb68ef4cad7.jpg" alt="Tropical Atmosphere" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
-                    <div className="exp-img-number" style={{ WebkitTextStroke: '1px rgba(45,90,39,0.4)', left: '1.5rem', right: 'auto' }}>04</div>
                   </div>
                 </div>
                 <div className="exp-text-side">
