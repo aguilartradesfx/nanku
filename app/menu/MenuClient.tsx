@@ -360,7 +360,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
               {/* Left — Photo */}
               <div
                 className="nm-modal-photo"
-                style={modal.name === 'Passion Fruit Cheesecake' || modal.name === 'Cheesecake de Maracuyá' ? { width: '65%' } : undefined}
+                style={modal.name === 'Passion Fruit Cheesecake' || modal.name === 'Cheesecake de Maracuyá' ? { width: '80%' } : undefined}
               >
                 <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'cover' }} />
               </div>
