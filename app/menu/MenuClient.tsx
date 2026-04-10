@@ -87,7 +87,7 @@ const enFood = {
     { name: 'Nanku Sandwich', price: '₡6,500', desc: 'Chicken, beef, or vegetarian with fresh lettuce, tomato, bacon, pickles, mozzarella cheese, served with french fries.' },
   ] as FoodItem[],
   desserts: [
-    { name: 'Coconut Caramel Flan', price: '₡4,700' },
+    { name: 'Coconut Caramel Flan', price: '₡4,700', photo: CDN + '69d85ba09c84d38e9e925485.jpg' },
     { name: 'Chocolate Brownie With Vanilla Ice Cream', price: '₡4,700', photo: CDN + '69c5f94c7794bf69985031bf.jpg' },
     { name: 'Passion Fruit Cheesecake', price: '₡4,700' },
     { name: 'Banana or Pineapple in Orange & Cinnamon Sauce Flamed in Orange Liquor', price: '₡4,700' },
@@ -169,7 +169,7 @@ const esFood = {
     { name: 'Sándwich Nanku', price: '₡6,500', desc: 'Pollo, carne o vegetariano con lechuga fresca, tomate, tocino, encurtidos y mozzarella, servido con papas fritas.' },
   ] as FoodItem[],
   desserts: [
-    { name: 'Flan de Coco y Caramelo', price: '₡4,700' },
+    { name: 'Flan de Coco y Caramelo', price: '₡4,700', photo: CDN + '69d85ba09c84d38e9e925485.jpg' },
     { name: 'Brownie de Chocolate con Helado de Vainilla', price: '₡4,700', photo: CDN + '69c5f94c7794bf69985031bf.jpg' },
     { name: 'Cheesecake de Maracuyá', price: '₡4,700' },
     { name: 'Banano o Piña en Salsa de Naranja y Canela Flameado con Licor de Naranja', price: '₡4,700' },
