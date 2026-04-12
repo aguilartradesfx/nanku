@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -42,10 +43,9 @@ const enFood = {
     { name: 'Passion Fruit Tuna Ceviche', price: '₡8,500', desc: 'Tuna marinated with passion fruit, soy and pepper oil served with mixed chips.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg' },
   ] as FoodItem[],
   seafood: [
-    { name: 'Teriyaki Tuna', price: '₡14,200', desc: 'Encrusted yellow-fin tuna with sesame seeds, served with vegetables, mashed potatoes, and teriyaki sauce.' },
+    { name: 'Teriyaki Tuna', price: '₡14,200', desc: 'Encrusted yellow-fin tuna with sesame seeds, served with vegetables, mashed potatoes, and teriyaki sauce.', photo: CDN + '69d85b05d7871cddf7ea19e0.webp' },
     { name: 'Grilled Octopus', price: '₡19,000', desc: 'Grilled octopus with sweet potato, salad, tomato chimichurri, and citrus concasse soy sauce.', photo: CDN + '69b9175087f0f2768356c731.jpg' },
     { name: 'Caribbean Soup', price: '₡8,000', desc: 'Mixed seafood in tomato sauce with coconut milk, thyme, and chili pepper.', photo: CDN + '69c5f6dc7794bf5d9b4fe34b.jpg' },
-    { name: 'Whole Tilapia', price: '₡10,500', desc: 'Fried local tilapia with green salad, smashed plantains, refried beans and pico de gallo.', photo: CDN + '69c5f762146bc5af4febf1b7.jpg' },
     { name: 'Trout With Creamy', price: '₡12,400', desc: 'Costa Rican trout in creamy sauce and shrimp served with artichoke rice and cherry tomato.', photo: CDN + '69c5f8665ebd49a0c4779e7f.jpg' },
     { name: 'Mahi Mahi With Apple & Mango Chutney', price: '₡12,400', desc: 'Grilled mahi mahi served with rosemary potatoes, apple, mango, soy sauce, and Dijon mustard.', photo: CDN + '69b917505b89c7a116e859db.jpg' },
   ] as FoodItem[],
@@ -87,9 +87,9 @@ const enFood = {
     { name: 'Nanku Sandwich', price: '₡6,500', desc: 'Chicken, beef, or vegetarian with fresh lettuce, tomato, bacon, pickles, mozzarella cheese, served with french fries.' },
   ] as FoodItem[],
   desserts: [
-    { name: 'Coconut Caramel Flan', price: '₡4,700' },
+    { name: 'Coconut Caramel Flan', price: '₡4,700', photo: CDN + '69d85ba09c84d38e9e925485.jpg' },
     { name: 'Chocolate Brownie With Vanilla Ice Cream', price: '₡4,700', photo: CDN + '69c5f94c7794bf69985031bf.jpg' },
-    { name: 'Passion Fruit Cheesecake', price: '₡4,700' },
+    { name: 'Passion Fruit Cheesecake', price: '₡4,700', photo: CDN + '69d85cf8019dc508d3de6c98.png' },
     { name: 'Banana or Pineapple in Orange & Cinnamon Sauce Flamed in Orange Liquor', price: '₡4,700' },
   ],
   notes: [
@@ -125,10 +125,9 @@ const esFood = {
     { name: 'Ceviche de Atún con Maracuyá', price: '₡8,500', desc: 'Atún marinado con maracuyá, soya y aceite de pimienta, servido con chips mixtos.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg' },
   ] as FoodItem[],
   seafood: [
-    { name: 'Atún Teriyaki', price: '₡14,200', desc: 'Atún aleta amarilla encostrado en ajonjolí, servido con vegetales, puré de papas y salsa teriyaki.' },
+    { name: 'Atún Teriyaki', price: '₡14,200', desc: 'Atún aleta amarilla encostrado en ajonjolí, servido con vegetales, puré de papas y salsa teriyaki.', photo: CDN + '69d85b05d7871cddf7ea19e0.webp' },
     { name: 'Pulpo a la Parrilla', price: '₡19,000', desc: 'Pulpo a la parrilla con camote, ensalada, chimichurri de tomate y salsa cítrica de soya.', photo: CDN + '69b9175087f0f2768356c731.jpg' },
     { name: 'Sopa Caribeña', price: '₡8,000', desc: 'Mariscos mixtos en salsa de tomate con leche de coco, tomillo y chile.', photo: CDN + '69c5f6dc7794bf5d9b4fe34b.jpg' },
-    { name: 'Tilapia Entera', price: '₡10,500', desc: 'Tilapia local frita con ensalada verde, patacones, frijoles molidos y pico de gallo.', photo: CDN + '69c5f762146bc5af4febf1b7.jpg' },
     { name: 'Trucha en Salsa Cremosa', price: '₡12,400', desc: 'Trucha costarricense en salsa cremosa con camarones, servida con arroz de alcachofas y tomates cherry.', photo: CDN + '69c5f8665ebd49a0c4779e7f.jpg' },
     { name: 'Mahi Mahi con Chutney de Manzana y Mango', price: '₡12,400', desc: 'Mahi mahi a la parrilla con papas al romero, manzana, mango, salsa de soya y mostaza Dijon.', photo: CDN + '69b917505b89c7a116e859db.jpg' },
   ] as FoodItem[],
@@ -170,9 +169,9 @@ const esFood = {
     { name: 'Sándwich Nanku', price: '₡6,500', desc: 'Pollo, carne o vegetariano con lechuga fresca, tomate, tocino, encurtidos y mozzarella, servido con papas fritas.' },
   ] as FoodItem[],
   desserts: [
-    { name: 'Flan de Coco y Caramelo', price: '₡4,700' },
+    { name: 'Flan de Coco y Caramelo', price: '₡4,700', photo: CDN + '69d85ba09c84d38e9e925485.jpg' },
     { name: 'Brownie de Chocolate con Helado de Vainilla', price: '₡4,700', photo: CDN + '69c5f94c7794bf69985031bf.jpg' },
-    { name: 'Cheesecake de Maracuyá', price: '₡4,700' },
+    { name: 'Cheesecake de Maracuyá', price: '₡4,700', photo: CDN + '69d85cf8019dc508d3de6c98.png' },
     { name: 'Banano o Piña en Salsa de Naranja y Canela Flameado con Licor de Naranja', price: '₡4,700' },
   ],
   notes: [
@@ -296,6 +295,11 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
   const [panel, setPanel] = useState<Panel>('food')
   const [foodCat, setFoodCat] = useState<FoodCat>('appetizers')
   const [drinksCat, setDrinksCat] = useState<DrinksCat>('licores')
+
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    setPanel(searchParams.get('tab') === 'drinks' ? 'drinks' : 'food')
+  }, [searchParams])
   const [modal, setModal] = useState<ModalState | null>(null)
 
   const d = lang === 'es' ? esFood : enFood
@@ -354,7 +358,10 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
 
             <div className="nm-modal-columns">
               {/* Left — Photo */}
-              <div className="nm-modal-photo">
+              <div
+                className="nm-modal-photo"
+                style={modal.name === 'Passion Fruit Cheesecake' || modal.name === 'Cheesecake de Maracuyá' ? { width: '80%' } : undefined}
+              >
                 <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'cover' }} />
               </div>
 

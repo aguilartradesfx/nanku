@@ -110,12 +110,12 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 96px;
 }
-@media (min-width: 768px) { .navbar-inner { height: 80px; } }
+@media (min-width: 768px) { .navbar-inner { height: 120px; } }
 
-.navbar-logo img { height: 56px; width: auto; object-fit: contain; }
-@media (min-width: 768px) { .navbar-logo img { height: 68px; } }
+.navbar-logo img { height: 93px; width: auto; object-fit: contain; }
+@media (min-width: 768px) { .navbar-logo img { height: 114px; } }
 
 .navbar-links {
   display: none;
@@ -927,15 +927,12 @@ ul { list-style: none; }
 .schedule-popup-close:hover { background: rgba(255,255,255,0.16); }
 .schedule-popup-photo {
   width: 100%;
-  height: 210px;
-  overflow: hidden;
   flex-shrink: 0;
 }
 .schedule-popup-photo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  display: block;
 }
 .schedule-popup-content {
   padding: 1.4rem 1.5rem 1.6rem;

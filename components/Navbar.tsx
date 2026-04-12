@@ -46,23 +46,23 @@ export default function Navbar({ lang = 'en', activePage }: NavbarProps) {
   const links =
     lang === 'es'
       ? [
-          { href: `${base}#experience`, label: 'Experiencia' },
+          { href: `/es/#experience`, label: 'Experiencia' },
           { href: `${base}/menu`, label: 'Menú' },
-          { href: `${base}#cocktails`, label: 'Cócteles' },
+          { href: `/es/menu?tab=drinks`, label: 'Cócteles' },
           { href: `${base}/live-music`, label: 'Música en Vivo' },
           { href: `${base}/about`, label: 'Nosotros' },
-          { href: `/es#reservations`, label: 'Reservaciones' },
+          { href: `/es/#reservations`, label: 'Reservaciones' },
         ]
       : [
-          { href: '#experience', label: 'Experience' },
+          { href: '/#experience', label: 'Experience' },
           { href: '/menu', label: 'Menu' },
-          { href: '#cocktails', label: 'Cocktails' },
+          { href: '/menu?tab=drinks', label: 'Cocktails' },
           { href: '/live-music', label: 'Live Music' },
           { href: '/about', label: 'About' },
           { href: '/#reservations', label: 'Reservations' },
         ]
 
-  const reserveHref = lang === 'es' ? '/es#reservations' : '#reservations'
+  const reserveHref = lang === 'es' ? '/es/#reservations' : '/#reservations'
   const reserveLabel = lang === 'es' ? 'Reservar' : 'Reserve'
   const reserveTableLabel = lang === 'es' ? 'Reservar Mesa' : 'Reserve a Table'
 

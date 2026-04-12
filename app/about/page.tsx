@@ -52,7 +52,7 @@ export default function AboutPage() {
                 premium international cuisine.
               </p>
               <p className="about-story-text">
-                Our name, Nanku, reflects the spirit of gathering — a place where friends, families, and travelers
+                Our name, Nanku, meaning "home" in Chorotega, reflects the spirit of gathering — a place where friends, families, and travelers
                 come together to share unforgettable moments over great food, creative cocktails, and live music
                 that sets the perfect mood for a night under the stars.
               </p>

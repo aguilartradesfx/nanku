@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
@@ -26,7 +27,7 @@ export default function MenuPage() {
         </div>
       </div>
 
-      <MenuClient />
+      <Suspense><MenuClient /></Suspense>
 
       <Footer lang="en" />
       <WhatsAppButton />

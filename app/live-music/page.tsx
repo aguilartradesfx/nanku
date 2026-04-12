@@ -24,12 +24,12 @@ type ArtistRow    = { name: string; label: string; photo: string; bio: string }
 
 const DEFAULT_SCHEDULE: ScheduleDay[] = [
   { id: '1', day_of_week: 'Monday',    is_active: true,  event_label: 'Live Band',                 start_time: '7:00 PM',    sort_order: 1, artist_id: null, event_detail: null },
-  { id: '2', day_of_week: 'Tuesday',   is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 2, artist_id: null, event_detail: null },
-  { id: '3', day_of_week: 'Wednesday', is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 3, artist_id: null, event_detail: null },
-  { id: '4', day_of_week: 'Thursday',  is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 4, artist_id: null, event_detail: null },
-  { id: '5', day_of_week: 'Friday',    is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 5, artist_id: null, event_detail: null },
+  { id: '2', day_of_week: 'Tuesday',   is_active: false, event_label: 'Curated playlist', start_time: 'All evening',sort_order: 2, artist_id: null, event_detail: null },
+  { id: '3', day_of_week: 'Wednesday', is_active: false, event_label: 'Curated playlist', start_time: 'All evening',sort_order: 3, artist_id: null, event_detail: null },
+  { id: '4', day_of_week: 'Thursday',  is_active: false, event_label: 'Curated playlist', start_time: 'All evening',sort_order: 4, artist_id: null, event_detail: null },
+  { id: '5', day_of_week: 'Friday',    is_active: false, event_label: 'Curated playlist', start_time: 'All evening',sort_order: 5, artist_id: null, event_detail: null },
   { id: '6', day_of_week: 'Saturday',  is_active: true,  event_label: 'Live Band',                 start_time: '7:00 PM',    sort_order: 6, artist_id: null, event_detail: null },
-  { id: '7', day_of_week: 'Sunday',    is_active: false, event_label: 'Curated tropical playlist', start_time: 'All evening',sort_order: 7, artist_id: null, event_detail: null },
+  { id: '7', day_of_week: 'Sunday',    is_active: false, event_label: 'Curated playlist', start_time: 'All evening',sort_order: 7, artist_id: null, event_detail: null },
 ]
 
 export default async function LiveMusicPage() {
