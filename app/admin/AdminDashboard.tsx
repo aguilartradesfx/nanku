@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/client'
 import LiveMusicManager, { type Artist, type ScheduleDay, type WeeklyEvent } from './LiveMusicManager'
 import AdminNav from './components/AdminNav'
 import ConfirmTableModal from './reservations/ConfirmTableModal'
+import CancelModal from './reservations/CancelModal'
 import {
   type Reservation,
   type ReservationStatus,
@@ -99,6 +100,7 @@ export default function AdminDashboard({
   const [pendingRows, setPendingRows] = useState<Reservation[]>([])
   const [pendingLoading, setPendingLoading] = useState(true)
   const [confirmingRes, setConfirmingRes] = useState<Reservation | null>(null)
+  const [cancelingRes, setCancelingRes]   = useState<Reservation | null>(null)
 
   const fetchPending = useCallback(async () => {
     setPendingLoading(true)
@@ -123,32 +125,10 @@ export default function AdminDashboard({
     startTransition(() => router.refresh())
   }
 
-  async function cancelPending(id: string) {
-    if (!confirm('¿Cancelar esta reserva?')) return
-    setActionLoading(id + 'cancelled')
-    try {
-      await fetch('/api/admin/reservations', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, status: 'cancelled' }),
-      })
-      await Promise.all([fetchPending(), fetchDay(currentDate)])
-    } finally {
-      setActionLoading(null)
-    }
-  }
-
-  async function requestReschedule(id: string) {
-    setActionLoading(id + 'reschedule')
-    try {
-      await fetch('/api/admin/reservations', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, action: 'reschedule_requested' }),
-      })
-    } finally {
-      setActionLoading(null)
-    }
+  async function handleCancelDone() {
+    setCancelingRes(null)
+    await Promise.all([fetchPending(), fetchDay(currentDate)])
+    startTransition(() => router.refresh())
   }
 
   // ── Zone filter ──────────────────────────────────────────
@@ -317,22 +297,13 @@ export default function AdminDashboard({
                         >
                           Confirmar y asignar mesa →
                         </button>
-                        <div className="flex gap-1.5">
-                          <button
-                            onClick={() => requestReschedule(r.id)}
-                            disabled={!!actionLoading}
-                            className="text-xs px-3 py-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50 transition disabled:opacity-50"
-                          >
-                            {actionLoading === r.id + 'reschedule' ? '…' : 'Cambio de horario'}
-                          </button>
-                          <button
-                            onClick={() => cancelPending(r.id)}
-                            disabled={!!actionLoading}
-                            className="text-xs px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-500 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition disabled:opacity-50"
-                          >
-                            {actionLoading === r.id + 'cancelled' ? '…' : 'Cancelar'}
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => setCancelingRes(r)}
+                          disabled={!!actionLoading}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-500 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition disabled:opacity-50"
+                        >
+                          Cancelar / Cambio
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -471,11 +442,11 @@ export default function AdminDashboard({
                               )}
                               {(r.status === 'pending' || r.status === 'confirmed') && (
                                 <button
-                                  onClick={() => changeStatus(r.id, 'cancelled')}
+                                  onClick={() => setCancelingRes(r)}
                                   disabled={!!actionLoading || isPending}
                                   className="text-xs px-2 py-1 rounded-md bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 disabled:opacity-50 transition"
                                 >
-                                  {actionLoading === r.id + 'cancelled' ? '…' : '✕ Cancelar'}
+                                  ✕ Cancelar
                                 </button>
                               )}
                               {r.status === 'confirmed' && (
@@ -526,7 +497,7 @@ export default function AdminDashboard({
                           </button>
                         )}
                         {(r.status === 'pending' || r.status === 'confirmed') && (
-                          <button onClick={() => changeStatus(r.id, 'cancelled')} disabled={!!actionLoading}
+                          <button onClick={() => setCancelingRes(r)} disabled={!!actionLoading}
                             className="flex-1 text-xs py-1.5 rounded-md bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 disabled:opacity-50 transition">
                             Cancelar
                           </button>
@@ -562,6 +533,14 @@ export default function AdminDashboard({
           reservation={confirmingRes}
           onCancel={() => setConfirmingRes(null)}
           onConfirmed={handleConfirmed}
+        />
+      )}
+
+      {cancelingRes && (
+        <CancelModal
+          reservation={cancelingRes}
+          onClose={() => setCancelingRes(null)}
+          onDone={handleCancelDone}
         />
       )}
     </div>

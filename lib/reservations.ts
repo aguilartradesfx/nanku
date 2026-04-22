@@ -8,7 +8,7 @@
 //   ADD COLUMN IF NOT EXISTS confirmed_at timestamptz;
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type ReservationStatus = 'pending' | 'confirmed' | 'cancelled' | 'no_show'
+export type ReservationStatus = 'pending' | 'confirmed' | 'cancelled' | 'no_show' | 'reschedule_proposed'
 
 export type Reservation = {
   id: string
@@ -43,17 +43,19 @@ export type ReservationInput = {
 }
 
 export const STATUS_LABELS: Record<ReservationStatus, string> = {
-  pending:   'Pendiente',
-  confirmed: 'Confirmada',
-  cancelled: 'Cancelada',
-  no_show:   'No se presentó',
+  pending:              'Pendiente',
+  confirmed:            'Confirmada',
+  cancelled:            'Cancelada',
+  no_show:              'No se presentó',
+  reschedule_proposed:  'Cambio propuesto',
 }
 
 export const STATUS_STYLES: Record<ReservationStatus, string> = {
-  pending:   'bg-amber-100 text-amber-700 border-amber-300',
-  confirmed: 'bg-emerald-100 text-emerald-700 border-emerald-300',
-  cancelled: 'bg-red-100 text-red-600 border-red-300',
-  no_show:   'bg-gray-100 text-gray-500 border-gray-300',
+  pending:              'bg-amber-100 text-amber-700 border-amber-300',
+  confirmed:            'bg-emerald-100 text-emerald-700 border-emerald-300',
+  cancelled:            'bg-red-100 text-red-600 border-red-300',
+  no_show:              'bg-gray-100 text-gray-500 border-gray-300',
+  reschedule_proposed:  'bg-purple-100 text-purple-700 border-purple-300',
 }
 
 /** Returns today's date in Costa Rica timezone as YYYY-MM-DD */
