@@ -19,6 +19,31 @@ import {
   addDays,
 } from '@/lib/reservations'
 
+function RescheduleTimer({ expiresAt }: { expiresAt: string }) {
+  const [remaining, setRemaining] = useState(() =>
+    Math.max(0, Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000))
+  )
+  useEffect(() => {
+    if (remaining <= 0) return
+    const id = setInterval(() =>
+      setRemaining(Math.max(0, Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000)))
+    , 1000)
+    return () => clearInterval(id)
+  }, [expiresAt, remaining])
+
+  if (remaining <= 0) return (
+    <span className="text-xs text-red-400 font-medium">Expirada</span>
+  )
+  const min = Math.floor(remaining / 60)
+  const sec = remaining % 60
+  const color = remaining < 300 ? 'text-red-400' : remaining < 900 ? 'text-amber-400' : 'text-purple-400'
+  return (
+    <span className={`text-xs font-mono ${color}`}>
+      Pendiente · {min}:{String(sec).padStart(2, '0')}
+    </span>
+  )
+}
+
 function ElapsedTimer({ createdAt }: { createdAt: string }) {
   const [elapsed, setElapsed] = useState(() =>
     Math.floor((Date.now() - new Date(createdAt).getTime()) / 1000)
@@ -76,6 +101,7 @@ export default function AdminDashboard({
   )
   const [loadingDay, setLoadingDay] = useState(false)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
+  const [proposalExpiry, setProposalExpiry] = useState<Map<string, string>>(new Map())
 
   const fetchDay = useCallback(async (date: string) => {
     setLoadingDay(true)
@@ -87,6 +113,21 @@ export default function AdminDashboard({
         .eq('date', date)
         .order('time', { ascending: true })
       setDayReservations(data ?? [])
+
+      // Fetch expiry for any reschedule_proposed reservations
+      const rescheduled = (data ?? []).filter(r => r.status === 'reschedule_proposed')
+      if (rescheduled.length > 0) {
+        const { data: proposals } = await supabase
+          .from('reschedule_proposals')
+          .select('reservation_id, expires_at')
+          .in('reservation_id', rescheduled.map(r => r.id))
+          .eq('status', 'pending')
+        const map = new Map<string, string>()
+        for (const p of proposals ?? []) map.set(p.reservation_id, p.expires_at)
+        setProposalExpiry(map)
+      } else {
+        setProposalExpiry(new Map())
+      }
     } finally {
       setLoadingDay(false)
     }
@@ -95,6 +136,14 @@ export default function AdminDashboard({
   useEffect(() => {
     fetchDay(currentDate)
   }, [currentDate, fetchDay])
+
+  // Poll every 15s when there are active reschedule proposals — picks up client acceptance automatically
+  useEffect(() => {
+    const hasActive = dayReservations.some(r => r.status === 'reschedule_proposed')
+    if (!hasActive) return
+    const id = setInterval(() => fetchDay(currentDate), 15000)
+    return () => clearInterval(id)
+  }, [dayReservations, currentDate, fetchDay])
 
   // ── Pending queue (all dates) ────────────────────────────
   const [pendingRows, setPendingRows] = useState<Reservation[]>([])
@@ -428,6 +477,11 @@ export default function AdminDashboard({
                             <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${STATUS_STYLES[r.status]}`}>
                               {STATUS_LABELS[r.status]}
                             </span>
+                            {r.status === 'reschedule_proposed' && proposalExpiry.get(r.id) && (
+                              <div className="mt-1">
+                                <RescheduleTimer expiresAt={proposalExpiry.get(r.id)!} />
+                              </div>
+                            )}
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center justify-end gap-1.5 flex-wrap">
@@ -481,9 +535,14 @@ export default function AdminDashboard({
                           <div className="text-gray-900 dark:text-white font-medium">{r.name}</div>
                           <div className="text-gray-400 dark:text-zinc-500 text-xs font-mono">{r.phone}</div>
                         </div>
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${STATUS_STYLES[r.status]}`}>
-                          {STATUS_LABELS[r.status]}
-                        </span>
+                        <div className="flex flex-col items-end gap-0.5">
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${STATUS_STYLES[r.status]}`}>
+                            {STATUS_LABELS[r.status]}
+                          </span>
+                          {r.status === 'reschedule_proposed' && proposalExpiry.get(r.id) && (
+                            <RescheduleTimer expiresAt={proposalExpiry.get(r.id)!} />
+                          )}
+                        </div>
                       </div>
                       <div className="text-sm text-gray-500 dark:text-zinc-400 mb-3 grid grid-cols-2 gap-1">
                         <span>{formatTimeCR(r.time)} · {r.party_size} pax</span>
