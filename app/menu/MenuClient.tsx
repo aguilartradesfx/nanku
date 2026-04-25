@@ -69,7 +69,7 @@ const enFood = {
     { name: 'Rib Eye', price: '₡17,500', photo: CDN + '69c5fbd8146bc51f9eec8ca7.jpg' },
     { name: 'New York', price: '₡17,500', photo: CDN + '69c194d5fa8b2122095a9294.jpg' },
     { name: 'Sirloin Steak', price: '₡19,500', photo: CDN + '69c5fbd8146bc52decec8ca6.jpg' },
-    { name: 'Surf And Turf Tenderloin Fajitas', price: '₡24,000 – ₡31,900', photo: CDN + '69c194d50d1082cd084c8590.jpg', variants: [{ label: 'Fajitas', price: '₡24,000' }, { label: 'With Lobster', price: '₡31,900' }] },
+    { name: 'Surf And Turf', price: '₡31,900', photo: CDN + '69c194d50d1082cd084c8590.jpg' },
   ],
   steakNote: 'All of our meat cuts are served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.',
   vegetarian: [
@@ -151,7 +151,7 @@ const esFood = {
     { name: 'Rib Eye', price: '₡17,500', photo: CDN + '69c5fbd8146bc51f9eec8ca7.jpg' },
     { name: 'New York', price: '₡17,500', photo: CDN + '69c194d5fa8b2122095a9294.jpg' },
     { name: 'Sirloin', price: '₡19,500', photo: CDN + '69c5fbd8146bc52decec8ca6.jpg' },
-    { name: 'Fajitas Surf and Turf', price: '₡24,000 – ₡31,900', photo: CDN + '69c194d50d1082cd084c8590.jpg', variants: [{ label: 'Fajitas', price: '₡24,000' }, { label: 'Con Langosta', price: '₡31,900' }] },
+    { name: 'Surf And Turf', price: '₡31,900', photo: CDN + '69c194d50d1082cd084c8590.jpg' },
   ],
   steakNote: 'Todos nuestros cortes se sirven con papas al romero, plátano maduro, jalapeño y chimichurri.',
   vegetarian: [
