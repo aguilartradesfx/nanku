@@ -831,33 +831,23 @@ ul { list-style: none; }
 }
 .cocktails-cta { text-align: center; margin-top: 3rem; }
 
-/* Rotating shiny border for highlighted cocktail card */
-@keyframes shimmer-rotate {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
+/* Gold top accent for highlighted cocktail card */
 .cocktail-highlight-wrap {
   position: relative;
   border-radius: 1.125rem;
   overflow: hidden;
-  padding: 2px;
+  border-top: 2px solid #D4A853;
 }
 .cocktail-highlight-wrap::before {
   content: '';
   position: absolute;
-  width: 200%;
-  height: 200%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%, transparent 58%,
-    #E8751A 65%, #F5C842 72%, #fffbe0 77%,
-    #F5C842 82%, #E8751A 89%,
-    transparent 95%, transparent 100%
-  );
-  animation: shimmer-rotate 3s linear infinite;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(212, 168, 83, 0.12) 0%, transparent 100%);
   pointer-events: none;
+  z-index: 1;
 }
 /* Detail text below artist name on schedule days */
 .schedule-event-detail {
