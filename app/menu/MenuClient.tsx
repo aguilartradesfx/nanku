@@ -54,7 +54,7 @@ const enFood = {
   pasta: [
     { name: 'Salmon Ravioli', price: '₡10,200', desc: 'Salmon ravioli served with grana padana, Gorgonzola sauce, cherry tomatoes, mushrooms, basil and crostini.', photo: CDN + '69c194d56f10179ea435b639.jpg' },
     { name: 'Spaghetti Pura Vida', price: '₡9,500', desc: 'Sautéed shrimp spaghetti with onion, basil, tomato sauce, served with avocado and crostini.', photo: CDN + '69c194d5c1e996220ba4333f.jpg' },
-    { name: 'Fettuccine Aglio E Olio', price: '₡9,350', desc: 'Fettuccine with olive oil, cherry tomatoes, basil, mushrooms, and chicken.' },
+    { name: 'Fettuccine Aglio E Olio', price: '₡9,350', desc: 'Fettuccine with olive oil, cherry tomatoes, basil, mushrooms, and chicken.', photo: CDN + '69d7378a3dd00cb232c432a1.jpg' },
     { name: 'Rigatoni In Aurora Sauce', price: '₡9,500', desc: 'Rigatoni pasta in aurora sauce (tomato and white sauce), with shrimps, parsley, onion, Parmesan cheese, crostinis.', photo: CDN + '69c194d5b0fe813a7003ff83.jpg' },
   ] as FoodItem[],
   whiteMeat: [
@@ -92,7 +92,7 @@ const enFood = {
     { name: 'Coconut Caramel Flan', price: '₡4,700', photo: CDN + '69d85ba09c84d38e9e925485.jpg' },
     { name: 'Chocolate Brownie With Vanilla Ice Cream', price: '₡4,700', photo: CDN + '69c5f94c7794bf69985031bf.jpg' },
     { name: 'Passion Fruit Cheesecake', price: '₡4,700', photo: CDN + '69d85cf8019dc508d3de6c98.png' },
-    { name: 'Banana or Pineapple in Orange & Cinnamon Sauce Flamed in Orange Liquor', price: '₡4,700' },
+    { name: 'Banana or Pineapple in Orange & Cinnamon Sauce Flamed in Orange Liquor', price: '₡4,700', photo: CDN + '69ec4de6b0e5e2bb7f933572.webp' },
   ],
   notes: [
     'Our restaurant prepares locally sourced produce, seafood, and meat cuts from nearby farmland, delivering you delicious and healthy farm-to-table meals.',
@@ -136,7 +136,7 @@ const esFood = {
   pasta: [
     { name: 'Ravioles de Salmón', price: '₡10,200', desc: 'Ravioles de salmón con grana padana, salsa Gorgonzola, tomates cherry, champiñones, albahaca y crostini.', photo: CDN + '69c194d56f10179ea435b639.jpg' },
     { name: 'Spaghetti Pura Vida', price: '₡9,500', desc: 'Spaghetti salteado con camarones, cebolla, albahaca y salsa de tomate, servido con aguacate y crostini.', photo: CDN + '69c194d5c1e996220ba4333f.jpg' },
-    { name: 'Fettuccine Aglio e Olio', price: '₡9,350', desc: 'Fettuccine con aceite de oliva, tomates cherry, albahaca, champiñones y pollo.' },
+    { name: 'Fettuccine Aglio e Olio', price: '₡9,350', desc: 'Fettuccine con aceite de oliva, tomates cherry, albahaca, champiñones y pollo.', photo: CDN + '69d7378a3dd00cb232c432a1.jpg' },
     { name: 'Rigatoni en Salsa Aurora', price: '₡9,500', desc: 'Rigatoni en salsa aurora (tomate y salsa blanca) con camarones, perejil, cebolla, queso Parmesano y crostini.', photo: CDN + '69c194d5b0fe813a7003ff83.jpg' },
   ] as FoodItem[],
   whiteMeat: [
@@ -174,7 +174,7 @@ const esFood = {
     { name: 'Flan de Coco y Caramelo', price: '₡4,700', photo: CDN + '69d85ba09c84d38e9e925485.jpg' },
     { name: 'Brownie de Chocolate con Helado de Vainilla', price: '₡4,700', photo: CDN + '69c5f94c7794bf69985031bf.jpg' },
     { name: 'Cheesecake de Maracuyá', price: '₡4,700', photo: CDN + '69d85cf8019dc508d3de6c98.png' },
-    { name: 'Banano o Piña en Salsa de Naranja y Canela Flameado con Licor de Naranja', price: '₡4,700' },
+    { name: 'Banano o Piña en Salsa de Naranja y Canela Flameado con Licor de Naranja', price: '₡4,700', photo: CDN + '69ec4de6b0e5e2bb7f933572.webp' },
   ],
   notes: [
     'Nuestro restaurante prepara ingredientes de origen local, mariscos y cortes de carne de granjas cercanas, ofreciéndole comida deliciosa y saludable del campo a la mesa.',
