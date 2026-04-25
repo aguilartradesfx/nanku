@@ -4395,6 +4395,13 @@ ul { list-style: none; }
   border-color: rgba(232,117,26,0.4) !important;
   background: rgba(255,255,255,0.08) !important;
 }
+.nm-card-img {
+  position: relative;
+  height: 160px;
+  margin: -1rem -1.2rem 1rem;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
 .nm-card-photo-hint {
   font-size: 0.7rem;
   opacity: 0.6;

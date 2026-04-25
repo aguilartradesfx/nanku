@@ -214,6 +214,11 @@ function MenuCard({ item, onOpen }: { item: FoodItem; onOpen?: (item: FoodItem) 
       tabIndex={clickable ? 0 : undefined}
       onKeyDown={clickable ? (e) => e.key === 'Enter' && onOpen!(item) : undefined}
     >
+      {item.photo && (
+        <div className="nm-card-img">
+          <Image src={item.photo} alt={item.name} fill style={{ objectFit: 'cover' }} />
+        </div>
+      )}
       <div className="nm-card-body">
         <div className="nm-card-top">
           <h3 className="nm-card-name">
