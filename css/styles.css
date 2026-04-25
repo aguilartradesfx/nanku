@@ -831,12 +831,15 @@ ul { list-style: none; }
 }
 .cocktails-cta { text-align: center; margin-top: 3rem; }
 
-/* Gold top accent for highlighted cocktail card */
+/* Elevated gold accent for highlighted cocktail card */
 .cocktail-highlight-wrap {
   position: relative;
   border-radius: 1.125rem;
   overflow: hidden;
   border-top: 2px solid #D4A853;
+  transform: translateY(-10px);
+  box-shadow: 0 16px 48px rgba(212, 168, 83, 0.18), 0 32px 72px rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 .cocktail-highlight-wrap::before {
   content: '';
@@ -844,8 +847,8 @@ ul { list-style: none; }
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, rgba(212, 168, 83, 0.12) 0%, transparent 100%);
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(212, 168, 83, 0.14) 0%, transparent 100%);
   pointer-events: none;
   z-index: 1;
 }
