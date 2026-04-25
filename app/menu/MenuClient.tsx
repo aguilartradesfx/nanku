@@ -17,6 +17,7 @@ interface FoodItem {
   desc?: string
   badge?: { text: string; type: string }
   photo?: string
+  photoPosition?: string
   variants?: { label: string; price: string }[]
 }
 
@@ -25,6 +26,7 @@ interface ModalState {
   price: string
   desc?: string
   photo: string
+  photoPosition?: string
   suggestions: FoodItem[]
   allSectionItems: FoodItem[]
   variants?: { label: string; price: string }[]
@@ -40,7 +42,7 @@ const enFood = {
     { name: 'Stuffed Avocado', price: '₡8,350', desc: 'Stuffed avocado with shrimp in pomodoro sauce on a bed of lettuce.' },
     { name: 'Octopus Ceviche', price: '₡10,500', desc: 'Octopus marinated with citrus soy sauce served with smashed plantains.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Fish Ceviche', price: '₡6,900', desc: 'Traditional Costa Rican ceviche served with mixed chips.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
-    { name: 'Passion Fruit Tuna Ceviche', price: '₡8,500', desc: 'Tuna marinated with passion fruit, soy and pepper oil served with mixed chips.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg' },
+    { name: 'Passion Fruit Tuna Ceviche', price: '₡8,500', desc: 'Tuna marinated with passion fruit, soy and pepper oil served with mixed chips.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg', photoPosition: '70% center' },
   ] as FoodItem[],
   seafood: [
     { name: 'Teriyaki Tuna', price: '₡14,200', desc: 'Encrusted yellow-fin tuna with sesame seeds, served with vegetables, mashed potatoes, and teriyaki sauce.', photo: CDN + '69d85b05d7871cddf7ea19e0.webp' },
@@ -122,7 +124,7 @@ const esFood = {
     { name: 'Aguacate Relleno', price: '₡8,350', desc: 'Aguacate relleno con camarones en salsa pomodoro sobre cama de lechuga.' },
     { name: 'Ceviche de Pulpo', price: '₡10,500', desc: 'Pulpo marinado con salsa cítrica de soya, servido con patacones.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Ceviche de Pescado', price: '₡6,900', desc: 'Ceviche tradicional costarricense servido con chips mixtos.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
-    { name: 'Ceviche de Atún con Maracuyá', price: '₡8,500', desc: 'Atún marinado con maracuyá, soya y aceite de pimienta, servido con chips mixtos.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg' },
+    { name: 'Ceviche de Atún con Maracuyá', price: '₡8,500', desc: 'Atún marinado con maracuyá, soya y aceite de pimienta, servido con chips mixtos.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg', photoPosition: '70% center' },
   ] as FoodItem[],
   seafood: [
     { name: 'Atún Teriyaki', price: '₡14,200', desc: 'Atún aleta amarilla encostrado en ajonjolí, servido con vegetales, puré de papas y salsa teriyaki.', photo: CDN + '69d85b05d7871cddf7ea19e0.webp' },
@@ -310,6 +312,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
       price: item.price,
       desc: item.desc,
       photo: item.photo!,
+      photoPosition: item.photoPosition,
       suggestions: sectionItems.filter(s => s.name !== item.name && s.photo).slice(0, 4),
       allSectionItems: sectionItems,
       variants: item.variants,
@@ -362,7 +365,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
                 className="nm-modal-photo"
                 style={modal.name === 'Passion Fruit Cheesecake' || modal.name === 'Cheesecake de Maracuyá' ? { width: '80%' } : undefined}
               >
-                <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'cover' }} />
+                <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'cover', objectPosition: modal.photoPosition ?? 'center' }} />
               </div>
 
               {/* Right — Info + Suggestions + Reserve */}
