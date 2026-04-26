@@ -4997,6 +4997,8 @@ ul { list-style: none; }
 .nm-cktl-photo-wrap {
   position: relative;
   width: 100%;
+  height: 240px;
+  background: #111;
 }
 .nm-cktl-photo-overlay {
   position: absolute;
