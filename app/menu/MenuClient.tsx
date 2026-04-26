@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 type Panel = 'food' | 'drinks'
 type FoodCat = 'appetizers' | 'seafood' | 'pasta' | 'white-meat' | 'steaks' | 'vegetarian' | 'costa-rica' | 'desserts'
-type DrinksCat = 'licores' | 'bebidas' | 'cervezas' | 'tiki' | 'cocteles'
+type DrinksCat = 'licores' | 'bebidas' | 'cervezas' | 'tiki' | 'cocteles' | 'vinos'
 
 const CDN = 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/'
 
@@ -202,6 +202,7 @@ const drinksCats: { id: DrinksCat; label: string }[] = [
   { id: 'cervezas', label: 'Beer' },
   { id: 'tiki', label: 'Tiki Cocktails' },
   { id: 'cocteles', label: 'Cocktails' },
+  { id: 'vinos', label: 'Wines' },
 ]
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
@@ -253,6 +254,19 @@ function DPriceRow({ name, price }: { name: string; price: string }) {
       <span className="nm-dprice-name">{name}</span>
       <span className="nm-dprice-dots"></span>
       <span className="nm-dprice-val">{price}</span>
+    </div>
+  )
+}
+
+function WineRow({ name, detail, price }: { name: string; detail: string; price: string }) {
+  return (
+    <div className="nm-wine-row">
+      <div className="nm-wine-info">
+        <span className="nm-wine-name">{name}</span>
+        <span className="nm-wine-detail">{detail}</span>
+      </div>
+      <span className="nm-wine-dots"></span>
+      <span className="nm-wine-price">{price}</span>
     </div>
   )
 }
@@ -831,6 +845,46 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
                 ))}
               </div>
             </div>
+          </section>
+          <section className="nm-drinks-section" id="vinos">
+            <DrinksHeader title="Vinos / Wines" />
+
+            <DSub title="Vino Espumoso / Sparkling Wine">
+              <WineRow name="Lunneta Prosecco DOC" detail="Veneto, Italia · Glera" price="₡19,500" />
+            </DSub>
+
+            <DSub title="Vinos Blancos / White Wine">
+              <WineRow name="Legaris DO Rueda" detail="España · Verdejo" price="₡19,000" />
+              <WineRow name="Cavit Valdobbiadene DOC" detail="Italia · Pinot Grigio" price="₡19,500" />
+              <WineRow name="Santa Rita Medalla Real Reserva" detail="DO Valle de Casa Blanca, Chile · Sauvignon Blanc" price="₡17,000" />
+              <WineRow name="Carmen Premier Reserva" detail="DO Valle de Casa Blanca, Chile · Chardonnay" price="₡18,500" />
+              <WineRow name="Santa Rita Medalla Real Reserva" detail="DO Valle de Limari, Chile · Chardonnay" price="₡17,000" />
+              <WineRow name="Carmen Gran Reserva" detail="DO Valle de Limari, Chile · Chardonnay" price="₡20,000" />
+            </DSub>
+
+            <DSub title="Vino Rosado / Rosé Wine">
+              <WineRow name="Domaines Paul Mass Jardin de Roses" detail="AOC Languedoc, Francia · Garnacha, Cinsaul & Syrah" price="₡20,000" />
+            </DSub>
+
+            <DSub title="Vinos Tintos / Red Wine">
+              <WineRow name="Cavit Red Blend, Trentino DOC" detail="Italia · Merlot, Cabernet & Teroldego" price="₡17,000" />
+              <WineRow name="Care Nouveau Blend, DO Cariñena" detail="España · Tempranillo, Garnacha & Cabernet Sauvignon" price="₡19,500" />
+              <WineRow name="Domaines Paul Reserva, IGT Pays d'Oc" detail="Francia · Pinot Noir" price="₡19,500" />
+              <WineRow name="Santa Rita Medalla Real Reserva" detail="DO Valle del Maipo, Chile · Cabernet Sauvignon" price="₡17,000" />
+              <WineRow name="Carmen Series Vintage Gran Reserva" detail="DO Alto Jahuel, Chile · Cabernet Sauvignon" price="₡21,500" />
+              <WineRow name="Legaris Crianza, DO Ribera del Duero" detail="España · Tempranillo" price="₡24,500" />
+              <WineRow name="Doña Paula Estate" detail="Valle de Uco, Argentina · Malbec" price="₡22,000" />
+              <WineRow name="Norton Altura" detail="Valle de Uco, Argentina · Malbec" price="₡26,500" />
+            </DSub>
+
+            <DSub title="Vino de la Casa / House Wine · Copa / Glass">
+              <DPriceRow name="Doña Paula Malbec, Argentina" price="₡4,500" />
+              <DPriceRow name="Carmen Merlot, Chile" price="₡4,500" />
+              <DPriceRow name="Carmen Cabernet Sauvignon, Chile" price="₡4,500" />
+              <DPriceRow name="Carmen Sauvignon Blanc, Chile" price="₡4,500" />
+              <DPriceRow name="Principato Pinot Grigio, Italia" price="₡4,500" />
+              <DPriceRow name="Carmen Chardonnay, Chile" price="₡4,500" />
+            </DSub>
           </section>
         </div>
       )}
