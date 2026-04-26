@@ -197,12 +197,12 @@ const esFood = {
 }
 
 const drinksCats: { id: DrinksCat; label: string }[] = [
-  { id: 'licores', label: 'Licores' },
-  { id: 'bebidas', label: 'Soft Drinks' },
-  { id: 'cervezas', label: 'Beer' },
   { id: 'tiki', label: 'Tiki Cocktails' },
   { id: 'cocteles', label: 'Cocktails' },
   { id: 'vinos', label: 'Wines' },
+  { id: 'licores', label: 'Licores' },
+  { id: 'cervezas', label: 'Beer' },
+  { id: 'bebidas', label: 'Soft Drinks' },
 ]
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
@@ -282,7 +282,7 @@ function SectionBanner({ src, title }: { src: string; title: string }) {
   )
 }
 
-function DrinksHeader({ title }: { title: string }) {
+function DrinksHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="nm-drinks-header">
       <span className="nm-drinks-ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
@@ -292,6 +292,7 @@ function DrinksHeader({ title }: { title: string }) {
         <span className="nm-ddiv-gem">◆</span>
         <span className="nm-ddiv-line"></span>
       </div>
+      {subtitle && <p className="nm-drinks-subtitle">{subtitle}</p>}
     </div>
   )
 }
@@ -310,7 +311,7 @@ function DSub({ title, children }: { title: string; children: React.ReactNode })
 export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
   const [panel, setPanel] = useState<Panel>('food')
   const [foodCat, setFoodCat] = useState<FoodCat>('appetizers')
-  const [drinksCat, setDrinksCat] = useState<DrinksCat>('licores')
+  const [drinksCat, setDrinksCat] = useState<DrinksCat>('tiki')
 
   const searchParams = useSearchParams()
   useEffect(() => {
@@ -599,159 +600,17 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
       {/* DRINKS PANEL */}
       {panel === 'drinks' && (
         <div className="nm-drinks-sections">
-          <section className="nm-drinks-section" id="licores">
-            <DrinksHeader title="Licores / Liqueur" />
-            <DSub title="Whiskey">
-              <DPriceRow name="Macallan 12 años" price="₡10,500" />
-              <DPriceRow name="Glen Fiddich 12 años" price="₡5,500" />
-              <DPriceRow name="Old Parr 12 años" price="₡4,000" />
-              <DPriceRow name="Old Parr 18 años" price="₡7,200" />
-              <DPriceRow name="Buchanan's 12 años" price="₡4,000" />
-              <DPriceRow name="Buchanan's 18 años" price="₡7,200" />
-              <DPriceRow name="Crown Royal" price="₡4,000" />
-              <DPriceRow name="Maker's Mark" price="₡4,000" />
-              <DPriceRow name="Jameson" price="₡4,000" />
-              <DPriceRow name="Jack Daniel's" price="₡4,000" />
-              <DPriceRow name="Jim Beam" price="₡4,000" />
-              <DPriceRow name="Chivas Regal 12 años" price="₡4,000" />
-              <DPriceRow name="Chivas Regal 18 años" price="₡7,200" />
-            </DSub>
-            <DSub title="Tequilas">
-              <DPriceRow name="Patrón Reposado" price="₡5,500" />
-              <DPriceRow name="Patrón Añejo" price="₡6,500" />
-              <DPriceRow name="Patrón Silver" price="₡5,500" />
-              <DPriceRow name="Don Julio 70" price="₡9,000" />
-              <DPriceRow name="Don Julio Reposado" price="₡5,500" />
-              <DPriceRow name="Don Julio Añejo" price="₡7,000" />
-              <DPriceRow name="1800 Silver" price="₡4,000" />
-              <DPriceRow name="1800 Reposado" price="₡4,000" />
-              <DPriceRow name="1800 Añejo" price="₡5,300" />
-              <DPriceRow name="Montes Lobos" price="₡5,500" />
-            </DSub>
-            <DSub title="Ginebras / Gin">
-              <DPriceRow name="Bombay" price="₡4,400" />
-              <DPriceRow name="Hendrick's" price="₡4,400" />
-              <DPriceRow name="Tanqueray" price="₡3,500" />
-              <DPriceRow name="Beefeater" price="₡3,500" />
-              <DPriceRow name="Martin Miller's" price="₡4,400" />
-              <DPriceRow name="Tanqueray Ten" price="₡4,400" />
-              <DPriceRow name="Bulldog" price="₡4,400" />
-            </DSub>
-            <DSub title="Vodka">
-              <DPriceRow name="Absolut" price="₡3,500" />
-              <DPriceRow name="Stolichnaya" price="₡3,000" />
-              <DPriceRow name="Grey Goose" price="₡4,500" />
-              <DPriceRow name="Tito's" price="₡3,500" />
-              <DPriceRow name="Ketel One" price="₡4,000" />
-              <DPriceRow name="Cîroc" price="₡4,500" />
-            </DSub>
-            <DSub title="Aperitivo & Digestivo">
-              <DPriceRow name="Jägermeister" price="₡2,500" />
-              <DPriceRow name="Licor 43" price="₡2,500" />
-              <DPriceRow name="Cointreau" price="₡4,000" />
-              <DPriceRow name="Grand Marnier" price="₡4,500" />
-              <DPriceRow name="Café Rica" price="₡3,500" />
-              <DPriceRow name="Disaronno" price="₡3,500" />
-              <DPriceRow name="Frangelico" price="₡3,500" />
-              <DPriceRow name="Baileys" price="₡3,500" />
-              <DPriceRow name="Midori" price="₡3,000" />
-              <DPriceRow name="Fireball" price="₡3,500" />
-            </DSub>
-            <DSub title="Coñac / Cognac">
-              <DPriceRow name="Courvoisier VS" price="₡5,000" />
-              <DPriceRow name="Courvoisier VSOP" price="₡7,000" />
-              <DPriceRow name="Hennessy VSOP" price="₡10,000" />
-            </DSub>
-            <DSub title="Rones / Rum">
-              <DPriceRow name="Capitán Morgan" price="₡2,500" />
-              <DPriceRow name="Centenario 7 años" price="₡3,500" />
-              <DPriceRow name="Flor de Caña 7 años" price="₡3,000" />
-              <DPriceRow name="Flor de Caña 12 años" price="₡4,300" />
-              <DPriceRow name="Flor de Caña 18 años" price="₡5,500" />
-              <DPriceRow name="Centenario 20 años" price="₡5,500" />
-              <DPriceRow name="Zacapa 23 años" price="₡5,900" />
-              <DPriceRow name="Cachaça" price="₡2,500" />
-              <DPriceRow name="Cacique" price="₡2,000" />
-              <DPriceRow name="Appleton Estate" price="₡4,000" />
-            </DSub>
-          </section>
-
-          <section className="nm-drinks-section" id="bebidas">
-            <DrinksHeader title="Gaseosas & Aguas / Soft Drinks & Water" />
-            <DSub title="Agua / Water">
-              <DPriceRow name="Agua con gas grande / Large Sparkling Water" price="₡3,500" />
-              <DPriceRow name="Agua con gas pequeña / Small Sparkling Water" price="₡2,200" />
-              <DPriceRow name="Agua grande / Large Water" price="₡3,500" />
-              <DPriceRow name="Agua pequeña / Small Water" price="₡1,500" />
-            </DSub>
-            <DSub title="Gaseosas / Soft Drinks">
-              <DPriceRow name="Coca Cola / Coke" price="₡1,800" />
-              <DPriceRow name="Coca Cola Cero / Coke Zero" price="₡1,800" />
-              <DPriceRow name="Ginger Ale" price="₡1,800" />
-              <DPriceRow name="Fresco" price="₡1,800" />
-              <DPriceRow name="Fanta Naranja / Orange Fanta" price="₡1,800" />
-              <DPriceRow name="Fanta Uva / Grape Fanta" price="₡1,800" />
-              <DPriceRow name="Fanta Kolita / Red Fanta" price="₡1,800" />
-              <DPriceRow name="Sprite" price="₡1,800" />
-            </DSub>
-            <div className="nm-dsub">
-              <div className="nm-dsub-title">Batidos de Frutas / Fruit Smoothies</div>
-              <p className="nm-batidos-note">Sabores / Flavors: Mango · Mora/Blackberry · Fresa/Strawberry · Banano · Guanábana/Soursop · Maracuyá/Passion Fruit · Piña/Pineapple</p>
-              <div className="nm-dprice-grid">
-                <DPriceRow name="1 Fruta / 1 Fruit" price="₡1,500" />
-                <DPriceRow name="2 Frutas / 2 Fruits" price="₡2,000" />
-                <DPriceRow name="Mixto / Mixed" price="₡2,500" />
-              </div>
-            </div>
-            <DSub title="Limonadas / Lemonade">
-              <DPriceRow name="Limonada / Lemonade" price="₡1,500" />
-              <DPriceRow name="Limonada con Hierba Buena / Lemonade with Mint" price="₡2,000" />
-              <DPriceRow name="Limonada con Gengibre / Ginger Lemonade" price="₡2,000" />
-            </DSub>
-          </section>
-
-          <section className="nm-drinks-section" id="cervezas">
-            <DrinksHeader title="Cervezas / Beer" />
-            <DSub title="Artesanal Local en Sifón / Local Craft on Draft">
-              <DPriceRow name="Indómito IPA 7.6%" price="₡4,500" />
-              <DPriceRow name="Libertas Golden Ale 4.3%" price="₡4,500" />
-              <DPriceRow name="Segua Red Ale 4.8%" price="₡4,500" />
-              <DPriceRow name="Nanku Premium Lager 4.3%" price="₡4,500" />
-              <DPriceRow name="Passion de Maracuyá" price="₡4,500" />
-            </DSub>
-            <DSub title="Artesanal Local en Botella / Local Craft on Bottle">
-              <DPriceRow name="Mama Candela" price="₡4,500" />
-            </DSub>
-            <DSub title="Cerveza sin Gluten / Gluten-Free Beer">
-              <DPriceRow name="Daura Damm" price="₡3,000" />
-            </DSub>
-            <DSub title="Las Lager">
-              <DPriceRow name="Imperial" price="₡1,900" />
-              <DPriceRow name="Imperial Silver" price="₡1,900" />
-              <DPriceRow name="Imperial Light" price="₡1,900" />
-              <DPriceRow name="Imperial Ultra" price="₡1,900" />
-              <DPriceRow name="Pilsen" price="₡1,900" />
-              <DPriceRow name="Bavaria Gold" price="₡2,200" />
-              <DPriceRow name="Bavaria Light" price="₡2,200" />
-            </DSub>
-            <DSub title="Importadas / Imported">
-              <DPriceRow name="Heineken" price="₡2,200" />
-              <DPriceRow name="Corona" price="₡2,200" />
-              <DPriceRow name="Sol" price="₡2,200" />
-            </DSub>
-          </section>
-
           <section className="nm-drinks-section" id="tiki">
-            <DrinksHeader title="Cócteles Tiki / Tiki Cocktails" />
+            <DrinksHeader title="Tiki Cocktails" subtitle="Escape to the tropics with our vibrant tiki creations — bold, exotic blends perfectly balanced to transport you to flavor paradise." />
             <div className="nm-cktl-grid">
               {[
-                { name: 'Pura Vida', price: '₡8,000', desc: 'Ron Blanco, Vodka, Ginebra, Jugo de Piña, Miel, Limón, Carambola.' },
-                { name: 'Julia', price: '₡8,000', desc: 'Ron Añejo, Piña, Jarabe de Jengibre, Limón, Zumo de Arándanos.' },
-                { name: 'Nanku', price: '₡8,000', desc: 'Ron Oscuro, Ron Blanco, Limón, Jarabe de Canela, Mango.' },
-                { name: 'A Cachete', price: '₡8,000', desc: 'Ron Añejo, Jugo de Sandía, Limón, Jugo de Piña, Jarabe de Canela, Malibú, Blue Curaçao.' },
-                { name: 'Tuanis', price: '₡8,000', desc: 'Ron Blanco, Ron Oscuro, Jarabe, Limón, Jamaica, Jengibre.' },
-                { name: 'Jack Sparrow', price: '₡8,000', desc: 'Campari, Jack Daniel\'s, Maracuyá, Jarabe de Jengibre, Jugo de Naranja.' },
-                { name: 'Mai Tai', price: '₡8,000', desc: 'Ron, Cointreau, Limón, Azúcar, Almíbar de Horchata.' },
+                { name: 'Pura Vida', price: '₡8,000', desc: 'The spirit of Costa Rica in a glass. White rum and vodka meet gin and pineapple juice, while lime and starfruit add irresistible tropical freshness.' },
+                { name: 'Julia', price: '₡8,000', desc: 'Caribbean elegance. Aged rum and pineapple dance with ginger syrup and lime, crowned with the aromatic touch of cranberry juice.' },
+                { name: 'Nanku', price: '₡8,000', desc: 'Our signature tiki. Dark and white rum united in perfect harmony with lime, cinnamon syrup, and the sweet kiss of mango.' },
+                { name: 'A Cachete', price: '₡8,000', desc: 'Pure tropical power. Aged rum and watermelon juice lead this exotic escape, elevated with lime, pineapple, cinnamon, Malibu, and mysterious blue curaçao.' },
+                { name: 'Tuanis', price: '₡8,000', desc: 'Simply "tuanis" (awesome). The refreshing combination of white and dark rum, lime and Jamaica syrup, with the vibrant touch of ginger.' },
+                { name: 'Jack Sparrow', price: '₡8,000', desc: 'Adventure in every sip. Campari and Jack Daniel\'s meet passion fruit and ginger syrup, sailing on a sea of orange juice.' },
+                { name: 'Mai Tai', price: '₡8,000', desc: 'The timeless classic. Rum, Cointreau, lime, and sugar, crowned with exotic horchata syrup.' },
               ].map((c) => (
                 <div key={c.name} className="nm-cktl-card">
                   <div className="nm-cktl-top">
@@ -846,6 +705,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
               </div>
             </div>
           </section>
+
           <section className="nm-drinks-section" id="vinos">
             <DrinksHeader title="Vinos / Wines" />
 
@@ -886,6 +746,149 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
               <DPriceRow name="Carmen Chardonnay, Chile" price="₡4,500" />
             </DSub>
           </section>
+
+          <section className="nm-drinks-section" id="licores">
+            <DrinksHeader title="Licores / Liqueur" />
+            <DSub title="Whiskey">
+              <DPriceRow name="Macallan 12 años" price="₡10,500" />
+              <DPriceRow name="Glen Fiddich 12 años" price="₡5,500" />
+              <DPriceRow name="Old Parr 12 años" price="₡4,000" />
+              <DPriceRow name="Old Parr 18 años" price="₡7,200" />
+              <DPriceRow name="Buchanan's 12 años" price="₡4,000" />
+              <DPriceRow name="Buchanan's 18 años" price="₡7,200" />
+              <DPriceRow name="Crown Royal" price="₡4,000" />
+              <DPriceRow name="Maker's Mark" price="₡4,000" />
+              <DPriceRow name="Jameson" price="₡4,000" />
+              <DPriceRow name="Jack Daniel's" price="₡4,000" />
+              <DPriceRow name="Jim Beam" price="₡4,000" />
+              <DPriceRow name="Chivas Regal 12 años" price="₡4,000" />
+              <DPriceRow name="Chivas Regal 18 años" price="₡7,200" />
+            </DSub>
+            <DSub title="Tequilas">
+              <DPriceRow name="Patrón Reposado" price="₡5,500" />
+              <DPriceRow name="Patrón Añejo" price="₡6,500" />
+              <DPriceRow name="Patrón Silver" price="₡5,500" />
+              <DPriceRow name="Don Julio 70" price="₡9,000" />
+              <DPriceRow name="Don Julio Reposado" price="₡5,500" />
+              <DPriceRow name="Don Julio Añejo" price="₡7,000" />
+              <DPriceRow name="1800 Silver" price="₡4,000" />
+              <DPriceRow name="1800 Reposado" price="₡4,000" />
+              <DPriceRow name="1800 Añejo" price="₡5,300" />
+              <DPriceRow name="Montes Lobos" price="₡5,500" />
+            </DSub>
+            <DSub title="Ginebras / Gin">
+              <DPriceRow name="Bombay" price="₡4,400" />
+              <DPriceRow name="Hendrick's" price="₡4,400" />
+              <DPriceRow name="Tanqueray" price="₡3,500" />
+              <DPriceRow name="Beefeater" price="₡3,500" />
+              <DPriceRow name="Martin Miller's" price="₡4,400" />
+              <DPriceRow name="Tanqueray Ten" price="₡4,400" />
+              <DPriceRow name="Bulldog" price="₡4,400" />
+            </DSub>
+            <DSub title="Vodka">
+              <DPriceRow name="Absolut" price="₡3,500" />
+              <DPriceRow name="Stolichnaya" price="₡3,000" />
+              <DPriceRow name="Grey Goose" price="₡4,500" />
+              <DPriceRow name="Tito's" price="₡3,500" />
+              <DPriceRow name="Ketel One" price="₡4,000" />
+              <DPriceRow name="Cîroc" price="₡4,500" />
+            </DSub>
+            <DSub title="Aperitivo & Digestivo">
+              <DPriceRow name="Jägermeister" price="₡2,500" />
+              <DPriceRow name="Licor 43" price="₡2,500" />
+              <DPriceRow name="Cointreau" price="₡4,000" />
+              <DPriceRow name="Grand Marnier" price="₡4,500" />
+              <DPriceRow name="Café Rica" price="₡3,500" />
+              <DPriceRow name="Disaronno" price="₡3,500" />
+              <DPriceRow name="Frangelico" price="₡3,500" />
+              <DPriceRow name="Baileys" price="₡3,500" />
+              <DPriceRow name="Midori" price="₡3,000" />
+              <DPriceRow name="Fireball" price="₡3,500" />
+            </DSub>
+            <DSub title="Coñac / Cognac">
+              <DPriceRow name="Courvoisier VS" price="₡5,000" />
+              <DPriceRow name="Courvoisier VSOP" price="₡7,000" />
+              <DPriceRow name="Hennessy VSOP" price="₡10,000" />
+            </DSub>
+            <DSub title="Rones / Rum">
+              <DPriceRow name="Capitán Morgan" price="₡2,500" />
+              <DPriceRow name="Centenario 7 años" price="₡3,500" />
+              <DPriceRow name="Flor de Caña 7 años" price="₡3,000" />
+              <DPriceRow name="Flor de Caña 12 años" price="₡4,300" />
+              <DPriceRow name="Flor de Caña 18 años" price="₡5,500" />
+              <DPriceRow name="Centenario 20 años" price="₡5,500" />
+              <DPriceRow name="Zacapa 23 años" price="₡5,900" />
+              <DPriceRow name="Cachaça" price="₡2,500" />
+              <DPriceRow name="Cacique" price="₡2,000" />
+              <DPriceRow name="Appleton Estate" price="₡4,000" />
+            </DSub>
+          </section>
+
+          <section className="nm-drinks-section" id="cervezas">
+            <DrinksHeader title="Cervezas / Beer" />
+            <DSub title="Artesanal Local en Sifón / Local Craft on Draft">
+              <DPriceRow name="Indómito IPA 7.6%" price="₡4,500" />
+              <DPriceRow name="Libertas Golden Ale 4.3%" price="₡4,500" />
+              <DPriceRow name="Segua Red Ale 4.8%" price="₡4,500" />
+              <DPriceRow name="Nanku Premium Lager 4.3%" price="₡4,500" />
+              <DPriceRow name="Passion de Maracuyá" price="₡4,500" />
+            </DSub>
+            <DSub title="Artesanal Local en Botella / Local Craft on Bottle">
+              <DPriceRow name="Mama Candela" price="₡4,500" />
+            </DSub>
+            <DSub title="Cerveza sin Gluten / Gluten-Free Beer">
+              <DPriceRow name="Daura Damm" price="₡3,000" />
+            </DSub>
+            <DSub title="Las Lager">
+              <DPriceRow name="Imperial" price="₡1,900" />
+              <DPriceRow name="Imperial Silver" price="₡1,900" />
+              <DPriceRow name="Imperial Light" price="₡1,900" />
+              <DPriceRow name="Imperial Ultra" price="₡1,900" />
+              <DPriceRow name="Pilsen" price="₡1,900" />
+              <DPriceRow name="Bavaria Gold" price="₡2,200" />
+              <DPriceRow name="Bavaria Light" price="₡2,200" />
+            </DSub>
+            <DSub title="Importadas / Imported">
+              <DPriceRow name="Heineken" price="₡2,200" />
+              <DPriceRow name="Corona" price="₡2,200" />
+              <DPriceRow name="Sol" price="₡2,200" />
+            </DSub>
+          </section>
+
+          <section className="nm-drinks-section" id="bebidas">
+            <DrinksHeader title="Gaseosas & Aguas / Soft Drinks & Water" />
+            <DSub title="Agua / Water">
+              <DPriceRow name="Agua con gas grande / Large Sparkling Water" price="₡3,500" />
+              <DPriceRow name="Agua con gas pequeña / Small Sparkling Water" price="₡2,200" />
+              <DPriceRow name="Agua grande / Large Water" price="₡3,500" />
+              <DPriceRow name="Agua pequeña / Small Water" price="₡1,500" />
+            </DSub>
+            <DSub title="Gaseosas / Soft Drinks">
+              <DPriceRow name="Coca Cola / Coke" price="₡1,800" />
+              <DPriceRow name="Coca Cola Cero / Coke Zero" price="₡1,800" />
+              <DPriceRow name="Ginger Ale" price="₡1,800" />
+              <DPriceRow name="Fresco" price="₡1,800" />
+              <DPriceRow name="Fanta Naranja / Orange Fanta" price="₡1,800" />
+              <DPriceRow name="Fanta Uva / Grape Fanta" price="₡1,800" />
+              <DPriceRow name="Fanta Kolita / Red Fanta" price="₡1,800" />
+              <DPriceRow name="Sprite" price="₡1,800" />
+            </DSub>
+            <div className="nm-dsub">
+              <div className="nm-dsub-title">Batidos de Frutas / Fruit Smoothies</div>
+              <p className="nm-batidos-note">Sabores / Flavors: Mango · Mora/Blackberry · Fresa/Strawberry · Banano · Guanábana/Soursop · Maracuyá/Passion Fruit · Piña/Pineapple</p>
+              <div className="nm-dprice-grid">
+                <DPriceRow name="1 Fruta / 1 Fruit" price="₡1,500" />
+                <DPriceRow name="2 Frutas / 2 Fruits" price="₡2,000" />
+                <DPriceRow name="Mixto / Mixed" price="₡2,500" />
+              </div>
+            </div>
+            <DSub title="Limonadas / Lemonade">
+              <DPriceRow name="Limonada / Lemonade" price="₡1,500" />
+              <DPriceRow name="Limonada con Hierba Buena / Lemonade with Mint" price="₡2,000" />
+              <DPriceRow name="Limonada con Gengibre / Ginger Lemonade" price="₡2,000" />
+            </DSub>
+          </section>
+
         </div>
       )}
     </>
