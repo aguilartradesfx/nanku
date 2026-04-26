@@ -602,25 +602,36 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
         <div className="nm-drinks-sections">
           <section className="nm-drinks-section" id="tiki">
             <DrinksHeader title="Tiki Cocktails" subtitle="Escape to the tropics with our vibrant tiki creations — bold, exotic blends perfectly balanced to transport you to flavor paradise." />
-            <div className="nm-cktl-grid">
-              {[
+            {(() => {
+              const tikis: FoodItem[] = [
                 { name: 'Pura Vida', price: '₡8,000', desc: 'The spirit of Costa Rica in a glass. White rum and vodka meet gin and pineapple juice, while lime and starfruit add irresistible tropical freshness.' },
                 { name: 'Julia', price: '₡8,000', desc: 'Caribbean elegance. Aged rum and pineapple dance with ginger syrup and lime, crowned with the aromatic touch of cranberry juice.' },
-                { name: 'Nanku', price: '₡8,000', desc: 'Our signature tiki. Dark and white rum united in perfect harmony with lime, cinnamon syrup, and the sweet kiss of mango.' },
+                { name: 'Nanku', price: '₡8,000', desc: 'Our signature tiki. Dark and white rum united in perfect harmony with lime, cinnamon syrup, and the sweet kiss of mango.', photo: CDN + '69ee744905d4199001c71026.png' },
                 { name: 'A Cachete', price: '₡8,000', desc: 'Pure tropical power. Aged rum and watermelon juice lead this exotic escape, elevated with lime, pineapple, cinnamon, Malibu, and mysterious blue curaçao.' },
                 { name: 'Tuanis', price: '₡8,000', desc: 'Simply "tuanis" (awesome). The refreshing combination of white and dark rum, lime and Jamaica syrup, with the vibrant touch of ginger.' },
                 { name: 'Jack Sparrow', price: '₡8,000', desc: 'Adventure in every sip. Campari and Jack Daniel\'s meet passion fruit and ginger syrup, sailing on a sea of orange juice.' },
                 { name: 'Mai Tai', price: '₡8,000', desc: 'The timeless classic. Rum, Cointreau, lime, and sugar, crowned with exotic horchata syrup.' },
-              ].map((c) => (
-                <div key={c.name} className="nm-cktl-card">
-                  <div className="nm-cktl-top">
-                    <h3 className="nm-cktl-name">{c.name}</h3>
-                    <span className="nm-cktl-price">{c.price}</span>
-                  </div>
-                  <p className="nm-cktl-desc">{c.desc}</p>
+              ]
+              return (
+                <div className="nm-cktl-grid">
+                  {tikis.map((c) => (
+                    <div key={c.name}
+                      className={`nm-cktl-card${c.photo ? ' nm-card-clickable' : ''}`}
+                      onClick={c.photo ? () => openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4)) : undefined}
+                      role={c.photo ? 'button' : undefined}
+                      tabIndex={c.photo ? 0 : undefined}
+                      onKeyDown={c.photo ? (e) => e.key === 'Enter' && openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4)) : undefined}
+                    >
+                      <div className="nm-cktl-top">
+                        <h3 className="nm-cktl-name">{c.name}</h3>
+                        <span className="nm-cktl-price">{c.price}</span>
+                      </div>
+                      <p className="nm-cktl-desc">{c.desc}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              )
+            })()}
           </section>
 
           <section className="nm-drinks-section" id="cocteles">
