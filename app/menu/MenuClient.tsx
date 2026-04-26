@@ -614,14 +614,27 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
               ]
               return (
                 <div className="nm-cktl-grid">
-                  {tikis.map((c) => (
+                  {tikis.map((c) => c.photo ? (
                     <div key={c.name}
-                      className={`nm-cktl-card${c.photo ? ' nm-card-clickable' : ''}`}
-                      onClick={c.photo ? () => openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4)) : undefined}
-                      role={c.photo ? 'button' : undefined}
-                      tabIndex={c.photo ? 0 : undefined}
-                      onKeyDown={c.photo ? (e) => e.key === 'Enter' && openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4)) : undefined}
+                      className="nm-cktl-card nm-cktl-card--photo nm-card-clickable"
+                      onClick={() => openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4))}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4))}
                     >
+                      <div className="nm-cktl-photo-wrap">
+                        <Image src={c.photo} alt={c.name} fill style={{ objectFit: 'cover' }} />
+                        <div className="nm-cktl-photo-overlay">
+                          <h3 className="nm-cktl-name">{c.name}</h3>
+                        </div>
+                      </div>
+                      <div className="nm-cktl-body">
+                        <span className="nm-cktl-price">{c.price}</span>
+                        <p className="nm-cktl-desc">{c.desc}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div key={c.name} className="nm-cktl-card">
                       <div className="nm-cktl-top">
                         <h3 className="nm-cktl-name">{c.name}</h3>
                         <span className="nm-cktl-price">{c.price}</span>

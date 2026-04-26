@@ -4985,6 +4985,36 @@ ul { list-style: none; }
   line-height: 1.45;
 }
 
+/* Photo variant cocktail card */
+.nm-cktl-card--photo {
+  padding: 0;
+  overflow: hidden;
+}
+.nm-cktl-card--photo:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(232,117,26,0.4);
+}
+.nm-cktl-photo-wrap {
+  position: relative;
+  height: 165px;
+  width: 100%;
+}
+.nm-cktl-photo-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  padding: 0.65rem 1rem 0.6rem;
+}
+.nm-cktl-card--photo .nm-cktl-name {
+  font-size: 1.1rem;
+}
+.nm-cktl-body {
+  padding: 0.7rem 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 /* ============================================================
    UTILITY CLASSES
    ============================================================ */
