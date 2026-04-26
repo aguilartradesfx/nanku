@@ -635,7 +635,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
                       onKeyDown={(e) => e.key === 'Enter' && openModal(c, tikis.filter(t => t.name !== c.name && !!t.photo).slice(0, 4))}
                     >
                       <div className="nm-cktl-photo-wrap">
-                        <Image src={c.photo} alt={c.name} fill style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+                        <Image src={c.photo} alt={c.name} fill style={{ objectFit: 'contain', objectPosition: 'center top' }} />
                         <div className="nm-cktl-photo-overlay">
                           <h3 className="nm-cktl-name">{c.name}</h3>
                         </div>
