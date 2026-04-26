@@ -604,13 +604,13 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
             <DrinksHeader title="Tiki Cocktails" subtitle="Escape to the tropics with our vibrant tiki creations — bold, exotic blends perfectly balanced to transport you to flavor paradise." />
             {(() => {
               const tikis: FoodItem[] = [
-                { name: 'Pura Vida', price: '₡8,000', desc: 'The spirit of Costa Rica in a glass. White rum and vodka meet gin and pineapple juice, while lime and starfruit add irresistible tropical freshness.' },
-                { name: 'Julia', price: '₡8,000', desc: 'Caribbean elegance. Aged rum and pineapple dance with ginger syrup and lime, crowned with the aromatic touch of cranberry juice.' },
+                { name: 'Pura Vida', price: '₡8,000', desc: 'The spirit of Costa Rica in a glass. White rum and vodka meet gin and pineapple juice, while lime and starfruit add irresistible tropical freshness.', photo: CDN + '69ee79140d66f2a6656398cc.png' },
+                { name: 'Julia', price: '₡8,000', desc: 'Caribbean elegance. Aged rum and pineapple dance with ginger syrup and lime, crowned with the aromatic touch of cranberry juice.', photo: CDN + '69ee777f717d5dd4e12d8ee5.png' },
                 { name: 'Nanku', price: '₡8,000', desc: 'Our signature tiki. Dark and white rum united in perfect harmony with lime, cinnamon syrup, and the sweet kiss of mango.', photo: CDN + '69ee744905d4199001c71026.png' },
-                { name: 'A Cachete', price: '₡8,000', desc: 'Pure tropical power. Aged rum and watermelon juice lead this exotic escape, elevated with lime, pineapple, cinnamon, Malibu, and mysterious blue curaçao.' },
-                { name: 'Tuanis', price: '₡8,000', desc: 'Simply "tuanis" (awesome). The refreshing combination of white and dark rum, lime and Jamaica syrup, with the vibrant touch of ginger.' },
-                { name: 'Jack Sparrow', price: '₡8,000', desc: 'Adventure in every sip. Campari and Jack Daniel\'s meet passion fruit and ginger syrup, sailing on a sea of orange juice.' },
-                { name: 'Mai Tai', price: '₡8,000', desc: 'The timeless classic. Rum, Cointreau, lime, and sugar, crowned with exotic horchata syrup.' },
+                { name: 'A Cachete', price: '₡8,000', desc: 'Pure tropical power. Aged rum and watermelon juice lead this exotic escape, elevated with lime, pineapple, cinnamon, Malibu, and mysterious blue curaçao.', photo: CDN + '69ee77ea05d4199001c7c357.png' },
+                { name: 'Tuanis', price: '₡8,000', desc: 'Simply "tuanis" (awesome). The refreshing combination of white and dark rum, lime and Jamaica syrup, with the vibrant touch of ginger.', photo: CDN + '69ee76d2b0e5e2bb7ff40bd3.png' },
+                { name: 'Jack Sparrow', price: '₡8,000', desc: 'Adventure in every sip. Campari and Jack Daniel\'s meet passion fruit and ginger syrup, sailing on a sea of orange juice.', photo: CDN + '69ee78aa05d4199001c7e731.png' },
+                { name: 'Mai Tai', price: '₡8,000', desc: 'The timeless classic. Rum, Cointreau, lime, and sugar, crowned with exotic horchata syrup.', photo: CDN + '69ee762e0d66f2a665630ced.png' },
               ]
               return (
                 <div className="nm-cktl-grid">
