@@ -161,11 +161,11 @@ export default function AboutPage() {
               </svg>
               <span>+506-2479-0707</span>
             </a>
-            <a href="mailto:info@restaurantenanku.com" className="location-card location-card-link">
+            <a href="mailto:info@restaurantenanku.net" className="location-card location-card-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8751A" strokeWidth="1.5" className="flex-shrink-0">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
               </svg>
-              <span>info@restaurantenanku.com</span>
+              <span>info@restaurantenanku.net</span>
             </a>
           </div>
         </div>

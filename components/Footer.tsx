@@ -250,7 +250,7 @@ export default function Footer({ lang = 'en' }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@restaurantenanku.com">
+                <a href="mailto:info@restaurantenanku.net">
                   <div className="footer-contact-icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -267,7 +267,7 @@ export default function Footer({ lang = 'en' }: FooterProps) {
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
                   </div>
-                  <span>info@restaurantenanku.com</span>
+                  <span>info@restaurantenanku.net</span>
                 </a>
               </li>
               <li>
