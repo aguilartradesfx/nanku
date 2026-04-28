@@ -22,7 +22,14 @@ export default function FadeUpObserver() {
       })
     }
 
-    observe()
+    // Defer until after Next.js has committed all server-rendered HTML to the DOM.
+    // A double rAF guarantees we're past the initial commit + layout/paint cycle,
+    // so querySelectorAll('.fade-up') finds all 43 elements instead of 0.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        observe()
+      })
+    })
 
     // Re-observe on route changes (new elements added to DOM)
     const mutation = new MutationObserver(observe)
