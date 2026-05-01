@@ -2166,6 +2166,65 @@ ul { list-style: none; }
 }
 @media (min-width: 768px) { .whatsapp-btn span { display: block; } }
 
+/* Push WhatsApp button above the sticky reserve bar on mobile */
+@media (max-width: 767px) {
+  body:has(.nm-sticky-reserve) .whatsapp-btn {
+    bottom: calc(64px + 0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ============================================================
+   MENU PAGE — MOBILE STICKY RESERVE CTA
+   ============================================================ */
+
+.nm-sticky-reserve {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .nm-sticky-reserve {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 48;
+    background: rgba(20,20,20,0.97);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(232,117,26,0.2);
+    padding: 0.75rem 1.25rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.nm-sticky-reserve-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: #E8751A;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 1.75rem;
+  border-radius: 100px;
+  text-decoration: none;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 4px 20px rgba(232,117,26,0.3);
+  transition: background 0.2s, transform 0.15s;
+}
+.nm-sticky-reserve-btn:hover,
+.nm-sticky-reserve-btn:active {
+  background: #cf641a;
+  transform: scale(0.98);
+}
+
 /* ============================================================
    COOKIE CONSENT
    ============================================================ */
@@ -4301,6 +4360,9 @@ ul { list-style: none; }
 
 .nm-cat-btn {
   padding: 0.28rem 0.85rem;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
   border-radius: 20px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.7rem;
@@ -4340,7 +4402,10 @@ ul { list-style: none; }
 .nm-food-sections {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 1rem 5rem;
+  padding: 0 1rem calc(5rem + 64px);
+}
+@media (min-width: 768px) {
+  .nm-food-sections { padding-bottom: 5rem; }
 }
 .nm-food-section { margin-bottom: 3rem; }
 
@@ -4426,9 +4491,9 @@ ul { list-style: none; }
 }
 @media (min-width: 600px) {
   .nm-modal {
-    width: 40vw;
-    height: 70vh;
-    max-height: 70vh;
+    width: min(600px, 90vw);
+    height: 76vh;
+    max-height: 76vh;
   }
 }
 @keyframes nm-slide-up {
@@ -4440,8 +4505,8 @@ ul { list-style: none; }
   top: 0.85rem;
   right: 0.85rem;
   z-index: 10;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(0,0,0,0.6);
   color: #fff;
@@ -4483,7 +4548,7 @@ ul { list-style: none; }
 
 .nm-modal-info {
   flex: 1;
-  padding: 2rem 1.75rem 1.5rem;
+  padding: 1.25rem 1.25rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -4491,6 +4556,9 @@ ul { list-style: none; }
   min-height: 0;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+@media (min-width: 600px) {
+  .nm-modal-info { padding: 2rem 1.75rem 1.5rem; }
 }
 .nm-modal-name {
   font-family: 'Playfair Display', serif;
@@ -4804,7 +4872,10 @@ ul { list-style: none; }
 .nm-drinks-sections {
   max-width: 860px;
   margin: 0 auto;
-  padding: 0 1rem 5rem;
+  padding: 0 1rem calc(5rem + 64px);
+}
+@media (min-width: 768px) {
+  .nm-drinks-sections { padding-bottom: 5rem; }
 }
 .nm-drinks-section { margin-bottom: 2.5rem; }
 
