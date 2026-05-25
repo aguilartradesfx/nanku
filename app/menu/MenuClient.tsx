@@ -39,7 +39,7 @@ const enFood = {
     { name: 'Teriyaki Salad', price: '₡9,700', desc: 'Green salad served with fresh yellow-fin tuna encrusted with sesame seeds and teriyaki sauce.', photo: CDN + '69c5f5dc7794bffe444fbf93.jpg' },
     { name: 'Quinoa Salad', price: '₡6,500', desc: 'Mixed salad bowl and quinoa served with balsamic dressing.', badge: { text: 'Vegan', type: 'vegan' }, photo: CDN + '69c5f6dc9619ac798a99f4d1.jpg' },
     { name: 'Tuna Tartar', price: '₡9,900', desc: 'Tuna marinated with soy sauce, sesame, lemon, cucumber, red onions, served with crostini.', photo: CDN + '69c5f866421e24593383c6c8.jpg' },
-    { name: 'Stuffed Avocado', price: '₡8,350', desc: 'Stuffed avocado with shrimp in pomodoro sauce on a bed of lettuce.' },
+    { name: 'Stuffed Avocado', price: '₡8,350', desc: 'Stuffed avocado with shrimp in pomodoro sauce on a bed of lettuce.', photo: CDN + '6a14883f7c135509c8864378.jpg' },
     { name: 'Octopus Ceviche', price: '₡10,500', desc: 'Octopus marinated with citrus soy sauce served with smashed plantains.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Fish Ceviche', price: '₡6,900', desc: 'Traditional Costa Rican ceviche served with mixed chips.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
     { name: 'Passion Fruit Tuna Ceviche', price: '₡8,500', desc: 'Tuna marinated with passion fruit, soy and pepper oil served with mixed chips.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg', photoPosition: '70% center' },
@@ -74,9 +74,9 @@ const enFood = {
   steakNote: 'All of our meat cuts are served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.',
   vegetarian: [
     { name: 'Mushroom Bruschetta', price: '₡6,000', desc: 'Fresh mushrooms and cherry tomatoes sautéed with olive oil, onion, Parmesan cheese, garlic, and tomato sauce.' },
-    { name: 'Stuffed Portobello Mushroom', price: '₡8,500', desc: 'Stuffed portobello mushrooms with basil and onions, topped with melted mozzarella cheese and served with crostini.' },
+    { name: 'Stuffed Portobello Mushroom', price: '₡8,500', desc: 'Stuffed portobello mushrooms with basil and onions, topped with melted mozzarella cheese and served with crostini.', photo: CDN + '6a148a004c82f7be921b1c93.png' },
     { name: 'Mushroom Ceviche', price: '₡5,500', desc: 'Mushroom ceviche with yellow pepper, cilantro, red onion and lime juice, served with mixed chips.' },
-    { name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Encrusted eggplant with Parmesan cheese served with tomato sauce, capers, olives, and house salad.', photo: CDN + '69c5f8669619ac67709a2600.jpg' },
+    { name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Encrusted eggplant with Parmesan cheese served with tomato sauce, capers, olives, and house salad.', photo: CDN + '6a14898b4c82f7be921b151c.png' },
     { name: 'Vegan Hamburger', price: '₡7,000', desc: 'Vegan hamburger with grilled vegetables, portobello mushroom, vegan cheese, served with potato wedges.', badge: { text: 'Vegan', type: 'vegan' } },
   ] as FoodItem[],
   costaRica: [
@@ -121,7 +121,7 @@ const esFood = {
     { name: 'Ensalada Teriyaki', price: '₡9,700', desc: 'Ensalada verde con atún aleta amarilla fresco encostrado en ajonjolí con salsa teriyaki.', photo: CDN + '69c5f5dc7794bffe444fbf93.jpg' },
     { name: 'Ensalada de Quinoa', price: '₡6,500', desc: 'Bowl de ensalada mixta con quinoa y aderezo balsámico.', badge: { text: 'Vegano', type: 'vegan' }, photo: CDN + '69c5f6dc9619ac798a99f4d1.jpg' },
     { name: 'Tartar de Atún', price: '₡9,900', desc: 'Atún marinado con salsa de soya, ajonjolí, limón, pepino y cebolla morada, servido con crostini.', photo: CDN + '69c5f866421e24593383c6c8.jpg' },
-    { name: 'Aguacate Relleno', price: '₡8,350', desc: 'Aguacate relleno con camarones en salsa pomodoro sobre cama de lechuga.' },
+    { name: 'Aguacate Relleno', price: '₡8,350', desc: 'Aguacate relleno con camarones en salsa pomodoro sobre cama de lechuga.', photo: CDN + '6a14883f7c135509c8864378.jpg' },
     { name: 'Ceviche de Pulpo', price: '₡10,500', desc: 'Pulpo marinado con salsa cítrica de soya, servido con patacones.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Ceviche de Pescado', price: '₡6,900', desc: 'Ceviche tradicional costarricense servido con chips mixtos.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
     { name: 'Ceviche de Atún con Maracuyá', price: '₡8,500', desc: 'Atún marinado con maracuyá, soya y aceite de pimienta, servido con chips mixtos.', photo: CDN + '69c194d5eb06d8b53fe532fc.jpg', photoPosition: '70% center' },
@@ -156,9 +156,9 @@ const esFood = {
   steakNote: 'Todos nuestros cortes se sirven con papas al romero, plátano maduro, jalapeño y chimichurri.',
   vegetarian: [
     { name: 'Bruschetta de Champiñones', price: '₡6,000', desc: 'Champiñones frescos y tomates cherry salteados con aceite de oliva, cebolla, queso Parmesano, ajo y salsa de tomate.' },
-    { name: 'Champiñón Portobello Relleno', price: '₡8,500', desc: 'Champiñones portobello rellenos con albahaca y cebolla, cubiertos con mozzarella derretida y servidos con crostini.' },
+    { name: 'Champiñón Portobello Relleno', price: '₡8,500', desc: 'Champiñones portobello rellenos con albahaca y cebolla, cubiertos con mozzarella derretida y servidos con crostini.', photo: CDN + '6a148a004c82f7be921b1c93.png' },
     { name: 'Ceviche de Champiñones', price: '₡5,500', desc: 'Ceviche de champiñones con chile amarillo, cilantro, cebolla morada y limón, servido con chips mixtos.' },
-    { name: 'Berenjena Parmesana', price: '₡8,500', desc: 'Berenjena encostrada con queso Parmesano, servida con salsa de tomate, alcaparras, aceitunas y ensalada de la casa.', photo: CDN + '69c5f8669619ac67709a2600.jpg' },
+    { name: 'Berenjena Parmesana', price: '₡8,500', desc: 'Berenjena encostrada con queso Parmesano, servida con salsa de tomate, alcaparras, aceitunas y ensalada de la casa.', photo: CDN + '6a14898b4c82f7be921b151c.png' },
     { name: 'Hamburguesa Vegana', price: '₡7,000', desc: 'Hamburguesa vegana con vegetales a la parrilla, champiñón portobello y queso vegano, servida con papas en gajos.', badge: { text: 'Vegano', type: 'vegan' } },
   ] as FoodItem[],
   costaRica: [
