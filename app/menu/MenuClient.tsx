@@ -58,7 +58,7 @@ const enFood = {
     { name: 'Rigatoni In Aurora Sauce', price: '₡9,500', desc: 'Rigatoni pasta in aurora sauce (tomato and white sauce), with shrimps, parsley, onion, Parmesan cheese, crostinis.', photo: CDN + '69c194d5b0fe813a7003ff83.jpg' },
   ] as FoodItem[],
   whiteMeat: [
-    { name: 'Cahuita Chicken', price: '₡9,100', desc: 'Grilled chicken with cahuita sauce (coconut milk, thyme, and chili pepper) served with vegetables and mashed potatoes.', photo: CDN + '69c5f8667794bfe0805014c0.jpg' },
+    { name: 'Cahuita Chicken', price: '₡9,100', desc: 'Grilled chicken with cahuita sauce (coconut milk, thyme, and chili pepper) served with vegetables and mashed potatoes.', photo: CDN + '6a148ca3e05851175c7f83db.jpg' },
     { name: 'Nanku Chicken', price: '₡9,100', desc: 'Grilled chicken filet, served with mashed sweet potatoes, mini zucchini, mushroom, tomato cherry with hibiscus sauce.' },
     { name: 'Pork Chop With Tamarindo', price: '₡14,100', desc: 'Pork chop served with stuffed cassava, grilled vegetables and tamarindo sauce.', photo: CDN + '69c194d5427f6e70175279b8.jpg' },
     { name: 'BBQ Pork Ribs', price: '₡12,000', desc: 'Pork ribs with BBQ sauce with pineapple, served with house salad, smashed plantains, refried beans and pico de gallo.', photo: CDN + '69b91750269d6516ffc77360.jpg' },
@@ -140,7 +140,7 @@ const esFood = {
     { name: 'Rigatoni en Salsa Aurora', price: '₡9,500', desc: 'Rigatoni en salsa aurora (tomate y salsa blanca) con camarones, perejil, cebolla, queso Parmesano y crostini.', photo: CDN + '69c194d5b0fe813a7003ff83.jpg' },
   ] as FoodItem[],
   whiteMeat: [
-    { name: 'Pollo Cahuita', price: '₡9,100', desc: 'Pollo a la parrilla con salsa cahuita (leche de coco, tomillo y chile), servido con vegetales y puré de papas.', photo: CDN + '69c5f8667794bfe0805014c0.jpg' },
+    { name: 'Pollo Cahuita', price: '₡9,100', desc: 'Pollo a la parrilla con salsa cahuita (leche de coco, tomillo y chile), servido con vegetales y puré de papas.', photo: CDN + '6a148ca3e05851175c7f83db.jpg' },
     { name: 'Pollo Nanku', price: '₡9,100', desc: 'Filete de pollo a la parrilla con puré de camote, mini zucchini, champiñones y tomates cherry con salsa de hibisco.' },
     { name: 'Chuleta de Cerdo con Tamarindo', price: '₡14,100', desc: 'Chuleta de cerdo con yuca rellena, vegetales a la parrilla y salsa de tamarindo.', photo: CDN + '69c194d5427f6e70175279b8.jpg' },
     { name: 'Costillas BBQ', price: '₡12,000', desc: 'Costillas de cerdo con salsa BBQ de piña, servidas con ensalada de la casa, patacones, frijoles molidos y pico de gallo.', photo: CDN + '69b91750269d6516ffc77360.jpg' },
