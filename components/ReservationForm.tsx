@@ -4,6 +4,12 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import DatePickerModal from './DatePickerModal'
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+  }
+}
+
 const countryCodes = [
   { value: '+506', label: '🇨🇷 +506' },
   { value: '+1', label: '🇺🇸 +1' },
@@ -179,6 +185,24 @@ export default function ReservationForm({ lang = 'en' }: { lang?: 'en' | 'es' })
         }),
       })
       if (res.ok) {
+        // Push customer identifiers (email, phone, first name) to the dataLayer
+        // for Google Ads Enhanced Conversions. The /reservation-confirmed page
+        // never receives these, so we surface them here (router.push is a
+        // client-side SPA nav, so the dataLayer persists into the confirmation
+        // page-view where the existing GTM conversion tag fires). GTM hashes
+        // (SHA-256) before sending — no raw PII leaves the browser. The final
+        // `.replace(/[^+\d]/g, '')` also strips the '-CA' disambiguator from the
+        // '+1-CA' country code. Event name matches the existing `reserva_confirmada`.
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({
+          event: 'reserva_confirmada',
+          user_data: {
+            email: form.email.trim().toLowerCase(),
+            phone_number: `${form.phoneCode}${form.phone}`.replace(/[^+\d]/g, ''),
+            first_name: form.name.trim().split(' ')[0],
+          },
+        })
+
         const base = lang === 'es' ? '/es/reservation-confirmed' : '/reservation-confirmed'
         router.push(`${base}?name=${encodeURIComponent(form.name)}`)
       } else {
