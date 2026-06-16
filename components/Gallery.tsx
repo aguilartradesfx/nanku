@@ -16,7 +16,7 @@ const galleryImages: { src: string; alt: string; span?: 'wide' | 'tall' }[] = [
   { src: CDN + '6a31ce9622582c14f13dc5dc.jpg', alt: 'Nanku dining room', span: 'wide' },
   { src: CDN + '6a31ce811b95dbb2c2413cb2.jpg', alt: 'Celebration at Nanku', span: 'tall' },
   { src: CDN + '69b91750269d6516ffc77360.jpg', alt: 'BBQ Pork Ribs' },
-  { src: CDN + '69c194d5c1e996220ba4333f.jpg', alt: 'Spaghetti Pura Vida' },
+  { src: CDN + '6a31d1321b95dbb2c24173d7.webp', alt: 'Salmon Ravioli' },
   { src: CDN + '6a31ce7c602476018d6dca7f.webp', alt: 'Nanku evening crowd', span: 'wide' },
   { src: CDN + '69c5f94c7794bf69985031bf.jpg', alt: 'Chocolate Brownie' },
 ]
