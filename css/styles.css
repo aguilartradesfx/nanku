@@ -2291,7 +2291,7 @@ ul { list-style: none; }
 @media (min-width: 768px) { .about-hero { min-height: 80vh; } }
 .about-hero-bg {
   position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=85');
+  background-image: url('https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg');
   background-size: cover;
   background-position: center;
 }
