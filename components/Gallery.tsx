@@ -6,17 +6,14 @@ import Image from 'next/image'
 const CDN = 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/'
 
 const galleryImages = [
-  { src: CDN + '69c5edb5146bc5f778eaab9e.jpg', alt: 'Churrasco' },
   { src: CDN + '69c5fbd8146bc51f9eec8ca7.jpg', alt: 'Rib Eye' },
   { src: CDN + '69c194d50d1082cd084c8590.jpg', alt: 'Surf and Turf' },
   { src: CDN + '69c5f866421e24593383c6c8.jpg', alt: 'Tuna Tartar' },
   { src: CDN + '69c5f674146bc581d6ebd34f.jpg', alt: 'Octopus Ceviche' },
-  { src: CDN + '69c5f8665ebd49a0c4779e7f.jpg', alt: 'Trout With Creamy Sauce' },
   { src: CDN + '69b9175087f0f2768356c731.jpg', alt: 'Grilled Octopus' },
   { src: CDN + '69c5f8667794bfe0805014c0.jpg', alt: 'Cahuita Chicken' },
   { src: CDN + '69b91750269d6516ffc77360.jpg', alt: 'BBQ Pork Ribs' },
   { src: CDN + '69c194d5c1e996220ba4333f.jpg', alt: 'Spaghetti Pura Vida' },
-  { src: CDN + '69c5f94d9619ac299c9a439d.png', alt: 'Arenal Hamburger' },
   { src: CDN + '69c5f94c7794bf69985031bf.jpg', alt: 'Chocolate Brownie' },
 ]
 
