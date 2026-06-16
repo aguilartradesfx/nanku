@@ -5,15 +5,20 @@ import Image from 'next/image'
 
 const CDN = 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/'
 
-const galleryImages = [
+const galleryImages: { src: string; alt: string; span?: 'wide' | 'tall' }[] = [
+  { src: CDN + '6a31ceb5dd7879239a4f3283.jpg', alt: 'Nanku restaurant ambience', span: 'wide' },
   { src: CDN + '69c5fbd8146bc51f9eec8ca7.jpg', alt: 'Rib Eye' },
+  { src: CDN + '6a31ce8a1b95dbb2c2413d6e.jpg', alt: 'Nanku waiter', span: 'tall' },
   { src: CDN + '69c194d50d1082cd084c8590.jpg', alt: 'Surf and Turf' },
   { src: CDN + '69c5f866421e24593383c6c8.jpg', alt: 'Tuna Tartar' },
   { src: CDN + '69c5f674146bc581d6ebd34f.jpg', alt: 'Octopus Ceviche' },
   { src: CDN + '69b9175087f0f2768356c731.jpg', alt: 'Grilled Octopus' },
-  { src: CDN + '69c5f8667794bfe0805014c0.jpg', alt: 'Cahuita Chicken' },
+  { src: CDN + '6a31ce9622582c14f13dc5dc.jpg', alt: 'Nanku dining room', span: 'wide' },
+  { src: CDN + '6a31ce811b95dbb2c2413cb2.jpg', alt: 'Celebration at Nanku', span: 'tall' },
   { src: CDN + '69b91750269d6516ffc77360.jpg', alt: 'BBQ Pork Ribs' },
+  { src: CDN + '69c5f8667794bfe0805014c0.jpg', alt: 'Cahuita Chicken' },
   { src: CDN + '69c194d5c1e996220ba4333f.jpg', alt: 'Spaghetti Pura Vida' },
+  { src: CDN + '6a31ce7c602476018d6dca7f.webp', alt: 'Nanku evening crowd', span: 'wide' },
   { src: CDN + '69c5f94c7794bf69985031bf.jpg', alt: 'Chocolate Brownie' },
 ]
 
@@ -55,7 +60,7 @@ export default function Gallery() {
         {galleryImages.map((img, i) => (
           <div
             key={img.src}
-            className="gallery-item fade-up"
+            className={`gallery-item fade-up${img.span ? ` gallery-item-${img.span}` : ''}`}
             onClick={() => setLightboxIndex(i)}
             style={{ cursor: 'pointer' }}
           >
