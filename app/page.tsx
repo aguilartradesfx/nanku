@@ -165,7 +165,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png" alt="Premium Steaks" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png" alt="Premium Steaks" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
