@@ -20,7 +20,7 @@ export default function AboutPage() {
       <section className="about-hero">
         <div
           className="about-hero-bg"
-          style={{ backgroundImage: "url('https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611dbc1840fb68ef4cad7.jpg')" }}
+          style={{ backgroundImage: "url('https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg')" }}
         ></div>
         <div className="about-hero-overlay"></div>
         <div className="about-hero-glow"></div>
