@@ -342,13 +342,13 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
 
   const banners = {
     appetizers: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21d29ab5e21035712b06.jpg',
-    seafood: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21d661cba538a2a13a41.jpg',
-    pasta: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21db9ab5e22eda712c59.jpg',
-    whiteMeat: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21e9ad0276ce1964ea9e.jpg',
-    steaks: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21eead02761cdd64eb23.jpg',
-    vegetarian: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba221edac584673cb76ed5.jpg',
-    costaRica: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba22259ab5e2490f7138fa.jpg',
-    desserts: 'https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba222cdac58405aab77052.jpg',
+    seafood: CDN + '69b9175087f0f2768356c731.jpg',
+    pasta: CDN + '6a31d1321b95dbb2c24173d7.webp',
+    whiteMeat: CDN + '69b91750269d6516ffc77360.jpg',
+    steaks: CDN + '69c194d50d1082cd084c8590.jpg',
+    vegetarian: CDN + '6a14898b4c82f7be921b151c.png',
+    costaRica: CDN + '69c5f94c5ebd497c7c77bc60.jpg',
+    desserts: CDN + '69c5f94c7794bf69985031bf.jpg',
   }
 
   const catTitles: Record<FoodCat, string> = {
