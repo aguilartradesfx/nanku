@@ -237,14 +237,14 @@ export default async function HomePage() {
           </div>
           <div className="dishes-grid">
             {[
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg', name: 'Surf And Turf', price: '₡31,900', desc: 'Premium steak and lobster tail combo served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.', badge: { text: "Chef's Choice", color: 'orange' } },
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b9175087f0f2768356c731.jpg', name: 'Grilled Octopus', price: '₡19,000', desc: 'Charred octopus tentacle with sweet potato purée, fresh salad, tomato chimichurri, and citrus concassé soy sauce.' },
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5f866421e24593383c6c8.jpg', name: 'Tuna Tartar', price: '₡9,900', desc: 'Fresh tuna marinated with soy sauce, sesame, lemon, cucumber, and red onions, served with crostini.', badge: { text: 'Fan Favorite', color: 'orange' } },
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b91750269d6516ffc77360.jpg', name: 'BBQ Pork Ribs', price: '₡12,000', desc: 'Pork ribs in pineapple BBQ sauce served with house salad, smashed plantains, refried beans, and pico de gallo.' },
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a14898b4c82f7be921b151c.png', name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Crispy Parmesan-crusted eggplant in pomodoro sauce with cherry tomatoes, capers, olives, and house salad.', badge: { text: 'Vegetarian', color: 'green' } },
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5f94c7794bf69985031bf.jpg', name: 'Chocolate Brownie', price: '₡4,700', desc: 'Warm chocolate brownie served with vanilla ice cream and fresh strawberries.', badge: { text: 'Premium', color: 'orange' } },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg', name: 'Surf And Turf', price: '₡31,900', desc: 'Premium steak and lobster tail combo served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.', badge: { text: "Chef's Choice", color: 'orange' }, href: '/menu#steaks' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b9175087f0f2768356c731.jpg', name: 'Grilled Octopus', price: '₡19,000', desc: 'Charred octopus tentacle with sweet potato purée, fresh salad, tomato chimichurri, and citrus concassé soy sauce.', href: '/menu#seafood' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5f866421e24593383c6c8.jpg', name: 'Tuna Tartar', price: '₡9,900', desc: 'Fresh tuna marinated with soy sauce, sesame, lemon, cucumber, and red onions, served with crostini.', badge: { text: 'Fan Favorite', color: 'orange' }, href: '/menu#appetizers' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b91750269d6516ffc77360.jpg', name: 'BBQ Pork Ribs', price: '₡12,000', desc: 'Pork ribs in pineapple BBQ sauce served with house salad, smashed plantains, refried beans, and pico de gallo.', href: '/menu#white-meat' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a14898b4c82f7be921b151c.png', name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Crispy Parmesan-crusted eggplant in pomodoro sauce with cherry tomatoes, capers, olives, and house salad.', badge: { text: 'Vegetarian', color: 'green' }, href: '/menu#vegetarian' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5f94c7794bf69985031bf.jpg', name: 'Chocolate Brownie', price: '₡4,700', desc: 'Warm chocolate brownie served with vanilla ice cream and fresh strawberries.', badge: { text: 'Premium', color: 'orange' }, href: '/menu#desserts' },
             ].map((dish) => (
-              <div key={dish.name} className="dish-card fade-up">
+              <Link key={dish.name} href={dish.href} className="dish-card fade-up">
                 <div className="dish-img-wrap">
                   <Image src={dish.img} alt={dish.name} width={400} height={300} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div className="dish-img-gradient"></div>
@@ -259,7 +259,7 @@ export default async function HomePage() {
                   </div>
                   <p className="dish-desc">{dish.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="dishes-cta fade-up">

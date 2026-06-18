@@ -654,6 +654,9 @@ ul { list-style: none; }
 @media (min-width: 1024px) { .dishes-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .dish-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.05);
