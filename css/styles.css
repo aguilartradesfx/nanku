@@ -4421,6 +4421,8 @@ ul { list-style: none; }
   margin-bottom: 1.5rem;
 }
 @media (min-width: 768px) { .nm-banner { height: 260px; } }
+.nm-banner-tall { height: 300px; }
+@media (min-width: 768px) { .nm-banner-tall { height: 400px; } }
 
 .nm-banner-overlay {
   position: absolute;

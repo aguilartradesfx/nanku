@@ -271,9 +271,9 @@ function WineRow({ name, detail, price }: { name: string; detail: string; price:
   )
 }
 
-function SectionBanner({ src, title }: { src: string; title: string }) {
+function SectionBanner({ src, title, tall }: { src: string; title: string; tall?: boolean }) {
   return (
-    <div className="nm-banner">
+    <div className={`nm-banner${tall ? ' nm-banner-tall' : ''}`}>
       <Image src={src} alt={title} fill style={{ objectFit: 'cover' }} loading="lazy" />
       <div className="nm-banner-overlay">
         <h2 className="nm-banner-title">{title}</h2>
@@ -508,7 +508,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
             </section>
 
             <section className="nm-food-section" id="seafood">
-              <SectionBanner src={banners.seafood} title={catTitles['seafood']} />
+              <SectionBanner src={banners.seafood} title={catTitles['seafood']} tall />
               <div className="nm-grid">
                 {d.seafood.map((item) => (
                   <MenuCard key={item.name} item={item}
@@ -538,7 +538,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
             </section>
 
             <section className="nm-food-section" id="steaks">
-              <SectionBanner src={banners.steaks} title={catTitles['steaks']} />
+              <SectionBanner src={banners.steaks} title={catTitles['steaks']} tall />
               <div className="nm-steak-grid">
                 {d.steaks.map((s) => (
                   <PriceRow key={s.name} item={s}
@@ -559,7 +559,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
             </section>
 
             <section className="nm-food-section" id="costa-rica">
-              <SectionBanner src={banners.costaRica} title={catTitles['costa-rica']} />
+              <SectionBanner src={banners.costaRica} title={catTitles['costa-rica']} tall />
               <div className="nm-grid">
                 {d.costaRica.map((item) => (
                   <MenuCard key={item.name} item={item}
