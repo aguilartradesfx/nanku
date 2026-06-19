@@ -380,7 +380,7 @@ export default function MenuClient({ lang = 'en' }: { lang?: 'en' | 'es' }) {
                 className="nm-modal-photo"
                 style={modal.name === 'Passion Fruit Cheesecake' || modal.name === 'Cheesecake de Maracuyá' ? { width: '80%' } : undefined}
               >
-                <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'cover', objectPosition: modal.photoPosition ?? 'center' }} />
+                <Image src={modal.photo} alt={modal.name} fill style={{ objectFit: 'contain', objectPosition: modal.photoPosition ?? 'center' }} />
               </div>
 
               {/* Right — Info + Suggestions + Reserve */}

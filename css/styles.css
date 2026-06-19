@@ -4544,6 +4544,7 @@ ul { list-style: none; }
   width: 100%;
   aspect-ratio: 4/3;
   flex-shrink: 0;
+  background: #141414;
 }
 @media (min-width: 600px) {
   .nm-modal-photo {
