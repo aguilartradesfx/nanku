@@ -40,9 +40,10 @@ export const metadata: Metadata = {
     siteName: 'Nanku Tropical Bar & Steakhouse',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
+        url: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg',
         width: 1200,
         height: 630,
+        alt: 'Surf and Turf at Nanku Tropical Bar & Steakhouse',
       },
     ],
   },
