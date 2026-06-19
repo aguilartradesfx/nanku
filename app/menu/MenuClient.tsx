@@ -75,7 +75,7 @@ const enFood = {
   vegetarian: [
     { name: 'Mushroom Bruschetta', price: '₡6,000', desc: 'Fresh mushrooms and cherry tomatoes sautéed with olive oil, onion, Parmesan cheese, garlic, and tomato sauce.' },
     { name: 'Stuffed Portobello Mushroom', price: '₡8,500', desc: 'Stuffed portobello mushrooms with basil and onions, topped with melted mozzarella cheese and served with crostini.', photo: CDN + '6a148a004c82f7be921b1c93.png' },
-    { name: 'Mushroom Ceviche', price: '₡5,500', desc: 'Mushroom ceviche with yellow pepper, cilantro, red onion and lime juice, served with mixed chips.', photo: CDN + '6a19f3b29146503083f3c082.png' },
+    { name: 'Mushroom Ceviche', price: '₡5,500', desc: 'Mushroom ceviche with yellow pepper, cilantro, red onion and lime juice, served with mixed chips.', photo: CDN + '6a34a6b66a6dd1b69a1915cb.jpg' },
     { name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Encrusted eggplant with Parmesan cheese served with tomato sauce, capers, olives, and house salad.', photo: CDN + '6a14898b4c82f7be921b151c.png' },
     { name: 'Vegan Hamburger', price: '₡7,000', desc: 'Vegan hamburger with grilled vegetables, portobello mushroom, vegan cheese, served with potato wedges.', badge: { text: 'Vegan', type: 'vegan' } },
   ] as FoodItem[],
@@ -157,7 +157,7 @@ const esFood = {
   vegetarian: [
     { name: 'Bruschetta de Champiñones', price: '₡6,000', desc: 'Champiñones frescos y tomates cherry salteados con aceite de oliva, cebolla, queso Parmesano, ajo y salsa de tomate.' },
     { name: 'Champiñón Portobello Relleno', price: '₡8,500', desc: 'Champiñones portobello rellenos con albahaca y cebolla, cubiertos con mozzarella derretida y servidos con crostini.', photo: CDN + '6a148a004c82f7be921b1c93.png' },
-    { name: 'Ceviche de Champiñones', price: '₡5,500', desc: 'Ceviche de champiñones con chile amarillo, cilantro, cebolla morada y limón, servido con chips mixtos.', photo: CDN + '6a19f3b29146503083f3c082.png' },
+    { name: 'Ceviche de Champiñones', price: '₡5,500', desc: 'Ceviche de champiñones con chile amarillo, cilantro, cebolla morada y limón, servido con chips mixtos.', photo: CDN + '6a34a6b66a6dd1b69a1915cb.jpg' },
     { name: 'Berenjena Parmesana', price: '₡8,500', desc: 'Berenjena encostrada con queso Parmesano, servida con salsa de tomate, alcaparras, aceitunas y ensalada de la casa.', photo: CDN + '6a14898b4c82f7be921b151c.png' },
     { name: 'Hamburguesa Vegana', price: '₡7,000', desc: 'Hamburguesa vegana con vegetales a la parrilla, champiñón portobello y queso vegano, servida con papas en gajos.', badge: { text: 'Vegano', type: 'vegan' } },
   ] as FoodItem[],
