@@ -38,7 +38,7 @@ const enFood = {
   appetizers: [
     { name: 'Teriyaki Salad', price: '₡9,700', desc: 'Green salad served with fresh yellow-fin tuna encrusted with sesame seeds and teriyaki sauce.', photo: CDN + '69c5f5dc7794bffe444fbf93.jpg' },
     { name: 'Quinoa Salad', price: '₡6,500', desc: 'Mixed salad bowl and quinoa served with balsamic dressing.', badge: { text: 'Vegan', type: 'vegan' }, photo: CDN + '69c5f6dc9619ac798a99f4d1.jpg' },
-    { name: 'Tuna Tartar', price: '₡9,900', desc: 'Tuna marinated with soy sauce, sesame, lemon, cucumber, red onions, served with crostini.', photo: CDN + '69c5f866421e24593383c6c8.jpg' },
+    { name: 'Tuna Tartar', price: '₡9,900', desc: 'Tuna marinated with soy sauce, sesame, lemon, cucumber, red onions, served with crostini.', photo: CDN + '6a34a597de4900e889a95c0a.jpg' },
     { name: 'Stuffed Avocado', price: '₡8,350', desc: 'Stuffed avocado with shrimp in pomodoro sauce on a bed of lettuce.', photo: CDN + '6a14883f7c135509c8864378.jpg' },
     { name: 'Octopus Ceviche', price: '₡10,500', desc: 'Octopus marinated with citrus soy sauce served with smashed plantains.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Fish Ceviche', price: '₡6,900', desc: 'Traditional Costa Rican ceviche served with mixed chips.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
@@ -48,7 +48,7 @@ const enFood = {
     { name: 'Teriyaki Tuna', price: '₡14,200', desc: 'Encrusted yellow-fin tuna with sesame seeds, served with vegetables, mashed potatoes, and teriyaki sauce.', photo: CDN + '69d85b05d7871cddf7ea19e0.webp' },
     { name: 'Grilled Octopus', price: '₡19,000', desc: 'Grilled octopus with sweet potato, salad, tomato chimichurri, and citrus concasse soy sauce.', photo: CDN + '69b9175087f0f2768356c731.jpg' },
     { name: 'Caribbean Soup', price: '₡8,000', desc: 'Mixed seafood in tomato sauce with coconut milk, thyme, and chili pepper.', photo: CDN + '69c5f6dc7794bf5d9b4fe34b.jpg' },
-    { name: 'Trout With Creamy', price: '₡12,400', desc: 'Costa Rican trout in creamy sauce and shrimp served with artichoke rice and cherry tomato.', photo: CDN + '69c5f8665ebd49a0c4779e7f.jpg' },
+    { name: 'Trout With Creamy', price: '₡12,400', desc: 'Costa Rican trout in creamy sauce and shrimp served with artichoke rice and cherry tomato.', photo: CDN + '6a34a54bde4900e889a955ab.jpg' },
     { name: 'Mahi Mahi With Apple & Mango Chutney', price: '₡12,400', desc: 'Grilled mahi mahi served with rosemary potatoes, apple, mango, soy sauce, and Dijon mustard.', photo: CDN + '69b917505b89c7a116e859db.jpg' },
   ] as FoodItem[],
   pasta: [
@@ -65,7 +65,7 @@ const enFood = {
   ] as FoodItem[],
   steaks: [
     { name: 'Steak Strips', price: '₡14,000', photo: CDN + '69c194d5fa8b211e8d5a9298.jpg' },
-    { name: 'Churrasco', price: '₡15,600', photo: CDN + '69c5edb5146bc5f778eaab9e.jpg' },
+    { name: 'Churrasco', price: '₡15,600', photo: CDN + '6a34a5e26a6dd1b69a190855.jpg' },
     { name: 'Rib Eye', price: '₡17,500', photo: CDN + '69c5fbd8146bc51f9eec8ca7.jpg' },
     { name: 'New York', price: '₡17,500', photo: CDN + '69c194d5fa8b2122095a9294.jpg' },
     { name: 'Sirloin Steak', price: '₡19,500', photo: CDN + '69c5fbd8146bc52decec8ca6.jpg' },
@@ -120,7 +120,7 @@ const esFood = {
   appetizers: [
     { name: 'Ensalada Teriyaki', price: '₡9,700', desc: 'Ensalada verde con atún aleta amarilla fresco encostrado en ajonjolí con salsa teriyaki.', photo: CDN + '69c5f5dc7794bffe444fbf93.jpg' },
     { name: 'Ensalada de Quinoa', price: '₡6,500', desc: 'Bowl de ensalada mixta con quinoa y aderezo balsámico.', badge: { text: 'Vegano', type: 'vegan' }, photo: CDN + '69c5f6dc9619ac798a99f4d1.jpg' },
-    { name: 'Tartar de Atún', price: '₡9,900', desc: 'Atún marinado con salsa de soya, ajonjolí, limón, pepino y cebolla morada, servido con crostini.', photo: CDN + '69c5f866421e24593383c6c8.jpg' },
+    { name: 'Tartar de Atún', price: '₡9,900', desc: 'Atún marinado con salsa de soya, ajonjolí, limón, pepino y cebolla morada, servido con crostini.', photo: CDN + '6a34a597de4900e889a95c0a.jpg' },
     { name: 'Aguacate Relleno', price: '₡8,350', desc: 'Aguacate relleno con camarones en salsa pomodoro sobre cama de lechuga.', photo: CDN + '6a14883f7c135509c8864378.jpg' },
     { name: 'Ceviche de Pulpo', price: '₡10,500', desc: 'Pulpo marinado con salsa cítrica de soya, servido con patacones.', photo: CDN + '69c5f674146bc581d6ebd34f.jpg' },
     { name: 'Ceviche de Pescado', price: '₡6,900', desc: 'Ceviche tradicional costarricense servido con chips mixtos.', photo: CDN + '69c5f674146bc59c7debd350.jpg' },
@@ -130,7 +130,7 @@ const esFood = {
     { name: 'Atún Teriyaki', price: '₡14,200', desc: 'Atún aleta amarilla encostrado en ajonjolí, servido con vegetales, puré de papas y salsa teriyaki.', photo: CDN + '69d85b05d7871cddf7ea19e0.webp' },
     { name: 'Pulpo a la Parrilla', price: '₡19,000', desc: 'Pulpo a la parrilla con camote, ensalada, chimichurri de tomate y salsa cítrica de soya.', photo: CDN + '69b9175087f0f2768356c731.jpg' },
     { name: 'Sopa Caribeña', price: '₡8,000', desc: 'Mariscos mixtos en salsa de tomate con leche de coco, tomillo y chile.', photo: CDN + '69c5f6dc7794bf5d9b4fe34b.jpg' },
-    { name: 'Trucha en Salsa Cremosa', price: '₡12,400', desc: 'Trucha costarricense en salsa cremosa con camarones, servida con arroz de alcachofas y tomates cherry.', photo: CDN + '69c5f8665ebd49a0c4779e7f.jpg' },
+    { name: 'Trucha en Salsa Cremosa', price: '₡12,400', desc: 'Trucha costarricense en salsa cremosa con camarones, servida con arroz de alcachofas y tomates cherry.', photo: CDN + '6a34a54bde4900e889a955ab.jpg' },
     { name: 'Mahi Mahi con Chutney de Manzana y Mango', price: '₡12,400', desc: 'Mahi mahi a la parrilla con papas al romero, manzana, mango, salsa de soya y mostaza Dijon.', photo: CDN + '69b917505b89c7a116e859db.jpg' },
   ] as FoodItem[],
   pasta: [
@@ -147,7 +147,7 @@ const esFood = {
   ] as FoodItem[],
   steaks: [
     { name: 'Tiras de Lomo', price: '₡14,000', photo: CDN + '69c194d5fa8b211e8d5a9298.jpg' },
-    { name: 'Churrasco', price: '₡15,600', photo: CDN + '69c5edb5146bc5f778eaab9e.jpg' },
+    { name: 'Churrasco', price: '₡15,600', photo: CDN + '6a34a5e26a6dd1b69a190855.jpg' },
     { name: 'Rib Eye', price: '₡17,500', photo: CDN + '69c5fbd8146bc51f9eec8ca7.jpg' },
     { name: 'New York', price: '₡17,500', photo: CDN + '69c194d5fa8b2122095a9294.jpg' },
     { name: 'Sirloin', price: '₡19,500', photo: CDN + '69c5fbd8146bc52decec8ca6.jpg' },
