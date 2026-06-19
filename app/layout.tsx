@@ -26,6 +26,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.restaurantenanku.net'),
   title: {
     default: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
     template: '%s | Nanku',
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://restaurantenanku.com',
+    url: 'https://www.restaurantenanku.net',
     siteName: 'Nanku Tropical Bar & Steakhouse',
     images: [
       {

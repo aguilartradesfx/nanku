@@ -3,31 +3,31 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://restaurantenanku.com',
+      url: 'https://www.restaurantenanku.net',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://restaurantenanku.com/about',
+      url: 'https://www.restaurantenanku.net/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://restaurantenanku.com/menu',
+      url: 'https://www.restaurantenanku.net/menu',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: 'https://restaurantenanku.com/live-music',
+      url: 'https://www.restaurantenanku.net/live-music',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: 'https://restaurantenanku.com/es',
+      url: 'https://www.restaurantenanku.net/es',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,

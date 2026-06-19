@@ -16,10 +16,12 @@ export const metadata: Metadata = {
   title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
   description:
     'Cortes premium, cócteles tropicales artesanales y música en vivo bajo las estrellas. Ubicado en La Fortuna, Costa Rica — cerca del Volcán Arenal.',
+  alternates: { canonical: 'https://www.restaurantenanku.net/es' },
   openGraph: {
     title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
     description:
       'Cortes premium, cócteles tropicales artesanales y música en vivo bajo las estrellas.',
+    url: 'https://www.restaurantenanku.net/es',
     locale: 'es_CR',
   },
 }
