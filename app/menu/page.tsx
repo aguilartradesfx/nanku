@@ -19,10 +19,52 @@ export const metadata: Metadata = {
   },
 }
 
+const menuJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Menu',
+  name: 'Nanku Tropical Bar & Steakhouse Menu',
+  url: 'https://www.restaurantenanku.net/menu',
+  inLanguage: 'en',
+  hasMenuSection: [
+    { '@type': 'MenuSection', name: 'Appetizers', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Tuna Tartar', description: 'Tuna marinated with soy sauce, sesame, lemon, cucumber, red onions, served with crostini.', offers: { '@type': 'Offer', price: '9900', priceCurrency: 'CRC' } },
+      { '@type': 'MenuItem', name: 'Octopus Ceviche', description: 'Octopus marinated with citrus soy sauce served with smashed plantains.', offers: { '@type': 'Offer', price: '10500', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'Sea Food', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Grilled Octopus', description: 'Grilled octopus with sweet potato, salad, tomato chimichurri, and citrus concasse soy sauce.', offers: { '@type': 'Offer', price: '19000', priceCurrency: 'CRC' } },
+      { '@type': 'MenuItem', name: 'Teriyaki Tuna', description: 'Encrusted yellow-fin tuna with sesame seeds, served with vegetables, mashed potatoes, and teriyaki sauce.', offers: { '@type': 'Offer', price: '14200', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'Pasta', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Salmon Ravioli', description: 'Salmon ravioli with grana padana, Gorgonzola sauce, cherry tomatoes, mushrooms, basil and crostini.', offers: { '@type': 'Offer', price: '10200', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'White Meat', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'BBQ Pork Ribs', description: 'Pork ribs in pineapple BBQ sauce served with house salad, smashed plantains, refried beans and pico de gallo.', offers: { '@type': 'Offer', price: '12000', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'Steaks', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Surf and Turf', description: 'Premium steak and lobster tail combo served with rosemary potatoes, sweet plantain, jalapeno, and chimichurri.', offers: { '@type': 'Offer', price: '31900', priceCurrency: 'CRC' } },
+      { '@type': 'MenuItem', name: 'Rib Eye', offers: { '@type': 'Offer', price: '17500', priceCurrency: 'CRC' } },
+      { '@type': 'MenuItem', name: 'Sirloin Steak', offers: { '@type': 'Offer', price: '19500', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'Vegetarian', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Parmesan Eggplant', description: 'Encrusted eggplant with Parmesan cheese served with tomato sauce, capers, olives, and house salad.', suitableForDiet: 'https://schema.org/VegetarianDiet', offers: { '@type': 'Offer', price: '8500', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'Costa Rica', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Typical Casado', description: 'Rice, beans, picadillo, fried eggs, tortilla, cheese, salad and sweet plantain. Choice of beef, chicken or tilapia.', offers: { '@type': 'Offer', price: '7800', priceCurrency: 'CRC' } },
+    ] },
+    { '@type': 'MenuSection', name: 'Desserts', hasMenuItem: [
+      { '@type': 'MenuItem', name: 'Chocolate Brownie with Vanilla Ice Cream', offers: { '@type': 'Offer', price: '4700', priceCurrency: 'CRC' } },
+    ] },
+  ],
+}
+
 export default function MenuPage({ searchParams }: { searchParams: { tab?: string } }) {
   const isDrinks = searchParams?.tab === 'drinks'
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(menuJsonLd) }}
+      />
       <Navbar lang="en" activePage="Menu" />
 
       {/* MENU HERO */}

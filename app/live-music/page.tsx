@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export const metadata: Metadata = {
-  title: 'Live Music',
+  title: 'Live Music in La Fortuna',
   description:
     'Live music every Monday and Saturday at Nanku Tropical Bar & Steakhouse in La Fortuna, Costa Rica. Local and international artists from 7:00 PM.',
   alternates: {
@@ -59,8 +59,41 @@ export default async function LiveMusicPage() {
     // use defaults
   }
 
+  const liveMusicJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MusicEvent',
+    name: 'Live Music at Nanku',
+    description: 'Live band every Monday and Saturday from 7:00 PM at Nanku Tropical Bar & Steakhouse in La Fortuna, Costa Rica.',
+    eventSchedule: {
+      '@type': 'Schedule',
+      byDay: ['https://schema.org/Monday', 'https://schema.org/Saturday'],
+      startTime: '19:00',
+      repeatFrequency: 'P1W',
+    },
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: 'Nanku Tropical Bar & Steakhouse',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Street 142',
+        addressLocality: 'La Fortuna de San Carlos',
+        addressRegion: 'Alajuela',
+        addressCountry: 'CR',
+      },
+    },
+    performer: { '@type': 'PerformingGroup', name: 'Local & international artists' },
+    organizer: { '@type': 'Organization', name: 'Nanku Tropical Bar & Steakhouse', url: 'https://www.restaurantenanku.net' },
+    image: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31ae0f8892600038a916b3.png',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'CRC', availability: 'https://schema.org/InStock', url: 'https://www.restaurantenanku.net/live-music' },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(liveMusicJsonLd) }}
+      />
       <Navbar lang="en" activePage="Live Music" />
 
       {/* HERO */}

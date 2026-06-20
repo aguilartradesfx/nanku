@@ -98,14 +98,14 @@ export default async function HomePage() {
         <div className="hero-overlay-2"></div>
         <div className="hero-glow"></div>
         <div className="hero-content">
-          <div className="hero-brand">Tropical Bar &amp; Steakhouse</div>
+          <div className="hero-brand">Welcome to Nanku</div>
           <h1 className="hero-title">
-            Where the Jungle
+            La Fortuna <span>Steakhouse</span>
             <br />
-            <span>Comes Alive</span> at Night
+            &amp; Tropical Bar
           </h1>
           <p className="hero-tagline">
-            Premium steaks, handcrafted tropical cocktails &amp; live music under the stars
+            Where the jungle comes alive at night — premium steaks, handcrafted tropical cocktails &amp; live music under the stars
           </p>
           <div className="hero-location">La Fortuna, Costa Rica — Near Arenal Volcano</div>
           <div className="hero-btns">
@@ -159,7 +159,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31ae0f8892600038a916b3.png" alt="Live Music" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31ae0f8892600038a916b3.png" alt="Live band performing on stage at Nanku in La Fortuna" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap" style={{ aspectRatio: '3/4' }}>
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png" alt="Signature Cocktails" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png" alt="Handcrafted tropical cocktail at Nanku, La Fortuna" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -215,7 +215,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png" alt="Premium Steaks" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png" alt="Premium steak grilled over open flame at Nanku steakhouse" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg" alt="Tropical Atmosphere" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg" alt="Tropical jungle dining atmosphere at Nanku, near Arenal Volcano" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -296,7 +296,7 @@ export default async function HomePage() {
             ].map((dish) => (
               <Link key={dish.name} href={dish.href} className="dish-card fade-up">
                 <div className="dish-img-wrap">
-                  <Image src={dish.img} alt={dish.name} width={400} height={300} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src={dish.img} alt={`${dish.name} at Nanku Tropical Bar & Steakhouse, La Fortuna`} width={400} height={300} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div className="dish-img-gradient"></div>
                   {dish.badge && (
                     <span className={`dish-badge ${dish.badge.color}`}>{dish.badge.text}</span>
@@ -355,7 +355,7 @@ export default async function HomePage() {
               const card = (
                 <div key={c.title} className="cocktail-card fade-up">
                   <div className="cocktail-img-wrap">
-                    <Image src={c.img} alt={c.title} width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image src={c.img} alt={`${c.title} at Nanku, La Fortuna`} width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="cocktail-img-gradient"></div>
                     <div className="cocktail-img-title"><h3>{c.title}</h3></div>
                   </div>
