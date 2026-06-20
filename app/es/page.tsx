@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: 'es_CR',
     images: [
       {
-        url: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg',
+        url: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a36fff11c5d711b35b9bb38.jpg',
         width: 1200,
         height: 630,
         alt: 'Surf and Turf at Nanku Tropical Bar & Steakhouse',
@@ -130,7 +130,7 @@ export default async function HomePageES() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31ae0f8892600038a916b3.png" alt="Música en Vivo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a370022f2131051b815bfbc.jpg" alt="Música en Vivo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export default async function HomePageES() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap" style={{ aspectRatio: '3/4' }}>
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png" alt="Cócteles de la Casa" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a3700511c5d711b35b9c0ce.jpg" alt="Cócteles de la Casa" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -260,7 +260,7 @@ export default async function HomePageES() {
           <div className="dishes-grid">
             <Link href="/es/menu#steaks" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg" alt="Surf And Turf" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a36fff11c5d711b35b9bb38.jpg" alt="Surf And Turf" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge orange">Elección del Chef</span>
               </div>
@@ -318,7 +318,7 @@ export default async function HomePageES() {
 
             <Link href="/es/menu#vegetarian" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a14898b4c82f7be921b151c.png" alt="Berenjena Parmesana" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a37000cf2131051b815bea8.jpg" alt="Berenjena Parmesana" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge green">Vegetariano</span>
               </div>

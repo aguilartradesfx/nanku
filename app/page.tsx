@@ -76,7 +76,7 @@ export default async function HomePage() {
     priceRange: '$$',
     acceptsReservations: 'True',
     menu: 'https://www.restaurantenanku.net/menu',
-    image: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg',
+    image: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a36fff11c5d711b35b9bb38.jpg',
     sameAs: [
       'https://www.instagram.com/restaurantenanku/',
       'https://www.tripadvisor.com/Restaurant_Review-g309226-d7273982-Reviews-Restaurante_Nanku-La_Fortuna_de_San_Carlos_Arenal_Volcano_National_Park_Province_.html',
@@ -159,7 +159,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31ae0f8892600038a916b3.png" alt="Live band performing on stage at Nanku in La Fortuna" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a370022f2131051b815bfbc.jpg" alt="Live band performing on stage at Nanku in La Fortuna" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ export default async function HomePage() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap" style={{ aspectRatio: '3/4' }}>
-                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png" alt="Handcrafted tropical cocktail at Nanku, La Fortuna" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a3700511c5d711b35b9c0ce.jpg" alt="Handcrafted tropical cocktail at Nanku, La Fortuna" width={800} height={600} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -287,11 +287,11 @@ export default async function HomePage() {
           </div>
           <div className="dishes-grid">
             {[
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg', name: 'Surf And Turf', price: '₡31,900', desc: 'Premium steak and lobster tail combo served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.', badge: { text: "Chef's Choice", color: 'orange' }, href: '/menu#steaks' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a36fff11c5d711b35b9bb38.jpg', name: 'Surf And Turf', price: '₡31,900', desc: 'Premium steak and lobster tail combo served with rosemary potatoes, sweet plantain, jalapeño, and chimichurri.', badge: { text: "Chef's Choice", color: 'orange' }, href: '/menu#steaks' },
               { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b9175087f0f2768356c731.jpg', name: 'Grilled Octopus', price: '₡19,000', desc: 'Charred octopus tentacle with sweet potato purée, fresh salad, tomato chimichurri, and citrus concassé soy sauce.', href: '/menu#seafood' },
               { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a34a597de4900e889a95c0a.jpg', name: 'Tuna Tartar', price: '₡9,900', desc: 'Fresh tuna marinated with soy sauce, sesame, lemon, cucumber, and red onions, served with crostini.', badge: { text: 'Fan Favorite', color: 'orange' }, href: '/menu#appetizers' },
               { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b91750269d6516ffc77360.jpg', name: 'BBQ Pork Ribs', price: '₡12,000', desc: 'Pork ribs in pineapple BBQ sauce served with house salad, smashed plantains, refried beans, and pico de gallo.', href: '/menu#white-meat' },
-              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a14898b4c82f7be921b151c.png', name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Crispy Parmesan-crusted eggplant in pomodoro sauce with cherry tomatoes, capers, olives, and house salad.', badge: { text: 'Vegetarian', color: 'green' }, href: '/menu#vegetarian' },
+              { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a37000cf2131051b815bea8.jpg', name: 'Parmesan Eggplant', price: '₡8,500', desc: 'Crispy Parmesan-crusted eggplant in pomodoro sauce with cherry tomatoes, capers, olives, and house salad.', badge: { text: 'Vegetarian', color: 'green' }, href: '/menu#vegetarian' },
               { img: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5f94c7794bf69985031bf.jpg', name: 'Chocolate Brownie', price: '₡4,700', desc: 'Warm chocolate brownie served with vanilla ice cream and fresh strawberries.', badge: { text: 'Premium', color: 'orange' }, href: '/menu#desserts' },
             ].map((dish) => (
               <Link key={dish.name} href={dish.href} className="dish-card fade-up">

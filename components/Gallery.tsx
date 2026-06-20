@@ -9,7 +9,7 @@ const galleryImages: { src: string; alt: string; span?: 'wide' | 'tall' }[] = [
   { src: CDN + '6a31ceb5dd7879239a4f3283.jpg', alt: 'Nanku restaurant ambience', span: 'wide' },
   { src: CDN + '69c5fbd8146bc51f9eec8ca7.jpg', alt: 'Rib Eye' },
   { src: CDN + '6a31ce8a1b95dbb2c2413d6e.jpg', alt: 'Nanku waiter', span: 'tall' },
-  { src: CDN + '69c194d50d1082cd084c8590.jpg', alt: 'Surf and Turf' },
+  { src: CDN + '6a36fff11c5d711b35b9bb38.jpg', alt: 'Surf and Turf' },
   { src: CDN + '69c5f866421e24593383c6c8.jpg', alt: 'Tuna Tartar' },
   { src: CDN + '69c5f674146bc581d6ebd34f.jpg', alt: 'Octopus Ceviche' },
   { src: CDN + '69b9175087f0f2768356c731.jpg', alt: 'Grilled Octopus' },

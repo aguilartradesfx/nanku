@@ -86,7 +86,7 @@ export default function AboutPage() {
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <Image
-                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png"
+                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a3700511c5d711b35b9c0ce.jpg"
                   alt="Signature cocktails"
                   loading="lazy"
                   width={600}
