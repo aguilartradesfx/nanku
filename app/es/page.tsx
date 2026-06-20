@@ -116,7 +116,7 @@ export default async function HomePageES() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611db69544cbe5cda9286.jpg" alt="Música en Vivo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31ae0f8892600038a916b3.png" alt="Música en Vivo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -143,8 +143,8 @@ export default async function HomePageES() {
               <div className="exp-card-inner reverse">
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
-                  <div className="exp-img-wrap">
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e484e24981fcd12193a5.jpg" alt="Cócteles de la Casa" loading="lazy" />
+                  <div className="exp-img-wrap" style={{ aspectRatio: '3/4' }}>
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png" alt="Cócteles de la Casa" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -172,7 +172,7 @@ export default async function HomePageES() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5edb5146bc5f778eaab9e.jpg" alt="Cortes Premium" loading="lazy" />
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png" alt="Cortes Premium" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%' }} />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to right,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -200,7 +200,7 @@ export default async function HomePageES() {
                 <div className="exp-img-side">
                   <div className="exp-img-frame"></div>
                   <div className="exp-img-wrap">
-                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611dbc1840fb68ef4cad7.jpg" alt="Ambiente Tropical" loading="lazy" />
+                    <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg" alt="Ambiente Tropical" loading="lazy" />
                     <div className="exp-img-gradient" style={{ background: 'linear-gradient(to left,rgba(17,17,17,0.7) 0%,transparent 50%),linear-gradient(to top,rgba(17,17,17,0.5) 0%,transparent 40%)' }}></div>
                   </div>
                 </div>
@@ -244,24 +244,24 @@ export default async function HomePageES() {
           </div>
 
           <div className="dishes-grid">
-            <div className="dish-card fade-up">
+            <Link href="/es/menu#steaks" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21eead02761cdd64eb23.jpg" alt="Rib Eye" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg" alt="Surf And Turf" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge orange">Elección del Chef</span>
               </div>
               <div className="dish-body">
                 <div className="dish-row">
-                  <h3 className="dish-name">Rib Eye</h3>
-                  <span className="dish-price">₡17,500</span>
+                  <h3 className="dish-name">Surf And Turf</h3>
+                  <span className="dish-price">₡31,900</span>
                 </div>
-                <p className="dish-desc">Corte premium servido chisporroteante sobre hierro fundido con papas al romero, plátano maduro, jalapeño y chimichurri.</p>
+                <p className="dish-desc">Combo de corte premium y cola de langosta servido con papas al romero, plátano maduro, jalapeño y chimichurri.</p>
               </div>
-            </div>
+            </Link>
 
-            <div className="dish-card fade-up">
+            <Link href="/es/menu#seafood" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21d661cba538a2a13a41.jpg" alt="Pulpo a la Parrilla" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b9175087f0f2768356c731.jpg" alt="Pulpo a la Parrilla" loading="lazy" />
                 <div className="dish-img-gradient"></div>
               </div>
               <div className="dish-body">
@@ -271,11 +271,11 @@ export default async function HomePageES() {
                 </div>
                 <p className="dish-desc">Tentáculo de pulpo chamuscado con puré de camote, ensalada fresca, chimichurri de tomate y concassé cítrico de soya.</p>
               </div>
-            </div>
+            </Link>
 
-            <div className="dish-card fade-up">
+            <Link href="/es/menu#appetizers" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21d29ab5e21035712b06.jpg" alt="Tartar de Atún" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a34a597de4900e889a95c0a.jpg" alt="Tartar de Atún" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge orange">Favorito</span>
               </div>
@@ -286,25 +286,25 @@ export default async function HomePageES() {
                 </div>
                 <p className="dish-desc">Atún fresco marinado con salsa de soya, ajonjolí, limón, pepino y cebolla morada, servido con crostinis.</p>
               </div>
-            </div>
+            </Link>
 
-            <div className="dish-card fade-up">
+            <Link href="/es/menu#white-meat" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba21e9ad0276ce1964ea9e.jpg" alt="Pollo Cahuita" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69b91750269d6516ffc77360.jpg" alt="Costillas BBQ" loading="lazy" />
                 <div className="dish-img-gradient"></div>
               </div>
               <div className="dish-body">
                 <div className="dish-row">
-                  <h3 className="dish-name">Pollo Cahuita</h3>
-                  <span className="dish-price">₡9,100</span>
+                  <h3 className="dish-name">Costillas BBQ</h3>
+                  <span className="dish-price">₡12,000</span>
                 </div>
-                <p className="dish-desc">Pollo a la parrilla en salsa de leche de coco, tomillo y chile picante con vegetales y puré de papa.</p>
+                <p className="dish-desc">Costillas de cerdo en salsa BBQ de piña, servidas con ensalada de la casa, patacones, frijoles molidos y pico de gallo.</p>
               </div>
-            </div>
+            </Link>
 
-            <div className="dish-card fade-up">
+            <Link href="/es/menu#vegetarian" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba221edac584673cb76ed5.jpg" alt="Berenjena Parmesana" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a14898b4c82f7be921b151c.png" alt="Berenjena Parmesana" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge green">Vegetariano</span>
               </div>
@@ -315,22 +315,22 @@ export default async function HomePageES() {
                 </div>
                 <p className="dish-desc">Berenjena crujiente con costra de parmesano en salsa pomodoro con tomates cherry, alcaparras, aceitunas y ensalada de la casa.</p>
               </div>
-            </div>
+            </Link>
 
-            <div className="dish-card fade-up">
+            <Link href="/es/menu#desserts" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/0M6K8lmvNdLqq7S28Bmn/media/69ba222cdac58405aab77052.jpg" alt="Piña Flambeada" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5f94c7794bf69985031bf.jpg" alt="Brownie de Chocolate" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge orange">Premium</span>
               </div>
               <div className="dish-body">
                 <div className="dish-row">
-                  <h3 className="dish-name">Piña Flambeada</h3>
+                  <h3 className="dish-name">Brownie de Chocolate</h3>
                   <span className="dish-price">₡4,700</span>
                 </div>
-                <p className="dish-desc">Piña caramelizada en salsa de naranja y canela, flambeada con licor de naranja y helado de vainilla.</p>
+                <p className="dish-desc">Brownie de chocolate tibio servido con helado de vainilla y fresas frescas.</p>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="dishes-cta fade-up">
