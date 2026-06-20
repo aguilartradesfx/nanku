@@ -475,7 +475,7 @@ export default async function HomePage() {
               </div>
               <div className="map-volcano">
                 <div className="map-volcano-title">Near Arenal Volcano</div>
-                <div className="map-volcano-desc">We&apos;re located in the heart of La Fortuna, just 5 minutes from Arenal Volcano National Park entrance.</div>
+                <div className="map-volcano-desc">We&apos;re in the heart of La Fortuna — about 10 minutes from La Fortuna Waterfall and 30 minutes from Arenal Volcano National Park.</div>
               </div>
             </div>
           </div>

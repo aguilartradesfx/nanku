@@ -525,7 +525,7 @@ export default async function HomePageES() {
 
               <div className="map-volcano">
                 <div className="map-volcano-title">Cerca del Volcán Arenal</div>
-                <div className="map-volcano-desc">Estamos en el corazón de La Fortuna, a solo 5 minutos de la entrada del Parque Nacional Volcán Arenal.</div>
+                <div className="map-volcano-desc">Estamos en el corazón de La Fortuna — a unos 10 minutos de la Catarata La Fortuna y a 30 minutos del Parque Nacional Volcán Arenal.</div>
               </div>
             </div>
           </div>
