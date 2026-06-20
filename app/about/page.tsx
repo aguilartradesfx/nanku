@@ -77,7 +77,7 @@ export default function AboutPage() {
               />
               <div className="about-photo-stack">
                 <Image
-                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png"
+                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a36fff11c5d711b35b9bb38.jpg"
                   alt="Premium steak"
                   loading="lazy"
                   width={600}

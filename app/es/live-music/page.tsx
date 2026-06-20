@@ -210,7 +210,7 @@ export default async function LiveMusicPageES() {
             </div>
             <div className="lm-experience-photos">
               <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a3700511c5d711b35b9c0ce.jpg" alt="Cócteles" loading="lazy" width={600} height={400} className="lm-exp-photo" style={{ width: '100%', objectFit: 'cover' }} />
-              <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png" alt="Cortes" loading="lazy" width={600} height={400} className="lm-exp-photo" style={{ width: '100%', objectFit: 'cover', objectPosition: '50% 35%' }} />
+              <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a36fff11c5d711b35b9bb38.jpg" alt="Cortes" loading="lazy" width={600} height={400} className="lm-exp-photo" style={{ width: '100%', objectFit: 'cover', objectPosition: '50% 35%' }} />
               <Image src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a370022f2131051b815bfbc.jpg" alt="Música en Vivo" loading="lazy" width={600} height={400} className="lm-exp-photo full" style={{ width: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
             </div>
           </div>
