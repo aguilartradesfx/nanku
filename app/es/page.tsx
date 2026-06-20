@@ -289,7 +289,7 @@ export default async function HomePageES() {
 
             <Link href="/es/menu#appetizers" className="dish-card fade-up">
               <div className="dish-img-wrap">
-                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a34a597de4900e889a95c0a.jpg" alt="Tartar de Atún" loading="lazy" />
+                <img src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a37034c1c5d711b35ba7063.jpg" alt="Tartar de Atún" loading="lazy" />
                 <div className="dish-img-gradient"></div>
                 <span className="dish-badge orange">Favorito</span>
               </div>
