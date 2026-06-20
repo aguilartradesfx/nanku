@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   title: 'Música en Vivo',
   description:
     'Música en vivo cada lunes y sábado en Nanku Tropical Bar & Steakhouse en La Fortuna, Costa Rica. Artistas locales e internacionales desde las 7:00 PM.',
+  alternates: {
+    canonical: 'https://www.restaurantenanku.net/es/live-music',
+    languages: {
+      'en': 'https://www.restaurantenanku.net/live-music',
+      'es': 'https://www.restaurantenanku.net/es/live-music',
+      'x-default': 'https://www.restaurantenanku.net/live-music',
+    },
+  },
 }
 
 type ArtistRef = { name: string; label: string; photo?: string | null; bio?: string | null; bio_es?: string | null }

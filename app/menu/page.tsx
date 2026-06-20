@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: 'Menu',
   description:
     'Explore the full menu at Nanku Tropical Bar & Steakhouse — farm-to-table cuisine, premium cocktails, seafood and more in La Fortuna, Costa Rica.',
+  alternates: {
+    canonical: 'https://www.restaurantenanku.net/menu',
+    languages: {
+      'en': 'https://www.restaurantenanku.net/menu',
+      'es': 'https://www.restaurantenanku.net/es/menu',
+      'x-default': 'https://www.restaurantenanku.net/menu',
+    },
+  },
 }
 
 export default function MenuPage({ searchParams }: { searchParams: { tab?: string } }) {

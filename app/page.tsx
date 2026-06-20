@@ -16,7 +16,14 @@ export const revalidate = 0
 
 export const metadata: Metadata = {
   title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
-  alternates: { canonical: 'https://www.restaurantenanku.net' },
+  alternates: {
+    canonical: 'https://www.restaurantenanku.net',
+    languages: {
+      'en': 'https://www.restaurantenanku.net',
+      'es': 'https://www.restaurantenanku.net/es',
+      'x-default': 'https://www.restaurantenanku.net',
+    },
+  },
 }
 
 type SchedDay = {
@@ -37,8 +44,51 @@ export default async function HomePage() {
     schedule = data ?? []
   } catch { /* show static fallback below */ }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    name: 'Nanku Tropical Bar & Steakhouse',
+    description: 'Premium steaks, handcrafted tropical cocktails & live music under the stars. Located in La Fortuna, Costa Rica — near Arenal Volcano.',
+    url: 'https://www.restaurantenanku.net',
+    telephone: '+50624790707',
+    email: 'info@restaurantenanku.net',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Street 142',
+      addressLocality: 'La Fortuna de San Carlos',
+      addressRegion: 'Alajuela',
+      addressCountry: 'CR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 10.471579,
+      longitude: -84.643259,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+        opens: '12:00',
+        closes: '22:00',
+      },
+    ],
+    servesCuisine: ['Steakhouse', 'Seafood', 'Tropical', 'Costa Rican', 'International'],
+    priceRange: '$$',
+    acceptsReservations: 'True',
+    menu: 'https://www.restaurantenanku.net/menu',
+    image: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg',
+    sameAs: [
+      'https://www.instagram.com/restaurantenanku/',
+      'https://www.tripadvisor.com/Restaurant_Review-g309226-d7273982-Reviews-Restaurante_Nanku-La_Fortuna_de_San_Carlos_Arenal_Volcano_National_Park_Province_.html',
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar lang="en" />
 
       {/* HERO */}
