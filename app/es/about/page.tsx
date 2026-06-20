@@ -20,7 +20,7 @@ export default function AboutPageES() {
       <section className="about-hero">
         <div
           className="about-hero-bg"
-          style={{ backgroundImage: "url('https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611dbc1840fb68ef4cad7.jpg')" }}
+          style={{ backgroundImage: "url('https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg')" }}
         ></div>
         <div className="about-hero-overlay"></div>
         <div className="about-hero-glow"></div>
@@ -54,7 +54,7 @@ export default function AboutPageES() {
             </div>
             <div className="about-story-photos fade-up">
               <Image
-                src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c611dbc1840fb68ef4cad7.jpg"
+                src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b0666dd61c546ae0760a.jpg"
                 alt="Interior del restaurante"
                 loading="lazy"
                 width={600}
@@ -64,7 +64,7 @@ export default function AboutPageES() {
               />
               <div className="about-photo-stack">
                 <Image
-                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5edb5146bc5f778eaab9e.jpg"
+                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31b2510c03f3dfbe7ba39d.png"
                   alt="Corte premium"
                   loading="lazy"
                   width={600}
@@ -73,7 +73,7 @@ export default function AboutPageES() {
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <Image
-                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c5e484e24981fcd12193a5.jpg"
+                  src="https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/6a31af9c8892600038a93ac8.png"
                   alt="Cócteles"
                   loading="lazy"
                   width={600}
