@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata: Metadata = {
-  title: 'Nosotros',
+  title: 'Nosotros — Nuestra Historia',
   description:
     'Conoce la historia de Nanku Tropical Bar & Steakhouse — gastronomía premium, cócteles artesanales y música en vivo en La Fortuna, Costa Rica.',
   alternates: {

@@ -28,8 +28,15 @@ export const metadata: Metadata = {
     title: 'Nanku Tropical Bar & Steakhouse | La Fortuna, Costa Rica',
     description:
       'Cortes premium, cócteles tropicales artesanales y música en vivo bajo las estrellas.',
-    url: 'https://www.restaurantenanku.net/es',
     locale: 'es_CR',
+    images: [
+      {
+        url: 'https://assets.cdn.filesafe.space/ftiLAicHGn0i3cqS3Rye/media/69c194d50d1082cd084c8590.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Surf and Turf at Nanku Tropical Bar & Steakhouse',
+      },
+    ],
   },
 }
 

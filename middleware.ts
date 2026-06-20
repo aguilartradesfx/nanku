@@ -3,6 +3,11 @@ import { NextResponse, type NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Expose the current path to Server Components so the root layout can set
+  // <html lang> per locale (/es -> "es", everything else -> "en").
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-pathname', pathname)
+
   if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
     // Supabase SSR stores the session in a cookie named sb-<project-ref>-auth-token
     const hasSession = request.cookies.getAll().some(
@@ -16,9 +21,9 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next()
+  return NextResponse.next({ request: { headers: requestHeaders } })
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)'],
 }

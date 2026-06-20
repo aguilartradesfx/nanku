@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Lato, Montserrat } from 'next/font/google'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import './globals.css'
 import FadeUpObserver from '@/components/FadeUpObserver'
 
@@ -37,7 +38,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.restaurantenanku.net',
     siteName: 'Nanku Tropical Bar & Steakhouse',
     images: [
       {
@@ -57,9 +57,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = headers().get('x-pathname') || ''
+  const lang = pathname.startsWith('/es') ? 'es' : 'en'
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${playfair.variable} ${lato.variable} ${montserrat.variable}`}
     >
       <body>

@@ -6,7 +6,7 @@ import WhatsAppButton from '@/components/WhatsAppButton'
 import MenuClient from '@/app/menu/MenuClient'
 
 export const metadata: Metadata = {
-  title: 'Menú',
+  title: 'Menú — Carnes, Mariscos y Cócteles',
   description:
     'Explora el menú completo de Nanku Tropical Bar & Steakhouse — cocina de campo a mesa, cócteles premium, mariscos y más en La Fortuna, Costa Rica.',
   alternates: {
