@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'assets.cdn.filesafe.space' },
+      { protocol: 'https', hostname: 'crrkiaulxxhmawxbqhyq.supabase.co' },
     ],
   },
   async redirects() {
